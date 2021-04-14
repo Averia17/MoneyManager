@@ -1,0 +1,6 @@
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\MoneyManager.Core\bin\Debug\MoneyManager.Core.dll
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\MoneyManager.Core\bin\Debug\MoneyManager.Core.pdb
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\MoneyManager.Core\obj\Debug\MoneyManager.Core.csproj.CoreCompileInputs.cache
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\MoneyManager.Core\obj\Debug\MoneyManager.Core.dll
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\MoneyManager.Core\obj\Debug\MoneyManager.Core.pdb
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\MoneyManager.Core\obj\Debug\MoneyManager.Core.csprojAssemblyReference.cache
