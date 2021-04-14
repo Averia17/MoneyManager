@@ -39,6 +39,11 @@ namespace MoneyManager.Main.Commands
                 viewModel.SelectedViewModel = new CreateHistoryViewModel();
 
             }
+            else if (parameter.ToString() == "EditHistory")
+            {
+                viewModel.SelectedViewModel = new EditHistoryViewModel();
+
+            }
             else if (parameter.ToString() == "FilterBalance")
             {
                 viewModel.SelectedViewModel = new FilterBalanceViewModel();

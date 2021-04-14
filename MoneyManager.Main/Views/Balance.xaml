@@ -56,6 +56,13 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Background="#D4AC0D" Command="{Binding DataContext.LinkToEditCommand, ElementName=BalanceControl,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}">Редактировать</Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -71,7 +78,7 @@
         <Grid Height="100" Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <Button
                         Command="{Binding UpdateViewCommand}" CommandParameter="CreateHistory"
-                        Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                        Style="{DynamicResource MaterialDesignFloatingActionDarkButton}"
                         materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                         materialDesign:ButtonProgressAssist.Value="-1" 
                         materialDesign:ButtonProgressAssist.IsIndeterminate="True"

@@ -9,8 +9,57 @@
         Title="MainWindow" Height="600" Width="1080"  ResizeMode="NoResize"
         Icon="Assets/statistics.jpg"
         WindowStartupLocation="CenterScreen" WindowStyle="None" >
+    
     <Grid>
+        
         <Grid x:Name="GridMenu" Width="251" HorizontalAlignment="Left" Background="White">
+            <!--убрать эту дичь-->
+            <Grid.Resources>
+            
+                <Style TargetType="Button">
+
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=checkBox1, Path=IsChecked}"
+                        Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.2"
+                                                 Storyboard.TargetProperty="FontSize"
+                                                 To="18">
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.2"
+                                                 Storyboard.TargetProperty="FontSize"
+                                                 To="22">
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="FontSize" Value="22" />
+                                <Setter Property="FontWeight" Value="700" />
+
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -25,29 +74,30 @@
                     <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Balance" Width="251">
                         <StackPanel Orientation="Horizontal" Width="251" >
                             <materialDesign:PackIcon Kind="AccountBalanceWallet" Width="20" Height="20" Foreground="IndianRed" Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock Foreground="#212F3D" Text="Баланс"  Margin="10" />
+                            <TextBlock  Text="Баланс"  Margin="10" />
                         </StackPanel>
                     </Button>
                     <Button Height="50" Padding="0" BorderThickness="0"  HorizontalContentAlignment="Left" Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Schedule" Width="251" >
                         <StackPanel Orientation="Horizontal" Width="251" 
  >
                             <materialDesign:PackIcon Kind="Calendar" Width="20" Height="20" Foreground="#FFF08033" Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock Foreground="#212F3D" Margin="10">Календарь изменений</TextBlock>
+                            <TextBlock  Margin="10">Календарь изменений</TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="CreateHistory" Width="251" >
                         <StackPanel Orientation="Horizontal" Width="251" >
                             <materialDesign:PackIcon Kind="DataUsage" Width="20" Height="20" Foreground="#1ABC9C " Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock Foreground="#212F3D" Text="Статистика изменений" Margin="10" />
+                            <TextBlock Text="Статистика изменений" Margin="10" />
                         </StackPanel>
                     </Button>
                     <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Balance" Width="251">
                         <StackPanel Orientation="Horizontal" Width="251" >
                             <materialDesign:PackIcon Kind="CreditCard" Width="20" Height="20" Foreground="#F1C40F" Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock Foreground="#212F3D" Text="Управление бюджетом" Margin="10" />
+                            <TextBlock  Text="Управление бюджетом" Margin="10" />
                         </StackPanel>
                     </Button>
-
+                    <!--убрать эту дичь-->
+                    <CheckBox x:Name="checkBox1" Content="Локнуть кнопки" />
                 </ListView>
             </StackPanel>
 

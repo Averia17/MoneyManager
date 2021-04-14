@@ -27,37 +27,38 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            <StackPanel Orientation="Vertical" x:Name="Form">
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
 
-            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                    <TextBlock Margin="20 0 0 0" Width="200" Text="Дата" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
+                    <DatePicker Margin="30 0 0 0" Width="239" SelectedDate="{Binding History.Date, Mode=TwoWay}"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="22"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                    <TextBlock Margin="20 0 0 0" Width="200" Text="Сумма" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
+                    <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Amount, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите сумму, $"  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 0" Height="64">
+                    <TextBlock Margin="20 0 0 0" Width="200" Text="Категория" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
+                    <ComboBox Margin="30 0 0 0" Width="239"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="22"
+                      materialDesign:HintAssist.Hint="Выберите категорию" 
+                      ItemsSource="{Binding activities, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}"  
+                      SelectedItem="{Binding DataContext.History.Activity, ElementName=CreateHistory, Mode=TwoWay}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <!--<TextBlock Text="{Binding Path=Id}"/>
+                                    <TextBlock Text=" - "/>-->
+                                    <TextBlock Text="{Binding Path=Title}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
 
-                <TextBlock Margin="20 0 0 0" Width="200" Text="Дата" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                <DatePicker Margin="30 0 0 0" Width="239" SelectedDate="{Binding History.Date}"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="22"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
-                <TextBlock Margin="20 0 0 0" Width="200" Text="Сумма" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Amount}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите сумму, $"  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0 10 0 0" Height="64">
-                <TextBlock Margin="20 0 0 0" Width="200" Text="Категория" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                <ComboBox Margin="30 0 0 0" Width="239"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="22"
-                  materialDesign:HintAssist.Hint="Выберите категорию" 
-                  ItemsSource="{Binding activities, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}"  
-                  SelectedItem="{Binding DataContext.History.Activity, ElementName=CreateHistory, Mode=TwoWay}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <!--<TextBlock Text="{Binding Path=Id}"/>
-                                <TextBlock Text=" - "/>-->
-                                <TextBlock Text="{Binding Path=Title}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
-                <TextBlock Margin="20 0 0 0" Width="200" Text="Описание" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Description}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите описание"  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                    <TextBlock Margin="20 0 0 0" Width="200" Text="Описание" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
+                    <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Description, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите описание"  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22"/>
+                </StackPanel>
             </StackPanel>
             <StackPanel Margin="0 20 0 0">
                 <Button Width="150" Height="50" FontSize="24" Command="{Binding DataContext.CreateCommand, ElementName=CreateHistory}">Сохранить</Button>

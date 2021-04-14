@@ -16,11 +16,11 @@ namespace MoneyManager.Main.Commands
        
         public event PropertyChangedEventHandler PropertyChanged;
         
-        public CreateHistoryViewModel createHistoryViewModel { get; set; }
+        public SaveHistoryViewModel saveHistoryViewModel { get; set; }
 
-        public ItemChangedCommand(CreateHistoryViewModel createHistoryViewModel)
+        public ItemChangedCommand(SaveHistoryViewModel saveHistoryViewModel)
         {
-            this.createHistoryViewModel = createHistoryViewModel;
+            this.saveHistoryViewModel = saveHistoryViewModel;
         }
 
         ActivityRepository activityRepository = new ActivityRepository();
@@ -36,7 +36,7 @@ namespace MoneyManager.Main.Commands
         {
             ActivityType activityType = (ActivityType)parameter;
             //Console.WriteLine(parameter);
-            createHistoryViewModel.activities = (List<Activity>)activityRepository.List(x => x.ActivityType.Id == activityType.Id);
+            saveHistoryViewModel.activities = (List<Activity>)activityRepository.List(x => x.ActivityType.Id == activityType.Id);
             /*if (parameter.ToString() == "доходы")
             {
                 createHistoryViewModel.activities = (List<Activity>)activityRepository.List(x => x.ActivityType.Title == "доходы");

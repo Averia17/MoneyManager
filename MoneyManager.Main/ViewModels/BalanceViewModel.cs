@@ -18,6 +18,7 @@ namespace MoneyManager.Main.ViewModels
     {
         public ICommand DeleteCommand { get; set; }
 
+        public static ICommand LinkToEditCommand { get; set; }
         
         public ICommand UpdateViewCommand { get; set; }
 
@@ -56,6 +57,7 @@ namespace MoneyManager.Main.ViewModels
             UpdateViewCommand = new UpdateViewCommand(MainWindow.MainView);
             RefreshHistoryCollectionView();
             DeleteCommand = new DeleteCommand(this);
+            LinkToEditCommand = new LinkToEditCommand(this);
 
         }
         public void GetHistories()

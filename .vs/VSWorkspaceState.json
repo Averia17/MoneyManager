@@ -5,6 +5,6 @@
     "\\MoneyManager.Infrastructure",
     "\\MoneyManager.Main"
   ],
-  "SelectedNode": "\\MoneyManager.Core",
+  "SelectedNode": "\\MoneyManager.Infrastructure",
   "PreviewInSolutionExplorer": false
 }
