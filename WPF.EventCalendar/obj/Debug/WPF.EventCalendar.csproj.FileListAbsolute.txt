@@ -1,0 +1,36 @@
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\bin\Debug\WPF.EventCalendar.dll
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\bin\Debug\WPF.EventCalendar.pdb
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.csprojAssemblyReference.cache
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\obj\Debug\CalendarDay.baml
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\obj\Debug\CalendarEventView.baml
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\obj\Debug\CalendarDay.g.cs
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\obj\Debug\CalendarEventView.g.cs
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\obj\Debug\CalendarMonth.g.cs
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\obj\Debug\WPF.EventCalendar_MarkupCompile.cache
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\obj\Debug\WPF.EventCalendar_MarkupCompile.lref
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\obj\Debug\CalendarMonth.baml
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.g.resources
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.Properties.Resources.resources
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.csproj.GenerateResource.cache
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.csproj.CoreCompileInputs.cache
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.dll
+C:\Users\tabol\Downloads\WPF.EventCalendar-master\WPF.EventCalendar-master\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.pdb
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\bin\Debug\WPF.EventCalendar.dll
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\bin\Debug\WPF.EventCalendar.pdb
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.csprojAssemblyReference.cache
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\CalendarDay.baml
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\CalendarEventView.baml
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\CalendarDay.g.cs
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\CalendarEventView.g.cs
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\CalendarMonth.g.cs
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar_MarkupCompile.cache
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar_MarkupCompile.lref
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\CalendarMonth.baml
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.g.resources
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.Properties.Resources.resources
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.csproj.GenerateResource.cache
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.csproj.CoreCompileInputs.cache
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.dll
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.pdb

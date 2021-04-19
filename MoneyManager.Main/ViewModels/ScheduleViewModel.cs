@@ -1,5 +1,4 @@
 ﻿using System;
-using Syncfusion.UI.Xaml.Schedule;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
 
@@ -7,16 +6,89 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WPF.EventCalendar;
+using System.ComponentModel;
+using System.Linq.Expressions;
+using System.Windows.Controls;
+using MoneyManager.Core.Models;
+using MoneyManager.Infrastructure.Repositories;
 
 namespace MoneyManager.Main.ViewModels
 {
     public class ScheduleViewModel : BaseViewModel
     {
+
+        public List<History> Encomes { get; set; }
+
+        public List<History> Expenses { get; set; }
+
+        public HistoryRepository historyRepository { get; set; }
+
+        public List<ICalendarEvent> _events;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public List<ICalendarEvent> Events
+        {
+            get { return _events; }
+            set
+            {
+                if (_events != value)
+                {
+                    _events = value;
+                    OnPropertyChanged(() => Events);
+
+                    // redraw days with events when Events property changes
+                    // Calendar.DrawDays();
+                }
+            }
+        }
         public ScheduleViewModel()
         {
-            Events = GenerateRandomAppointments();
-        }
+            historyRepository = new HistoryRepository();
 
+            Encomes = new List<History>();
+            Expenses = new List<History>();
+
+            GetEncomes();
+            GetExpenses();
+            DateTime startDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 15);
+
+            // add example events
+            Events = new List<ICalendarEvent>();
+            /*Events.Add(new ScheduleCustomEvent() { DateFrom = DateTime.Now, DateTo = DateTime.Now.AddDays(2), Label = "Event 1" });
+            Events.Add(new ScheduleCustomEvent() { DateFrom = DateTime.Now, DateTo = DateTime.Now.AddDays(2), Label = "Event 2" });*/
+            //Calendar.DrawDays();
+            SetEvents();
+            //Events = GenerateRandomAppointments();
+        }
+        public void GetEncomes()
+        {
+            Encomes = (List<History>)historyRepository.List(x => x.Activity.ActivityType.Title == "доходы");
+        }
+        public void GetExpenses()
+        {
+            Expenses = (List<History>)historyRepository.List(x => x.Activity.ActivityType.Title == "расходы");
+        }
+        public void SetEvents()
+        {
+            foreach(History history in Encomes)
+            {
+                Events.Add(new ScheduleCustomEvent() { DateFrom = history.Date, DateTo = history.Date, Label = $"{history.Activity.Title}", Color="Green"});
+            }
+            foreach (History history in Expenses)
+            {
+                Events.Add(new ScheduleCustomEvent() { DateFrom = history.Date, DateTo = history.Date, Label = $"{history.Activity.Title}", Color = "Red" });
+            }
+        }
+        public void OnPropertyChanged<T>(Expression<Func<T>> exp)
+        {
+            var memberExpression = (MemberExpression)exp.Body;
+            var propertyName = memberExpression.Member.Name;
+
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        /*
         public ScheduleAppointmentCollection Events { get; set; }
 
         private ScheduleAppointmentCollection GenerateRandomAppointments()
@@ -132,7 +204,8 @@ namespace MoneyManager.Main.ViewModels
                 l++;
             }
 
-            return appointments;
-        }
+            return appointments;*/
+
     }
+
 }

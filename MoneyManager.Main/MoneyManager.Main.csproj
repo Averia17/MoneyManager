@@ -122,24 +122,6 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Licensing, Version=19.1460.0.55, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Licensing.19.1.0.55\lib\net46\Syncfusion.Licensing.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SfRadialMenu.WPF, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.SfRadialMenu.WPF.18.3.0.53\lib\net46\Syncfusion.SfRadialMenu.WPF.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SfSchedule.WPF, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.SfSchedule.WPF.18.3.0.53\lib\net46\Syncfusion.SfSchedule.WPF.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SfShared.WPF, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.SfShared.WPF.18.3.0.53\lib\net46\Syncfusion.SfShared.WPF.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.Shared.Base, Version=19.1460.0.55, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Shared.Base.19.1.0.55\lib\net46\Syncfusion.Shared.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.Shared.WPF, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Shared.WPF.18.3.0.53\lib\net46\Syncfusion.Shared.WPF.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -205,6 +187,7 @@
     <Compile Include="Commands\EditCommand.cs" />
     <Compile Include="Commands\LinkToEditCommand.cs" />
     <Compile Include="Commands\ItemChangedCommand.cs" />
+    <Compile Include="ScheduleCustomEvent.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CreateHistoryViewModel.cs" />
@@ -228,6 +211,9 @@
     </Compile>
     <Compile Include="Views\Schedule.xaml.cs">
       <DependentUpon>Schedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistics.xaml.cs">
+      <DependentUpon>Statistics.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -259,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Schedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Statistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -301,6 +291,14 @@
     <ProjectReference Include="..\MoneyManager.Infrastructure\MoneyManager.Infrastructure.csproj">
       <Project>{C15BBB61-8EFC-4882-B2F0-DE4071652779}</Project>
       <Name>MoneyManager.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PieChart\PieChart.csproj">
+      <Project>{48727068-1064-4a41-bc05-d866720aef14}</Project>
+      <Name>PieChart</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPF.EventCalendar\WPF.EventCalendar.csproj">
+      <Project>{40f4325f-1fba-4adc-b6df-36949403f998}</Project>
+      <Name>WPF.EventCalendar</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

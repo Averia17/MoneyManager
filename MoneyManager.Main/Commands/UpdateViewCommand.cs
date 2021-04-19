@@ -49,6 +49,11 @@ namespace MoneyManager.Main.Commands
                 viewModel.SelectedViewModel = new FilterBalanceViewModel();
 
             }
+            else if (parameter.ToString() == "Statistics")
+            {
+                viewModel.SelectedViewModel = new StatisticsViewModel();
+
+            }
         }
     }
 }

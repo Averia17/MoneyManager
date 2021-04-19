@@ -28,6 +28,9 @@
             <DataTemplate DataType="{x:Type viewmodels:FilterBalanceViewModel}">
                 <views:FilterBalance/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:StatisticsViewModel}">
+                <views:Statistics/>
+            </DataTemplate>
         </ResourceDictionary>
 
     </Application.Resources>

@@ -1,0 +1,13 @@
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\PieChart\obj\Debug\PieChart.csprojAssemblyReference.cache
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\PieChart\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\PieChart\obj\Debug\PieChart_MarkupCompile.cache
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\PieChart\obj\Debug\PieChart_MarkupCompile.lref
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\PieChart\bin\Debug\PieChart.dll
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\PieChart\bin\Debug\PieChart.pdb
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\PieChart\obj\Debug\Themes\Generic.baml
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\PieChart\obj\Debug\PieChart.g.resources
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\PieChart\obj\Debug\PieChart.Properties.Resources.resources
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\PieChart\obj\Debug\PieChart.csproj.GenerateResource.cache
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\PieChart\obj\Debug\PieChart.csproj.CoreCompileInputs.cache
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\PieChart\obj\Debug\PieChart.dll
+D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\PieChart\obj\Debug\PieChart.pdb

@@ -84,7 +84,7 @@
                             <TextBlock  Margin="10">Календарь изменений</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="CreateHistory" Width="251" >
+                    <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Statistics" Width="251" >
                         <StackPanel Orientation="Horizontal" Width="251" >
                             <materialDesign:PackIcon Kind="DataUsage" Width="20" Height="20" Foreground="#1ABC9C " Margin="5" VerticalAlignment="Center"/>
                             <TextBlock Text="Статистика изменений" Margin="10" />
