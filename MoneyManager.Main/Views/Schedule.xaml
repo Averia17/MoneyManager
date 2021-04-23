@@ -10,7 +10,7 @@
              mc:Ignorable="d" 
              
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="RosyBrown">
+    <Grid Background="#e2eefb">
         <Grid>
             <calendar:CalendarMonth x:Name="Calendar" Events="{Binding Events}" />
 

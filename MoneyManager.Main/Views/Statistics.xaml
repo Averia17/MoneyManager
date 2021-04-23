@@ -7,7 +7,71 @@
              xmlns:pie="clr-namespace:PieChart;assembly=PieChart"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+   
     <Grid Background="White">
-        <pie:PieCharControl  PieItemSources="{Binding PieCharList,Mode=TwoWay}" TitleName="Статистика расходов" AggregateName="Общие расходы"></pie:PieCharControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition  Height="1*"></RowDefinition>
+            <RowDefinition  Height="2.5*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <Border BorderThickness="0"  Margin="0,0,7,7" >
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="7" BlurRadius="6" Opacity="0.35"/>
+                </Border.Effect>
+                <Grid Background="#e2eefb">
+                <DatePicker Margin="40 0 0 0" Width="200" SelectedDate="{Binding TbFrom}"  HorizontalAlignment="Left"  FontSize="22"/>
+                <DatePicker Margin="0 0 40 0" Width="200" SelectedDate="{Binding TbTo}"  HorizontalAlignment="Right"  FontSize="22"/>
+
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1" >
+            
+            <Border BorderThickness="0"  Margin="0,0,7,7" >
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="7" BlurRadius="6" Opacity="0.35"/>
+                </Border.Effect>
+
+                <Grid  Background="#e2eefb" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="20,0, 0, 0">
+                        <StackPanel VerticalAlignment="Bottom"   Orientation="Horizontal">
+                            <TextBlock FontSize="16"  Margin="0,0,20,0">Доход</TextBlock>
+                            <TextBlock FontSize="16"  Text="{Binding Encome}"></TextBlock>
+                        </StackPanel>
+                        
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="20, 0, 0, 0">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <TextBlock FontSize="16"  Margin="0,0,20,0">Расход</TextBlock>
+                            <TextBlock FontSize="16"  Text="{Binding Expense}"></TextBlock>
+                        </StackPanel>
+
+                    </Grid>
+                    <!--лево верх право низ-->
+                    <Grid Grid.Row="2" Margin="20, 0, 0, 0">
+                        <StackPanel VerticalAlignment="Top"  Orientation="Horizontal">
+                            <TextBlock FontSize="16"  Margin="0,0,20,0">Изменение баланса</TextBlock>
+                            <TextBlock FontSize="16"  Text="{Binding Difference}"></TextBlock>
+
+                        </StackPanel>
+
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="2">
+            <TextBlock>Ваши Расходы</TextBlock>
+            <pie:PieCharControl  PieItemSources="{Binding PieCharListExpenses,Mode=TwoWay}"></pie:PieCharControl>
+        </Grid>
+        
     </Grid>
 </UserControl>

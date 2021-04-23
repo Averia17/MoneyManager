@@ -35,7 +35,7 @@ namespace MoneyManager.Main.Commands
                  Id = Guid.NewGuid(),
                  Date = 
 
-
+ц
              };*/
             History.Id = Guid.NewGuid();
             History.AccountId = Guid.Parse("B9AEC1FD-4B04-43D1-AE07-33E0ACBE4AB9");

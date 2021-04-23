@@ -11,42 +11,27 @@ using System.Collections.ObjectModel;
 namespace PieChart
 {
     [TemplatePart(Name = Parid_timePoint)]
-    [TemplatePart(Name = Parid_titleText)]
     [TemplatePart(Name = Parid_legendGrid)]
-    [TemplatePart(Name = Parid_leftText)]
-    [TemplatePart(Name = Parid_rightText)]
     public class PieCharControl : Control
     {
         private Grid _timePoint;                                //饼图容器
-        private WrapPanel _legendGrid;                    //图例容器
+        private StackPanel _legendGrid;                    //图例容器
+        private ListView _legendGridView;                    //图例容器
         private TextBlock _titleText;                          //标题
-        private TextBox _leftText;                             //类型
-        private TextBox _rightText;                           //数量
 
         private const string Parid_timePoint = "Z_Parid_timePoint";
         private const string Parid_titleText = "Z_Parid_titleText";
         private const string Parid_legendGrid = "Z_Parid_legendGrid";
-        private const string Parid_leftText = "Z_Parid_leftText";
-        private const string Parid_rightText = "Z__Parid_rightText";
+        private const string Parid_legendGrid_View = "Z_Parid_legendGrid_View";
 
+        
         public static readonly DependencyProperty PieItemSourcesProperty = DependencyProperty.Register(
             "PieItemSources",
             typeof(ObservableCollection<PieCharItem>),
             typeof(PieCharControl),
             new PropertyMetadata(null, OnPieItemSourcesChanged, CoerceTMethod));
 
-        public static readonly DependencyProperty TitleNameProperty = DependencyProperty.Register(
-            "TitleName",
-            typeof(string),
-            typeof(PieCharControl),
-            new PropertyMetadata("", OnTitleNameChanged, CoerceTMethod));
-
-        public static readonly DependencyProperty AggregateNameProperty = DependencyProperty.Register(
-            "AggregateName",
-            typeof(string),
-            typeof(PieCharControl),
-            new PropertyMetadata("", OnAggregateNameChanged, CoerceTMethod));
-
+       
         /// <summary>
         /// 饼图数据源
         /// </summary>
@@ -59,20 +44,7 @@ namespace PieChart
         /// <summary>
         /// 标题文字
         /// </summary>
-        public string TitleName
-        {
-            get { return (string)GetValue(TitleNameProperty); }
-            set { SetValue(TitleNameProperty, value); }
-        }
-
-        /// <summary>
-        /// 总计名称
-        /// </summary>
-        public string AggregateName
-        {
-            get { return (string)GetValue(AggregateNameProperty); }
-            set { SetValue(AggregateNameProperty, value); }
-        }
+        
 
         /// <summary>
         /// 参与依赖属性的基类对象
@@ -94,7 +66,10 @@ namespace PieChart
                         new SolidColorBrush((Color)ColorConverter.ConvertFromString("#85ea85")),
                         new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e97473")),
                         new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6392db")),
-                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#8f98b5")),
+                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e048a3")),
+                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#8fb5b2")),
+                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e6cf0d")),
+                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#8346e0")),
                         new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e6cf0d")),
                         new SolidColorBrush((Color)ColorConverter.ConvertFromString("#99b54e"))
                     };
@@ -156,14 +131,7 @@ namespace PieChart
         /// </summary>
         /// <param name="d"></param>
         /// <param name="e"></param>
-        private static void OnTitleNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            PieCharControl pieControl = (PieCharControl)d;
-            if (pieControl._titleText != null)
-            {
-                pieControl._titleText.Text = pieControl.TitleName;
-            }
-        }
+       
 
         /// <summary>
         /// 强制装换
@@ -209,9 +177,9 @@ namespace PieChart
             base.OnApplyTemplate();
             _timePoint = GetTemplateChild(Parid_timePoint) as Grid;
             _titleText = GetTemplateChild(Parid_titleText) as TextBlock;
-            _legendGrid = GetTemplateChild(Parid_legendGrid) as WrapPanel;
-            _leftText = GetTemplateChild(Parid_leftText) as TextBox;
-            _rightText = GetTemplateChild(Parid_rightText) as TextBox;
+            _legendGrid = GetTemplateChild(Parid_legendGrid) as StackPanel;
+            _legendGridView = GetTemplateChild(Parid_legendGrid_View) as ListView;
+
         }
 
         /// <summary>
@@ -229,13 +197,13 @@ namespace PieChart
         {
             if (_timePoint != null)
             {
+                //TODO БАГ ПРИ СМЕНЕ ДНЯ
                 SetDefaultChild();
                 List<SectorPart> sectorParts = new List<SectorPart>();                                                         //扇形集合
                 int allNumber = PieItemSources == null ? 0 : PieItemSources.Sum(x => x.TypeNumber);       //总数
                 if (allNumber > 0)
                 {
-                    _leftText.Text += AggregateName + "：\r\n";
-                    _rightText.Text += allNumber.ToString() + "\r\n";
+
                     foreach (var item in PieItemSources)
                     {
                         int colorCount = sectorParts.Count();
@@ -244,8 +212,6 @@ namespace PieChart
 
                         AddIconFill(ColorBrushList[colorCount], allNumber, item);
 
-                        _leftText.Text += item.TypeName + "：\r\n";
-                        _rightText.Text += item.TypeNumber.ToString() + "\r\n";
                     }
                 }
                 foreach (var shape in GetEllipsePieChartShapes(GetPieCenterPoint(), GetPieWidth(), GetPieWidth(), 0, sectorParts))
@@ -261,9 +227,7 @@ namespace PieChart
         private void SetDefaultChild()
         {
             _timePoint.Children.Clear();
-            _legendGrid.Children.Clear();
-            _leftText.Text = _rightText.Text = string.Empty;
-            _titleText.Text = TitleName;
+            _legendGridView.Items.Clear();
         }
 
         /// <summary>
@@ -271,29 +235,30 @@ namespace PieChart
         /// </summary>
         /// <param name="color"></param>
         /// <param name="constString"></param>
-        private void AddIconFill(Brush color ,  int allNumber , PieCharItem item)
+        private void AddIconFill(Brush color, int allNumber, PieCharItem item)
         {
-            _legendGrid.Children.Add(new Ellipse()
+            StackPanel stackPanel = new StackPanel();
+            stackPanel.Orientation = Orientation.Horizontal;
+            stackPanel.Children.Add(new Ellipse()
             {
                 Fill = color,
                 Width = 15,
                 Height = 15,
-                Margin = new Thickness(10,0,0,0),
-                HorizontalAlignment = HorizontalAlignment.Center
+                Margin = new Thickness(10, 0, 5, 0),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
             });
-            _legendGrid.Children.Add(new TextBox()
+            stackPanel.Children.Add(new TextBox()
             {
                 Text = $"{item.TypeName}({(Math.Round((double)item.TypeNumber / allNumber * 100, 1)).ToString("F1")}%)",
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF")),
-                Width = 90,
-                Height = 20,
-                FontSize = 11,
+                FontSize = 15,
                 IsReadOnly = true,
                 BorderThickness = new Thickness(0),
                 HorizontalContentAlignment = HorizontalAlignment.Left,
                 VerticalContentAlignment = VerticalAlignment.Center,
-                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#333333")),
             });
+           // ListViewItem listViewItem = new ListViewItem(stackPanel);
+            _legendGridView.Items.Add(stackPanel);
         }
 
         /// <summary>
@@ -370,7 +335,7 @@ namespace PieChart
                     new ArcSegment
                     {
                         Point = secondPoint,
-                        Size = new Size(radiusX,radiusY),
+                        Size = new Size(radiusX, radiusY),
                         RotationAngle = 0,
                         IsLargeArc = sectorPart.PIsLargeArc,
                         SweepDirection = SweepDirection.Clockwise,
