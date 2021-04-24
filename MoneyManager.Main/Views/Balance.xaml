@@ -12,8 +12,8 @@
     
     <Grid Background="Gainsboro">
 
-        
-        <ListView AlternationCount="2" 
+
+        <ListView Margin="0 20 0 0 " AlternationCount="2"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"  BorderBrush="Transparent"
           ItemsSource="{Binding HistoryCollectionView, Mode=TwoWay}" Padding="0,0,0,10">
             <ListView.GroupStyle>
                 <GroupStyle>
@@ -23,7 +23,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type GroupItem}">
-                                        <Expander IsExpanded="True" BorderBrush="#FFA4B97F" 
+                                        <Expander IsExpanded="True" BorderBrush="Transparent" 
                                             BorderThickness="0,0,0,1">
                                             <Expander.Header>
                                                 <DockPanel>
@@ -67,8 +67,13 @@
             </ListView.View>
         </ListView>
         
-        <Grid Height="50" VerticalAlignment="Top" >
-            <Button   HorizontalAlignment="Right" Padding="5 0" Margin="0 0 20 0"  Command="{Binding UpdateViewCommand}" CommandParameter="FilterBalance">
+        <Grid Height="60" VerticalAlignment="Top" >
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30 0 0 0">
+                <TextBlock Text="Ваш баланс " FontSize="20"  ></TextBlock>
+                <TextBlock Text="{Binding Balance, Mode=TwoWay}" FontSize="20" Margin="10 0 0 0"></TextBlock>
+
+            </StackPanel>
+             <Button   HorizontalAlignment="Right" Padding="5 0" Margin="0 0 20 0"  Command="{Binding UpdateViewCommand}" CommandParameter="FilterBalance">
                 <StackPanel Orientation="Horizontal" >
                     <materialDesign:PackIcon Kind="Search" Margin="5" VerticalAlignment="Center"/>
                     <TextBlock Margin="  0 2 6 0">Поиск</TextBlock>

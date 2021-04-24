@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\MoneyManager.Main\obj\Debug\
+D:\MoneyManager.Main\MoneyManager.Main\obj\Debug\
 MoneyManager.Main
 none
 false
 DEBUG;TRACE
-D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\MoneyManager.Main\App.xaml
+D:\MoneyManager.Main\MoneyManager.Main\App.xaml
 7-599366545
 
 282085309010
-62-612290350
+62-944794969
 MainWindow.xaml;Views\Balance.xaml;Views\CreateHistoryForm.xaml;Views\EditHistoryForm.xaml;Views\FilterBalance.xaml;Views\Schedule.xaml;Views\Statistics.xaml;
 
 True

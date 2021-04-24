@@ -45,6 +45,16 @@ namespace MoneyManager.Main.ViewModels
             }
         }
 
+        public double _balance { get; set; }
+        public double Balance
+        {
+            get { return _balance; }
+            set
+            {
+                _balance = value;
+                OnPropertyChanged(nameof(Balance));
+            }
+        }
 
         private HistoryRepository historyRepository;
 
@@ -54,6 +64,7 @@ namespace MoneyManager.Main.ViewModels
             historyRepository = new HistoryRepository();
             Histories = new List<History>();
             GetHistories();
+            Balance = GetBalance();
             UpdateViewCommand = new UpdateViewCommand(MainWindow.MainView);
             RefreshHistoryCollectionView();
             DeleteCommand = new DeleteCommand(this);
@@ -63,6 +74,20 @@ namespace MoneyManager.Main.ViewModels
         public void GetHistories()
         {
             Histories = (List<History>)historyRepository.List();
+            Balance = GetBalance();
+
+        }
+        public double GetBalance()
+        {
+            double SumOfHistories = 0;
+            foreach (History history in Histories)
+            {
+                if (history.Activity.ActivityType.Title == "Доходы")
+                    SumOfHistories += history.Amount;
+                else if (history.Activity.ActivityType.Title == "Расходы")
+                    SumOfHistories -= history.Amount;
+            }
+            return SumOfHistories;
         }
         public void RefreshHistoryCollectionView()
         {

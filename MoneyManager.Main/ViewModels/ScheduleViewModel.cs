@@ -64,21 +64,21 @@ namespace MoneyManager.Main.ViewModels
         }
         public void GetEncomes()
         {
-            Encomes = (List<History>)historyRepository.List(x => x.Activity.ActivityType.Title == "доходы");
+            Encomes = (List<History>)historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы");
         }
         public void GetExpenses()
         {
-            Expenses = (List<History>)historyRepository.List(x => x.Activity.ActivityType.Title == "расходы");
+            Expenses = (List<History>)historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы");
         }
         public void SetEvents()
         {
-            foreach(History history in Encomes)
+            foreach (History history in Encomes)
             {
-                Events.Add(new ScheduleCustomEvent() { DateFrom = history.Date, DateTo = history.Date, Label = $"{history.Activity.Title}", Color="Green"});
+                Events.Add(new ScheduleCustomEvent() { DateFrom = history.Date, DateTo = history.Date, Label = $"{history.Activity.Title}", Color = "Green" , IsRepeat = history.IsRepeat}) ;
             }
             foreach (History history in Expenses)
             {
-                Events.Add(new ScheduleCustomEvent() { DateFrom = history.Date, DateTo = history.Date, Label = $"{history.Activity.Title}", Color = "Red" });
+                Events.Add(new ScheduleCustomEvent() { DateFrom = history.Date, DateTo = history.Date, Label = $"{history.Activity.Title}", Color = "Red", IsRepeat = history.IsRepeat });
             }
         }
         public void OnPropertyChanged<T>(Expression<Func<T>> exp)

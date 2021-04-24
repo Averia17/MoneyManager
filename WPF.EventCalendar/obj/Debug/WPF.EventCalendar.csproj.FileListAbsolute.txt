@@ -34,3 +34,21 @@ D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Deb
 D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.csproj.CoreCompileInputs.cache
 D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.dll
 D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.pdb
+D:\MoneyManager.Main\WPF.EventCalendar\bin\Debug\WPF.EventCalendar.dll
+D:\MoneyManager.Main\WPF.EventCalendar\bin\Debug\WPF.EventCalendar.pdb
+D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.csprojAssemblyReference.cache
+D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\CalendarDay.baml
+D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\CalendarEventView.baml
+D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\CalendarDay.g.cs
+D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\CalendarEventView.g.cs
+D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\CalendarMonth.g.cs
+D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar_MarkupCompile.cache
+D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar_MarkupCompile.lref
+D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\CalendarMonth.baml
+D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.g.resources
+D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.Properties.Resources.resources
+D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.csproj.GenerateResource.cache
+D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.csproj.CoreCompileInputs.cache
+D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.dll
+D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.pdb

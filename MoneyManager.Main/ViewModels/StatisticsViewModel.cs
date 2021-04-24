@@ -94,7 +94,7 @@ namespace MoneyManager.Main.ViewModels
         {
             double sum = 0;
             List<History> histories = new List<History>();
-            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "расходы" && x.Date >= TbFrom && x.Date <= TbTo).ToList();
+            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && x.Date >= TbFrom && x.Date <= TbTo).ToList();
 
             foreach (History history in histories)
             {
@@ -106,7 +106,7 @@ namespace MoneyManager.Main.ViewModels
         {
             double sum = 0;
             List<History> histories = new List<History>();
-            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "доходы" && x.Date >= TbFrom && x.Date <= TbTo).ToList();
+            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" && x.Date >= TbFrom && x.Date <= TbTo).ToList();
 
             foreach (History history in histories)
             {
@@ -123,7 +123,7 @@ namespace MoneyManager.Main.ViewModels
         public void GetPieCharExpensesList()
         {
             PieCharListExpenses.Clear();
-            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == "расходы" && x.Date >=TbFrom && x.Date <= TbTo)
+            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && x.Date >=TbFrom && x.Date <= TbTo)
                                                 .GroupBy(x => x.Activity.Title).
                                                 Select(g => new
                                                 {
@@ -138,7 +138,7 @@ namespace MoneyManager.Main.ViewModels
         public void GetPieCharEncomesList()
         {
             PieCharListEncomes.Clear();
-            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == "доходы" && x.Date >= TbFrom && x.Date <= TbTo)
+            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" && x.Date >= TbFrom && x.Date <= TbTo)
                                                 .GroupBy(x => x.Activity.Title).
                                                 Select(g => new
                                                 {

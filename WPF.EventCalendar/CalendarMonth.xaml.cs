@@ -368,51 +368,105 @@ namespace WPF.EventCalendar
 
                     var ColorToSet = e.Color;
                     // loop all days of current event
-                    for (DateTime date = dateFrom; date <= dateTo; date = date.AddDays(1))
+                    if (e.IsRepeat)
                     {
-                        // get DayOfWeek for current day of current event
-                        CalendarDay day = DaysInCurrentMonth.Where(d => d.Date.Date == date.Date).FirstOrDefault();
+                        DateTime date = dateFrom;
 
-                        // day is in another mont, so skip it
-                        if (day == null)
-                        {
-                            continue;
-                        }
-
-                        // if the DayOfWeek is Monday, event shloud be displayed on first row
-                        if (day.Date.DayOfWeek == DayOfWeek.Monday)
-                        {
-                            eventRow = 0;
-                        }
-
-                        // but if there are some events before, event won't be on the first row, but after previous events
-                        if (day.Events.Children.Count > eventRow)
-                        {
-                            eventRow = Grid.GetRow(day.Events.Children[day.Events.Children.Count - 1]) + 1;
-                        }
-                        CalendarEventView calendarEventView;
-                        // get color for event
-                        if (ColorToSet == "Red")
-                        {
-                            
-                             calendarEventView = new CalendarEventView(ColorRed, this);
-
-                        }
-                        else if (ColorToSet == "Green")
+                        for (; date <= new DateTime(2101, 1, 1); date = date.AddMonths(1))
                         {
 
-                             calendarEventView = new CalendarEventView(ColorGreen, this);
+                            CalendarDay day = DaysInCurrentMonth.Where(d => d.Date.Date == date.Date).FirstOrDefault();
 
+                            // day is in another mont, so skip it
+                            if (day == null)
+                            {
+                                continue;
+                            }
+
+                            // if the DayOfWeek is Monday, event shloud be displayed on first row
+                            if (day.Date.DayOfWeek == DayOfWeek.Monday)
+                            {
+                                eventRow = 0;
+                            }
+
+                            // but if there are some events before, event won't be on the first row, but after previous events
+                            if (day.Events.Children.Count > eventRow)
+                            {
+                                eventRow = Grid.GetRow(day.Events.Children[day.Events.Children.Count - 1]) + 1;
+                            }
+                            CalendarEventView calendarEventView;
+                            // get color for event
+                            if (ColorToSet == "Red")
+                            {
+
+                                calendarEventView = new CalendarEventView(ColorRed, this);
+
+                            }
+                            else if (ColorToSet == "Green")
+                            {
+
+                                calendarEventView = new CalendarEventView(ColorGreen, this);
+
+                            }
+                            else
+                            {
+                                int accentColorIndex = accentColor % colors.Count();
+                                calendarEventView = new CalendarEventView(colors[accentColorIndex], this);
+                            }
+
+                            calendarEventView.DataContext = e;
+                            Grid.SetRow(calendarEventView, eventRow);
+                            day.Events.Children.Add(calendarEventView);
                         }
-                        else
+                    }
+                    else
+                    {
+                        for (DateTime date = dateFrom; date <= dateTo; date = date.AddDays(1))
                         {
-                            int accentColorIndex = accentColor % colors.Count();
-                            calendarEventView = new CalendarEventView(colors[accentColorIndex], this);
-                        }
+                            // get DayOfWeek for current day of current event
+                            CalendarDay day = DaysInCurrentMonth.Where(d => d.Date.Date == date.Date).FirstOrDefault();
 
-                        calendarEventView.DataContext = e;
-                        Grid.SetRow(calendarEventView, eventRow);
-                        day.Events.Children.Add(calendarEventView);
+                            // day is in another mont, so skip it
+                            if (day == null)
+                            {
+                                continue;
+                            }
+
+                            // if the DayOfWeek is Monday, event shloud be displayed on first row
+                            if (day.Date.DayOfWeek == DayOfWeek.Monday)
+                            {
+                                eventRow = 0;
+                            }
+
+                            // but if there are some events before, event won't be on the first row, but after previous events
+                            if (day.Events.Children.Count > eventRow)
+                            {
+                                eventRow = Grid.GetRow(day.Events.Children[day.Events.Children.Count - 1]) + 1;
+                            }
+                            CalendarEventView calendarEventView;
+                            // get color for event
+                            if (ColorToSet == "Red")
+                            {
+
+                                calendarEventView = new CalendarEventView(ColorRed, this);
+
+                            }
+                            else if (ColorToSet == "Green")
+                            {
+
+                                calendarEventView = new CalendarEventView(ColorGreen, this);
+
+                            }
+                            else
+                            {
+                                int accentColorIndex = accentColor % colors.Count();
+                                calendarEventView = new CalendarEventView(colors[accentColorIndex], this);
+                            }
+
+                            calendarEventView.DataContext = e;
+                            Grid.SetRow(calendarEventView, eventRow);
+                            day.Events.Children.Add(calendarEventView);
+                        }
                     }
                     accentColor++;
                 }
