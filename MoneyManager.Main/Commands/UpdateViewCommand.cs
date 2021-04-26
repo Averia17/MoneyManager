@@ -62,7 +62,7 @@ namespace MoneyManager.Main.Commands
             {
                 viewModel.SelectedViewModel = new SettingsViewModel();
             }
-            // TODO ЧЁТ ЖОПА
+            
             else if (parameter.ToString() == "Login")
             {
                 viewModel.SelectedViewModel  = (new LoginViewModel(new Authenticator(new AuthenticationRepository(new AccountRepository(), new Microsoft.AspNet.Identity.PasswordHasher()), new AccountStore())));

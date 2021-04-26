@@ -20,9 +20,26 @@ namespace MoneyManager.Main.States.Accounts
             set
             {
                 currentAccount = value;
+                SingleCurrentAccount singleCurrentAccount = SingleCurrentAccount.GetInstance();
+                singleCurrentAccount.Account = currentAccount;
                 StateChanged?.Invoke();
             }
         }
         public event Action StateChanged;
+    }
+
+    public sealed class SingleCurrentAccount
+    {
+        public Account Account { get; set; }
+        private static SingleCurrentAccount _instance;
+        private SingleCurrentAccount()
+        {
+            Account = new Account();
+        }
+
+        public static SingleCurrentAccount GetInstance()
+        {
+            return _instance ?? (_instance = new SingleCurrentAccount());
+        }
     }
 }

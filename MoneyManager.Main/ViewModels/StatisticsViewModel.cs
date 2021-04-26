@@ -1,5 +1,6 @@
 ﻿using MoneyManager.Core.Models;
 using MoneyManager.Infrastructure.Repositories;
+using MoneyManager.Main.States.Accounts;
 using PieChart;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace MoneyManager.Main.ViewModels
         public ObservableCollection<PieCharItem> PieCharListEncomes { get; set; }
 
         public HistoryRepository historyRepository { get; set; }
+
+        Account account { get; set; }
 
         private double _encome { get; set; }
         public double Encome
@@ -79,6 +82,8 @@ namespace MoneyManager.Main.ViewModels
             PieCharListExpenses = new ObservableCollection<PieCharItem>();
             PieCharListEncomes = new ObservableCollection<PieCharItem>();
             historyRepository = new HistoryRepository();
+            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+            account = currentAccount.Account;
             StartUp();
         }
         public void StartUp()
@@ -93,8 +98,9 @@ namespace MoneyManager.Main.ViewModels
         public double GetExpense()
         {
             double sum = 0;
+           
             List<History> histories = new List<History>();
-            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && x.Date >= TbFrom && x.Date <= TbTo).ToList();
+            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id).ToList();
 
             foreach (History history in histories)
             {
@@ -105,8 +111,9 @@ namespace MoneyManager.Main.ViewModels
         public double GetEncome()
         {
             double sum = 0;
+            
             List<History> histories = new List<History>();
-            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" && x.Date >= TbFrom && x.Date <= TbTo).ToList();
+            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id).ToList();
 
             foreach (History history in histories)
             {
@@ -123,7 +130,8 @@ namespace MoneyManager.Main.ViewModels
         public void GetPieCharExpensesList()
         {
             PieCharListExpenses.Clear();
-            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && x.Date >=TbFrom && x.Date <= TbTo)
+            
+            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && x.Date >=TbFrom && x.Date <= TbTo && x.Account.Id == account.Id)
                                                 .GroupBy(x => x.Activity.Title).
                                                 Select(g => new
                                                 {
@@ -138,7 +146,8 @@ namespace MoneyManager.Main.ViewModels
         public void GetPieCharEncomesList()
         {
             PieCharListEncomes.Clear();
-            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" && x.Date >= TbFrom && x.Date <= TbTo)
+            
+            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id)
                                                 .GroupBy(x => x.Activity.Title).
                                                 Select(g => new
                                                 {

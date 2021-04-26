@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using MoneyManager.Main.States.Accounts;
 
 namespace MoneyManager.Main.ViewModels
 {
@@ -58,7 +59,10 @@ namespace MoneyManager.Main.ViewModels
             historyRepository = new HistoryRepository();
 
             Histories = new List<History>();
-            Histories = (List<History>)historyRepository.List();
+            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+            Account account = currentAccount.Account;
+
+            Histories = (List<History>)historyRepository.List(x => x.Account.Id == account.Id);
             HistoriesCollectionView = CollectionViewSource.GetDefaultView(Histories);
 
             HistoriesCollectionView.Filter = FilterHistories;

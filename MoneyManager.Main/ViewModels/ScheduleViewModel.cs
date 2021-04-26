@@ -12,6 +12,7 @@ using System.Linq.Expressions;
 using System.Windows.Controls;
 using MoneyManager.Core.Models;
 using MoneyManager.Infrastructure.Repositories;
+using MoneyManager.Main.States.Accounts;
 
 namespace MoneyManager.Main.ViewModels
 {
@@ -64,11 +65,16 @@ namespace MoneyManager.Main.ViewModels
         }
         public void GetEncomes()
         {
-            Encomes = (List<History>)historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы");
+            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+            Account account = currentAccount.Account;
+
+            Encomes = (List<History>)historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" && x.Account.Id == account.Id);
         }
         public void GetExpenses()
         {
-            Expenses = (List<History>)historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы");
+            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+            Account account = currentAccount.Account;
+            Expenses = (List<History>)historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && x.Account.Id == account.Id);
         }
         public void SetEvents()
         {

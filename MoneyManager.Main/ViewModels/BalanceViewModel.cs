@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
+using MoneyManager.Main.States.Accounts;
 
 namespace MoneyManager.Main.ViewModels
 {
@@ -60,7 +61,7 @@ namespace MoneyManager.Main.ViewModels
 
         public BalanceViewModel()
         {
-
+           
             historyRepository = new HistoryRepository();
             Histories = new List<History>();
             GetHistories();
@@ -73,7 +74,10 @@ namespace MoneyManager.Main.ViewModels
         }
         public void GetHistories()
         {
-            Histories = (List<History>)historyRepository.List();
+            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+            Account account = currentAccount.Account;
+
+            Histories = (List<History>)historyRepository.List(x => x.Account.Id == account.Id);
             Balance = GetBalance();
 
         }
