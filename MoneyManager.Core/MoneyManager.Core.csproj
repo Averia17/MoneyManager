@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,17 +44,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\AccountNotFoundException.cs" />
+    <Compile Include="Exceptions\InvalidPasswordException.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\ActivityType.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\History.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryIntarfaces\AuthenticationRepository\IAuthenticationRepository.cs" />
     <Compile Include="RepositoryIntarfaces\IActivityRepository.cs" />
     <Compile Include="RepositoryIntarfaces\IAccountRepository.cs" />
     <Compile Include="RepositoryIntarfaces\IActivityTypeRepository.cs" />
     <Compile Include="RepositoryIntarfaces\IHistoryRepository.cs" />
     <Compile Include="RepositoryIntarfaces\IRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

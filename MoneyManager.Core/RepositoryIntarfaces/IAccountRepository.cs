@@ -9,5 +9,7 @@ namespace MoneyManager.Core.RepositoryIntarfaces
 {
     public interface IAccountRepository : IRepository<Account, Guid>
     {
+        Account GetByEmail(string email);
+        void Create(Account account);
     }
 }

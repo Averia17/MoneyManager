@@ -17,6 +17,9 @@ namespace MoneyManager.Main.ViewModels
             set
             {
                 _selectedViewModel = value;
+                if(nameof(_selectedViewModel).Equals("LoginViewModel") || nameof(_selectedViewModel).Equals("RegisterViewModel"))
+                {   
+                }
                 OnPropertyChanged(nameof(SelectedViewModel));
             }
         }
@@ -26,6 +29,7 @@ namespace MoneyManager.Main.ViewModels
         public MainViewModel()
         {
             UpdateViewCommand = new UpdateViewCommand(this);
+            //UpdateViewCommand.Execute("Login");
         }
     }
 }

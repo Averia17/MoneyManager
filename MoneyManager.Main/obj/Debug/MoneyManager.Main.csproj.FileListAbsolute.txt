@@ -250,3 +250,13 @@ D:\MoneyManager.Main\MoneyManager.Main\obj\Debug\MoneyManager.Main.csproj.CoreCo
 D:\MoneyManager.Main\MoneyManager.Main\obj\Debug\MoneyManager.Main.csproj.CopyComplete
 D:\MoneyManager.Main\MoneyManager.Main\obj\Debug\MoneyManager.Main.exe
 D:\MoneyManager.Main\MoneyManager.Main\obj\Debug\MoneyManager.Main.pdb
+D:\MoneyManager.Main\MoneyManager.Main\obj\Debug\Views\Settings.g.cs
+D:\MoneyManager.Main\MoneyManager.Main\obj\Debug\Views\Settings.baml
+D:\MoneyManager.Main\MoneyManager.Main\obj\Debug\Views\Login.g.cs
+D:\MoneyManager.Main\MoneyManager.Main\obj\Debug\Views\Login.baml
+D:\MoneyManager.Main\MoneyManager.Main\obj\Debug\Components\BindablePasswordBox.g.cs
+D:\MoneyManager.Main\MoneyManager.Main\obj\Debug\Components\BindablePasswordBox.baml
+D:\MoneyManager.Main\MoneyManager.Main\obj\Debug\Views\Register.g.cs
+D:\MoneyManager.Main\MoneyManager.Main\obj\Debug\Views\Register.baml
+D:\MoneyManager.Main\MoneyManager.Main\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\MoneyManager.Main\MoneyManager.Main\bin\Debug\Microsoft.AspNet.Identity.Core.xml

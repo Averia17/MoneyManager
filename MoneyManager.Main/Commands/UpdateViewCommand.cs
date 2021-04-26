@@ -1,4 +1,8 @@
-﻿using MoneyManager.Main.ViewModels;
+﻿using MoneyManager.Core.RepositoryIntarfaces.AuthenticationRepository;
+using MoneyManager.Infrastructure.Repositories;
+using MoneyManager.Main.States.Accounts;
+using MoneyManager.Main.States.Authenticators;
+using MoneyManager.Main.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +57,19 @@ namespace MoneyManager.Main.Commands
             {
                 viewModel.SelectedViewModel = new StatisticsViewModel();
 
+            }
+            else if (parameter.ToString() == "Settings")
+            {
+                viewModel.SelectedViewModel = new SettingsViewModel();
+            }
+            // TODO ЧЁТ ЖОПА
+            else if (parameter.ToString() == "Login")
+            {
+                viewModel.SelectedViewModel  = (new LoginViewModel(new Authenticator(new AuthenticationRepository(new AccountRepository(), new Microsoft.AspNet.Identity.PasswordHasher()), new AccountStore())));
+            }
+            else if (parameter.ToString() == "Register")
+            {
+                viewModel.SelectedViewModel  = (new RegisterViewModel(new Authenticator(new AuthenticationRepository(new AccountRepository(), new Microsoft.AspNet.Identity.PasswordHasher()), new AccountStore())));
             }
         }
     }

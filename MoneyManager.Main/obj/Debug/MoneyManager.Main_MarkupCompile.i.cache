@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\MoneyManager.Main\MoneyManager.Main\App.xaml
-7-599366545
+111136048020
 
-282085309010
-62-944794969
-MainWindow.xaml;Views\Balance.xaml;Views\CreateHistoryForm.xaml;Views\EditHistoryForm.xaml;Views\FilterBalance.xaml;Views\Schedule.xaml;Views\Statistics.xaml;
+42-829940788
+63-1825181483
+Components\BindablePasswordBox.xaml;MainWindow.xaml;Views\Balance.xaml;Views\CreateHistoryForm.xaml;Views\EditHistoryForm.xaml;Views\FilterBalance.xaml;Views\Login.xaml;Views\Register.xaml;Views\Schedule.xaml;Views\Settings.xaml;Views\Statistics.xaml;
 
 True
 

@@ -1,5 +1,7 @@
-﻿using MoneyManager.Main.ViewModels;
+﻿using MoneyManager.Main.Commands;
+using MoneyManager.Main.ViewModels;
 using System.Windows;
+using System.Windows.Input;
 
 namespace MoneyManager.Main
 {
@@ -11,12 +13,14 @@ namespace MoneyManager.Main
         //стоить убрать этот щит
         public static MainViewModel MainView { get; set; }  
 
-        public MainWindow()
+        public MainWindow(object dataContext)
         {
             InitializeComponent();
             MainView = new MainViewModel();
-            MainView.SelectedViewModel = new BalanceViewModel();
+            ICommand UpdateViewCommand = new UpdateViewCommand(MainView);
             DataContext = MainView;
+           UpdateViewCommand.Execute("Login");
+
         }
 
     }

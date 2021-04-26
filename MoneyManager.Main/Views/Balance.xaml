@@ -13,7 +13,7 @@
     <Grid Background="Gainsboro">
 
 
-        <ListView Margin="0 20 0 0 " AlternationCount="2"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"  BorderBrush="Transparent"
+        <ListView Margin="0 20 0 0 " AlternationCount="2"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
           ItemsSource="{Binding HistoryCollectionView, Mode=TwoWay}" Padding="0,0,0,10">
             <ListView.GroupStyle>
                 <GroupStyle>
@@ -23,7 +23,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type GroupItem}">
-                                        <Expander IsExpanded="True" BorderBrush="Transparent" 
+                                        <Expander IsExpanded="True" BorderBrush="#FFA4B97F" 
                                             BorderThickness="0,0,0,1">
                                             <Expander.Header>
                                                 <DockPanel>

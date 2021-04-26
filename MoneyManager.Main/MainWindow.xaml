@@ -67,10 +67,10 @@
                             <TextBlock Text="Статистика изменений" Margin="10" />
                         </StackPanel>
                     </Button>
-                    <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Balance" Width="251">
+                    <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Settings" Width="251">
                         <StackPanel Orientation="Horizontal" Width="251" >
                             <materialDesign:PackIcon Kind="CreditCard" Width="20" Height="20" Foreground="#F1C40F" Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock  Text="Управление бюджетом" Margin="10" />
+                            <TextBlock  Text="Настройки" Margin="10" />
                         </StackPanel>
                     </Button>
                     <!--убрать эту дичь-->
@@ -83,7 +83,7 @@
             <Grid.Background>
                 <ImageBrush Stretch="None" ImageSource="Assets/background.jpg" AlignmentY="Top" AlignmentX="Center"/>
             </Grid.Background>
-            <ContentControl Margin="130 0" Grid.Column="1" Content="{Binding SelectedViewModel, Mode=TwoWay}"/>
+            <ContentControl Content="{Binding SelectedViewModel, Mode=TwoWay}"/>
             <!--<Button Width="auto"  x:Name="ButtonOpenMenu"  HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Foreground="#FF31577E" FontSize="15" Content="Баланс" />
             <Button Width="auto"  x:Name="ButtonOpenSchedule"  HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource MaterialDesignRaisedAccentButton}" Foreground="#FF31577E" FontSize="15"  Content="Календарь изменений"  Command="{Binding UpdateViewCommand}" CommandParameter="Schedule"/>-->
         </Grid>
