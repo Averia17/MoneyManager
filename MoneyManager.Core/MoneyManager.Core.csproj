@@ -58,6 +58,7 @@
     <Compile Include="RepositoryIntarfaces\IActivityTypeRepository.cs" />
     <Compile Include="RepositoryIntarfaces\IHistoryRepository.cs" />
     <Compile Include="RepositoryIntarfaces\IRepository.cs" />
+    <Compile Include="RepositoryIntarfaces\IUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

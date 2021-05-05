@@ -322,9 +322,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\statistics.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MoneyManager.Core\MoneyManager.Core.csproj">
       <Project>{EE31F54E-F3D7-4C50-A13A-5C19464DE7F2}</Project>
       <Name>MoneyManager.Core</Name>
@@ -345,7 +342,15 @@
   <ItemGroup>
     <Resource Include="Assets\background.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\statistics.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\6.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

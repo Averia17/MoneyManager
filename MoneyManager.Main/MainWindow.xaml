@@ -11,20 +11,20 @@
         WindowStartupLocation="CenterScreen" WindowStyle="None" >
     
     <Grid>
-        
-        <Grid x:Name="GridMenu" Width="251" HorizontalAlignment="Left" Background="White">
-            <!--убрать эту дичь-->
-            <Grid.Resources>
-            
-                <Style TargetType="Button">
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="GridMenu" HorizontalAlignment="Left" Grid.Column="0">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Background" Value="#4a536b"></Setter>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=checkBox1, Path=IsChecked}"
-                        Value="True">
-                            <Setter Property="IsEnabled" Value="False"/>
+                        <DataTrigger Binding="{Binding IsLoggin}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
                         </DataTrigger>
                         
-                        <MultiTrigger>
+                        <!--<MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
@@ -33,55 +33,53 @@
                                 <Setter Property="FontWeight" Value="700" />
 
                             </MultiTrigger.Setters>
-                        </MultiTrigger>
+                        </MultiTrigger>-->
                     </Style.Triggers>
                 </Style>
+             
+            </Grid.Style>
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="TextBlock.FontFamily" Value="Tahoma"/>
+                    <Setter Property="TextBlock.FontSize" Value="18"/>
+                </Style>
+              
             </Grid.Resources>
-            <Grid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Grid.RenderTransform>
-            <StackPanel>
-                <Image  Source="Assets/statistics.jpg" Stretch="Fill"/>
-                <ListView Margin="0" BorderBrush="White" Foreground="#FF313131" FontFamily="Champagne &amp; Limousines" FontSize="18" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
-                    <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Balance" Width="251">
-                        <StackPanel Orientation="Horizontal" Width="251" >
+            <StackPanel Width="251">
+                <Image  Source="Assets/6.jpg" Stretch="Fill" />
+
+                <ListView Margin="0" BorderBrush="White" FontSize="18" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  >
+                    <Button Height="40" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Balance" Width="251">
+                        <StackPanel Orientation="Horizontal"  >
                             <materialDesign:PackIcon Kind="AccountBalanceWallet" Width="20" Height="20" Foreground="IndianRed" Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock  Text="Баланс"  Margin="10" />
+                            <TextBlock  Text="Баланс" Foreground="Black" Margin="5" />
                         </StackPanel>
                     </Button>
-                    <Button Height="50" Padding="0" BorderThickness="0"  HorizontalContentAlignment="Left" Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Schedule" Width="251" >
-                        <StackPanel Orientation="Horizontal" Width="251" 
- >
+                    <Button Height="40" Padding="0" BorderThickness="0"  HorizontalContentAlignment="Left" Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Schedule" Width="251" >
+                        <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Calendar" Width="20" Height="20" Foreground="#FFF08033" Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock  Margin="10">Календарь изменений</TextBlock>
+                            <TextBlock  Foreground="Black"  Margin="5">Календарь изменений</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Statistics" Width="251" >
-                        <StackPanel Orientation="Horizontal" Width="251" >
+                    <Button Height="40" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Statistics" Width="251" >
+                        <StackPanel Orientation="Horizontal"  >
                             <materialDesign:PackIcon Kind="DataUsage" Width="20" Height="20" Foreground="#1ABC9C " Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock Text="Статистика изменений" Margin="10" />
+                            <TextBlock Foreground="Black" Text="Статистика изменений" Margin="5" />
                         </StackPanel>
                     </Button>
-                    <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Settings" Width="251">
-                        <StackPanel Orientation="Horizontal" Width="251" >
+                    <Button Height="40" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Settings" Width="251">
+                        <StackPanel Orientation="Horizontal" >
                             <materialDesign:PackIcon Kind="CreditCard" Width="20" Height="20" Foreground="#F1C40F" Margin="5" VerticalAlignment="Center"/>
-                            <TextBlock  Text="Настройки" Margin="10" />
+                            <TextBlock Foreground="Black"  Text="Настройки" Margin="5" />
                         </StackPanel>
                     </Button>
-                    <!--убрать эту дичь-->
-                    <CheckBox x:Name="checkBox1" Content="Локнуть кнопки" />
                 </ListView>
             </StackPanel>
 
         </Grid>
-        <Grid Margin="251,0,0,0">
+        <Grid Grid.Column="1">
             <Grid.Background>
-                <ImageBrush Stretch="None" ImageSource="Assets/background.jpg" AlignmentY="Top" AlignmentX="Center"/>
+                <SolidColorBrush Color="#aed6dc"/>
             </Grid.Background>
             <ContentControl Content="{Binding SelectedViewModel, Mode=TwoWay}"/>
             <!--<Button Width="auto"  x:Name="ButtonOpenMenu"  HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"  Foreground="#FF31577E" FontSize="15" Content="Баланс" />

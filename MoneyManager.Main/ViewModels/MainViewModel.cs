@@ -1,4 +1,7 @@
-﻿using MoneyManager.Main.Commands;
+﻿using MoneyManager.Core.Models;
+using MoneyManager.Main.Commands;
+using MoneyManager.Main.States.Accounts;
+using MoneyManager.Main.States.Authenticators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,19 +20,41 @@ namespace MoneyManager.Main.ViewModels
             set
             {
                 _selectedViewModel = value;
-                if(nameof(_selectedViewModel).Equals("LoginViewModel") || nameof(_selectedViewModel).Equals("RegisterViewModel"))
-                {   
-                }
+                
                 OnPropertyChanged(nameof(SelectedViewModel));
             }
         }
 
-        public ICommand UpdateViewCommand { get; set; }
+        public UpdateViewCommand UpdateViewCommand { get; set; }
+        public Account CurrentAccount { get; set; }
+
+        public bool _isLoggin { get; set; }
+        public bool IsLoggin {
+            get { return _isLoggin; }
+            set
+            {
+                _isLoggin = value;
+
+                OnPropertyChanged(nameof(IsLoggin));
+            }
+        }
 
         public MainViewModel()
         {
             UpdateViewCommand = new UpdateViewCommand(this);
             //UpdateViewCommand.Execute("Login");
+          
+            CheckLoggin();
+        }
+
+        public void CheckLoggin()
+        {
+            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+            CurrentAccount = currentAccount.Account;
+            if (CurrentAccount.Email == null)
+                IsLoggin = false;
+            else
+                IsLoggin = true;
         }
     }
 }

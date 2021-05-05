@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:MoneyManager.Main"
              xmlns:views="clr-namespace:MoneyManager.Main.Views"
              xmlns:viewmodels="clr-namespace:MoneyManager.Main.ViewModels"
-             >
+             StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

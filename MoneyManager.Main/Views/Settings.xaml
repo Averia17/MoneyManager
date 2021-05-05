@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MoneyManager.Main.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="#e2eefb">
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>

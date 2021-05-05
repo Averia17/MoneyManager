@@ -191,6 +191,7 @@
     <Compile Include="Repositories\AuthenticationRepository.cs" />
     <Compile Include="Repositories\HistoryRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyManager.Core\MoneyManager.Core.csproj">

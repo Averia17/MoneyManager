@@ -20,7 +20,7 @@ namespace MoneyManager.Infrastructure.Repositories
             {
                 query = query.Where(predicate);
             }
-            return query.ToList();
+            return query;
         }
 
         public void Delete(Guid id)

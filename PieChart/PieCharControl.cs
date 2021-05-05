@@ -63,9 +63,9 @@ namespace PieChart
                 {
                     _colorBrushList = new List<SolidColorBrush>()
                     {
-                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#85ea85")),
-                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e97473")),
-                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6392db")),
+                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#A121FD")),
+                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB6C20")),
+                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#DF1E1E")),
                         new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e048a3")),
                         new SolidColorBrush((Color)ColorConverter.ConvertFromString("#8fb5b2")),
                         new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e6cf0d")),

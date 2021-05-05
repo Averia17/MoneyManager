@@ -17,6 +17,17 @@ namespace MoneyManager.Infrastructure.Repositories
 
         public IEnumerable<Activity> List(Expression<Func<Activity, bool>> predicate = null)
         {
+            /*using (var transaction = Context.Database.BeginTransaction())
+            {
+                try
+                { 
+                }
+                catch (Exception ex)
+                {
+                    Context.Database.RollbackTransaction();
+                }
+            }*/
+
             var query = MakeInclusions().OrderByDescending(x => x.Title).AsQueryable();
             if (predicate != null)
             {

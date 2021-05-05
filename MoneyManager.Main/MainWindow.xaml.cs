@@ -13,13 +13,13 @@ namespace MoneyManager.Main
         //стоить убрать этот щит
         public static MainViewModel MainView { get; set; }  
 
-        public MainWindow(object dataContext)
+        public MainWindow()
         {
             InitializeComponent();
             MainView = new MainViewModel();
             ICommand UpdateViewCommand = new UpdateViewCommand(MainView);
             DataContext = MainView;
-           UpdateViewCommand.Execute("Login");
+            UpdateViewCommand.Execute("Balance");
 
         }
 

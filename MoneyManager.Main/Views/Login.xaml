@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:MoneyManager.Main.Views"
              xmlns:components="clr-namespace:MoneyManager.Main.Components"
              mc:Ignorable="d" 
-             Background="AliceBlue"
-             d:DesignHeight="450" d:DesignWidth="800">
+             Background="#aed6dc"
+            >
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>

@@ -65,16 +65,17 @@ namespace MoneyManager.Main.ViewModels
         }
         public void GetEncomes()
         {
-            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
-            Account account = currentAccount.Account;
 
-            Encomes = (List<History>)historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" && x.Account.Id == account.Id);
+            Encomes = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" 
+                                            && x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id)
+                                            .ToList();
         }
         public void GetExpenses()
         {
-            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
-            Account account = currentAccount.Account;
-            Expenses = (List<History>)historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && x.Account.Id == account.Id);
+
+            Expenses = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы"
+                                            && x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id)       
+                                            .ToList();
         }
         public void SetEvents()
         {

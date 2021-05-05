@@ -15,7 +15,7 @@ namespace MoneyManager.Main.ViewModels
     {
         public ObservableCollection<PieCharItem> PieCharListExpenses { get; set; }
         public ObservableCollection<PieCharItem> PieCharListEncomes { get; set; }
-
+        UnitOfWork unitOfWork;
         public HistoryRepository historyRepository { get; set; }
 
         Account account { get; set; }
@@ -84,13 +84,14 @@ namespace MoneyManager.Main.ViewModels
             historyRepository = new HistoryRepository();
             SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
             account = currentAccount.Account;
+            unitOfWork = new UnitOfWork();
             StartUp();
         }
         public void StartUp()
         {
             GetPieCharExpensesList();
             GetPieCharEncomesList();
-
+            //unitOfWork.AccountRepository.List();
             Encome = GetEncome();
             Expense = GetExpense();
             Difference = GetDifference();
@@ -100,7 +101,9 @@ namespace MoneyManager.Main.ViewModels
             double sum = 0;
            
             List<History> histories = new List<History>();
-            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id).ToList();
+            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" 
+                                                && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id)
+                                                .ToList();
 
             foreach (History history in histories)
             {
@@ -113,7 +116,9 @@ namespace MoneyManager.Main.ViewModels
             double sum = 0;
             
             List<History> histories = new List<History>();
-            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id).ToList();
+            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" 
+                                            && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id)
+                                            .ToList();
 
             foreach (History history in histories)
             {

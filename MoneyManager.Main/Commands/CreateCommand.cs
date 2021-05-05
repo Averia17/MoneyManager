@@ -1,5 +1,6 @@
 ﻿using MoneyManager.Core.Models;
 using MoneyManager.Infrastructure.Repositories;
+using MoneyManager.Main.States.Accounts;
 using MoneyManager.Main.ViewModels;
 using System;
 using System.Windows.Input;
@@ -37,8 +38,10 @@ namespace MoneyManager.Main.Commands
 
 ц
              };*/
+            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+            Account account = currentAccount.Account;
             History.Id = Guid.NewGuid();
-            History.AccountId = Guid.Parse("B9AEC1FD-4B04-43D1-AE07-33E0ACBE4AB9");
+            History.AccountId = account.Id;
             History.ActivityId = History.Activity.Id;
             History.Activity = null;
             historyRepository.Create(History);

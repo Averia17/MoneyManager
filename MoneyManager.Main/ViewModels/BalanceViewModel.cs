@@ -19,6 +19,19 @@ namespace MoneyManager.Main.ViewModels
     {
         public ICommand DeleteCommand { get; set; }
 
+        public Account _currentAccount { get; set; }
+
+        public Account CurrentAccount
+        {
+            get { return _currentAccount; }
+            set
+            {
+                _currentAccount = value;
+               
+                OnPropertyChanged(nameof(CurrentAccount));
+             
+            }
+        }
         public static ICommand LinkToEditCommand { get; set; }
         
         public ICommand UpdateViewCommand { get; set; }
@@ -70,20 +83,18 @@ namespace MoneyManager.Main.ViewModels
             RefreshHistoryCollectionView();
             DeleteCommand = new DeleteCommand(this);
             LinkToEditCommand = new LinkToEditCommand(this);
-
+            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+            CurrentAccount = currentAccount.Account;
         }
         public void GetHistories()
         {
-            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
-            Account account = currentAccount.Account;
-
-            Histories = (List<History>)historyRepository.List(x => x.Account.Id == account.Id);
+            Histories = historyRepository.List(x => x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id).ToList();
             Balance = GetBalance();
 
         }
         public double GetBalance()
         {
-            double SumOfHistories = 0;
+            double SumOfHistories = SingleCurrentAccount.GetInstance().Account.Balance;
             foreach (History history in Histories)
             {
                 if (history.Activity.ActivityType.Title == "Доходы")
@@ -91,6 +102,7 @@ namespace MoneyManager.Main.ViewModels
                 else if (history.Activity.ActivityType.Title == "Расходы")
                     SumOfHistories -= history.Amount;
             }
+
             return SumOfHistories;
         }
         public void RefreshHistoryCollectionView()

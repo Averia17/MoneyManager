@@ -38,7 +38,7 @@
                     x:Name="MonthsComboBox"
                     Width="100"
                     BorderThickness="0"
-                    FontSize="16"
+                    FontSize="18"
                     FontWeight="DemiBold"
                     SelectionChanged="MonthsComboBox_SelectionChanged">
                     <ComboBox.ItemTemplate>

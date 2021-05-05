@@ -5,6 +5,7 @@ using MoneyManager.Main.States.Authenticators;
 using MoneyManager.Main.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,13 +13,14 @@ using System.Windows.Input;
 
 namespace MoneyManager.Main.Commands
 {
-    public class UpdateViewCommand : ICommand
+    public class UpdateViewCommand : ICommand, INotifyPropertyChanged
     {
         private MainViewModel viewModel;
 
         public UpdateViewCommand(MainViewModel viewModel)
         {
             this.viewModel = viewModel;
+
         }
 
         public event EventHandler CanExecuteChanged;
@@ -27,7 +29,12 @@ namespace MoneyManager.Main.Commands
         {
             return true;
         }
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         public void Execute(object parameter)
         {
             if (parameter.ToString() == "Balance")
@@ -65,6 +72,7 @@ namespace MoneyManager.Main.Commands
             
             else if (parameter.ToString() == "Login")
             {
+
                 viewModel.SelectedViewModel  = (new LoginViewModel(new Authenticator(new AuthenticationRepository(new AccountRepository(), new Microsoft.AspNet.Identity.PasswordHasher()), new AccountStore())));
             }
             else if (parameter.ToString() == "Register")

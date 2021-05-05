@@ -59,21 +59,26 @@
                         <Grid>
                           
                             <!--标题栏-->
-                           
                             <!--内容栏-->
                             <Grid  Background="#e2eefb" >
                                 <!--内容栏 行布局：Row1 自适应 ，Row2 30高度用于放图例-->
-                                
+
                                 <!--内容栏 列布局：Col1 170宽度用于放置类型和数量，Col2 自适应用于放置饼图-->
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                                    <ColumnDefinition Width="6*"></ColumnDefinition>
                                     <ColumnDefinition Width="5*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="8*"></RowDefinition>
+                                </Grid.RowDefinitions>
                                 <!--饼图容器-->
-                                <Grid x:Name="Z_Parid_timePoint"  Grid.Column="1"></Grid>
-                                <Grid  Grid.Column="0" Margin="20,0,0,0">
+                                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="24" Margin="0,10,0,0" FontFamily="Tahomo">Ваши расходы</TextBlock>
 
-                                    <ListView x:Name="Z_Parid_legendGrid_View" VerticalAlignment="Center">
+                                <Grid x:Name="Z_Parid_timePoint"  Margin="20,0,0,0"  Grid.Row="1" Grid.Column="0"></Grid>
+                                <Grid  Grid.Row="1" Grid.Column="1" Margin="20,0,0,0">
+
+                                    <ListView x:Name="Z_Parid_legendGrid_View"  VerticalAlignment="Center">
                                     </ListView>
                                 </Grid>
                                 <!--图例容器-->

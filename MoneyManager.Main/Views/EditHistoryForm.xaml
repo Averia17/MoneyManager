@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              x:Name="EditControl"
              d:DesignHeight="450" d:DesignWidth="569">
-    <Grid Background="White">
+    <Grid >
 
         <StackPanel Orientation="Vertical" Margin="10 30">
             <ListBox Margin="0,10,0,0"        

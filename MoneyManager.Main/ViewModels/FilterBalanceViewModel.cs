@@ -59,10 +59,9 @@ namespace MoneyManager.Main.ViewModels
             historyRepository = new HistoryRepository();
 
             Histories = new List<History>();
-            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
-            Account account = currentAccount.Account;
 
-            Histories = (List<History>)historyRepository.List(x => x.Account.Id == account.Id);
+
+            Histories = historyRepository.List(x => x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id).ToList();
             HistoriesCollectionView = CollectionViewSource.GetDefaultView(Histories);
 
             HistoriesCollectionView.Filter = FilterHistories;

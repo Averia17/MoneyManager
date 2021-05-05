@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="450" d:DesignWidth="569">
-    <Grid Background="Gainsboro">
+    <Grid >
         <Grid Height="100" VerticalAlignment="Top">
 
             <TextBox Grid.Row="0" Height="50" Padding="0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите категорию" FontSize="22" Text="{Binding HistoriesFilter, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Center"/>

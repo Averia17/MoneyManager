@@ -1,4 +1,5 @@
 ﻿using MoneyManager.Core.Models;
+using MoneyManager.Main.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace MoneyManager.Main.States.Accounts
                 currentAccount = value;
                 SingleCurrentAccount singleCurrentAccount = SingleCurrentAccount.GetInstance();
                 singleCurrentAccount.Account = currentAccount;
+                MainWindow.MainView.CheckLoggin();
                 StateChanged?.Invoke();
             }
         }
