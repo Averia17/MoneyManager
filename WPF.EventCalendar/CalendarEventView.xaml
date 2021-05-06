@@ -8,10 +8,11 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <Grid MouseDown="EventMouseDown">
+    <Grid MouseDown="EventMouseDown" Width="100">
         <TextBlock
             x:Name="EventTextBlock"
             Background="{Binding ElementName=calendarEventView, Path=BackgroundColor, UpdateSourceTrigger=PropertyChanged}"
+            
             Text="{Binding Label, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </UserControl>

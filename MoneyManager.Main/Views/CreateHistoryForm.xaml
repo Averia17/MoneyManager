@@ -7,26 +7,39 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MoneyManager.Main.Views"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:local1="clr-namespace:MoneyManager.Main.ViewModels"
              mc:Ignorable="d" 
              x:Name="CreateHistory"
              d:DesignHeight="450" d:DesignWidth="569">
     <Grid >
-            
         <StackPanel Orientation="Vertical" Margin="10 30">
-            <ListBox Margin="0,10,0,0"        
-             ItemsSource="{Binding activityTypes}">
-                <ListBox.ItemsPanel>
+            <Grid Margin="0,10,0,0"     >
+                <!--ItemsSource="{Binding activityTypes}"
+                      SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" 
+                     
+                     >-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <RadioButton  IsChecked="True" GroupName="activityTypes" FontSize="24" Height="30" Command="{Binding DataContext.ItemChangedCommand, ElementName=CreateHistory}"  CommandParameter="{Binding Expense}" Content="{Binding Expense.Title}" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <RadioButton   GroupName="activityTypes" FontSize="24" Height="30" Command="{Binding DataContext.ItemChangedCommand, ElementName=CreateHistory}"  CommandParameter="{Binding Encome}" Content="{Binding Encome.Title}" />
+                </Grid>
+                <!--<ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel HorizontalAlignment="Stretch"/>
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <RadioButton Width="230" FontSize="24"  Command="{Binding DataContext.ItemChangedCommand, ElementName=CreateHistory}"  CommandParameter="{Binding}" GroupName="ActivityTypes" Content="{Binding Path=Title}" />
+                        <RadioButton  Width="230" IsChecked="{Binding DataContext.IsChecked, ElementName=CreateHistory}" GroupName="activityTypes" FontSize="24" Height="30" Command="{Binding DataContext.ItemChangedCommand, ElementName=CreateHistory}"  CommandParameter="{Binding}" Content="{Binding Path=Title}" />
+                        <RadioButton  Width="230" IsChecked="{Binding DataContext.IsChecked, ElementName=CreateHistory}" GroupName="activityTypes" FontSize="24" Height="30" Command="{Binding DataContext.ItemChangedCommand, ElementName=CreateHistory}"  CommandParameter="{Binding}" Content="{Binding Path=Title}" />
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                </ListBox.ItemTemplate>-->
+            </Grid>
             <StackPanel Orientation="Vertical" x:Name="Form">
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
 

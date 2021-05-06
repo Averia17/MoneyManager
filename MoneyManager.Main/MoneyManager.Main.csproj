@@ -346,10 +346,13 @@
     <Resource Include="Assets\statistics.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\5.jpg" />
+    <Resource Include="Assets\6.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\6.jpg" />
+    <Resource Include="Assets\money.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\money.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />

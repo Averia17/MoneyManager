@@ -37,6 +37,8 @@ namespace MoneyManager.Main.Commands
             ActivityType activityType = (ActivityType)parameter;
             //Console.WriteLine(parameter);
             saveHistoryViewModel.activities = (List<Activity>)activityRepository.List(x => x.ActivityType.Id == activityType.Id);
+            saveHistoryViewModel.History.Activity = saveHistoryViewModel.activities[0];
+
             /*if (parameter.ToString() == "доходы")
             {
                 createHistoryViewModel.activities = (List<Activity>)activityRepository.List(x => x.ActivityType.Title == "доходы");

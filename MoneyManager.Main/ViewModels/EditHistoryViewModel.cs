@@ -27,29 +27,62 @@ namespace MoneyManager.Main.ViewModels
                 OnPropertyChanged(nameof(SelectedActivity));
             }
         }
-
-        private History _history { get; set; }
-
-        public History History
+        private bool _isExpenseChecked { get; set; }
+        public bool IsExpenseChecked
         {
-            get { return _history; }
+            get
+            {
+                
+                return _isExpenseChecked;
+            }
             set
             {
-                _history = value;
-                OnPropertyChanged(nameof(History));
+                _isExpenseChecked = value;
+                OnPropertyChanged(nameof(IsExpenseChecked));
+
             }
         }
+        private bool _isEncomeChecked { get; set; }
+
+        public bool IsEncomeChecked
+        {
+            get
+            {
+                return _isEncomeChecked;
+
+            }
+            set
+            {
+                _isEncomeChecked = value;
+                OnPropertyChanged(nameof(IsEncomeChecked));
+            }
+        }
+        private History _history { get; set; }
+
       
 
         public EditHistoryViewModel()
         {
-            History = new History();
 
             ItemChangedCommand = new ItemChangedCommand(this);
             History = LinkToEditCommand.History;
             EditCommand = new EditCommand(History);
-            if(History != null)
+            if (History?.Activity?.ActivityType?.Title == "Доходы")
+                IsEncomeChecked = true;
+            else
+                IsExpenseChecked = true;
+            if (History != null)
+            { 
                 SelectedActivity = History.Activity;
+                if (IsExpenseChecked)
+                    ItemChangedCommand.Execute(Expense);
+                else if (IsEncomeChecked)
+                    ItemChangedCommand.Execute(Encome);
+            
+                Activity activity = new Activity();
+                activity = activities.Find(x => x.Id == History.ActivityId);
+                History.Activity = activity;
+            }
 
         }
     }

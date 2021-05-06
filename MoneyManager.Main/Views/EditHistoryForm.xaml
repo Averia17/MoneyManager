@@ -11,19 +11,18 @@
     <Grid >
 
         <StackPanel Orientation="Vertical" Margin="10 30">
-            <ListBox Margin="0,10,0,0"        
-             ItemsSource="{Binding activityTypes}">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel HorizontalAlignment="Stretch"/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <RadioButton Width="230" FontSize="24" IsChecked="{Binding History.Activity.ActivityType}" Command="{Binding DataContext.ItemChangedCommand, ElementName=EditControl}"  CommandParameter="{Binding}" GroupName="ActivityTypes" Content="{Binding Path=Title}" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <RadioButton  IsChecked="{Binding IsExpenseChecked}" GroupName="activityTypes" FontSize="24" Height="30" Command="{Binding ItemChangedCommand}"  CommandParameter="{Binding Expense}" Content="{Binding Expense.Title}" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <RadioButton IsChecked="{Binding IsEncomeChecked}"  GroupName="activityTypes" FontSize="24" Height="30" Command="{Binding ItemChangedCommand}"  CommandParameter="{Binding Encome}" Content="{Binding Encome.Title}" />
+                </Grid>
+            </Grid>
 
             <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
 
@@ -55,6 +54,10 @@
             <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                 <TextBlock Margin="20 0 0 0" Width="200" Text="Описание" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
                 <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Description, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите описание"  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
+                <TextBlock Margin="20 0 0 0" Text="Повторяется каждый месяц?" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
+                <CheckBox Margin="30 0 0 0" Width="239" IsChecked="{Binding History.IsRepeat, Mode=TwoWay}"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="24" />
             </StackPanel>
             <StackPanel Margin="0 20 0 0">
                 <Button Width="150" Height="50" FontSize="24" Command="{Binding DataContext.EditCommand, ElementName=EditControl}">Сохранить</Button>

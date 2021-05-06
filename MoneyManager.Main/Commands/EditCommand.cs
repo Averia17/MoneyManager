@@ -27,8 +27,11 @@ namespace MoneyManager.Main.Commands
 
         public void Execute(object parameter)
         {
+            History.AccountId = History.Account.Id;
+            History.ActivityId = History.Activity.Id;
 
             historyRepository.Edit(History);
+            
         }
     }
 }

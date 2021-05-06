@@ -12,6 +12,8 @@ namespace MoneyManager.Main.ViewModels
 {
     public abstract class SaveHistoryViewModel : BaseViewModel
     {
+        public ActivityType Expense { get; set; }
+        public ActivityType Encome { get; set; }
         public List<ActivityType> activityTypes { get; set; }
 
         private List<Activity> _activities;
@@ -57,6 +59,9 @@ namespace MoneyManager.Main.ViewModels
 
             GetActivityTypes();
             GetActivities();
+
+            Expense = activityTypes[0];
+            Encome = activityTypes[1];
         }
         public void GetActivityTypes()
         {

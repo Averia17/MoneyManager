@@ -201,7 +201,7 @@ namespace WPF.EventCalendar
         {
             foreach (CalendarDay day in DaysInCurrentMonth)
             {
-                foreach (CalendarEventView e in day.Events.Children)
+                foreach (CalendarEventView e in day.Events.Items)
                 {
                     if (e.DataContext == eventToSelect.DataContext)
                     {
@@ -390,9 +390,9 @@ namespace WPF.EventCalendar
                             }
 
                             // but if there are some events before, event won't be on the first row, but after previous events
-                            if (day.Events.Children.Count > eventRow)
+                            if (day.Events.Items.Count > eventRow)
                             {
-                                eventRow = Grid.GetRow(day.Events.Children[day.Events.Children.Count - 1]) + 1;
+                                //eventRow = Grid.GetRow(day.Events.Items[day.Events.Items.Count - 1]) + 1;
                             }
                             CalendarEventView calendarEventView;
                             // get color for event
@@ -415,8 +415,7 @@ namespace WPF.EventCalendar
                             }
 
                             calendarEventView.DataContext = e;
-                            Grid.SetRow(calendarEventView, eventRow);
-                            day.Events.Children.Add(calendarEventView);
+                            day.Events.Items.Add(calendarEventView);
                         }
                     }
                     else
@@ -439,9 +438,9 @@ namespace WPF.EventCalendar
                             }
 
                             // but if there are some events before, event won't be on the first row, but after previous events
-                            if (day.Events.Children.Count > eventRow)
+                            if (day.Events.Items.Count > eventRow)
                             {
-                                eventRow = Grid.GetRow(day.Events.Children[day.Events.Children.Count - 1]) + 1;
+                                //eventRow = Grid.GetRow(day.Events.Children[day.Events.Children.Count - 1]) + 1;
                             }
                             CalendarEventView calendarEventView;
                             // get color for event
@@ -464,8 +463,8 @@ namespace WPF.EventCalendar
                             }
 
                             calendarEventView.DataContext = e;
-                            Grid.SetRow(calendarEventView, eventRow);
-                            day.Events.Children.Add(calendarEventView);
+
+                            day.Events.Items.Add(calendarEventView);
                         }
                     }
                     accentColor++;
