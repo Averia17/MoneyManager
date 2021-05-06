@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
 using MoneyManager.Main.States.Accounts;
+using Itenso.TimePeriod;
 
 namespace MoneyManager.Main.ViewModels
 {
@@ -74,10 +75,12 @@ namespace MoneyManager.Main.ViewModels
 
         public BalanceViewModel()
         {
-           
             historyRepository = new HistoryRepository();
             Histories = new List<History>();
+            CheckRepeatHistories();
+
             GetHistories();
+
             Balance = GetBalance();
             UpdateViewCommand = new UpdateViewCommand(MainWindow.MainView);
             RefreshHistoryCollectionView();
@@ -112,6 +115,49 @@ namespace MoneyManager.Main.ViewModels
 
             HistoryCollectionView.Refresh();
         }
+
+        public void CheckRepeatHistories()
+        {
+            List<History> RepeatHistories = new List<History>();
+            RepeatHistories = historyRepository.List(x => x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id && x.IsRepeat).ToList();
+            DateTime datenow = new DateTime();
+            datenow = DateTime.Now;
+
+            foreach (History history in RepeatHistories)
+            {
+                DateTime historyDate = history.Date;
+                DateDiff dateDiff = new DateDiff(history.Date, datenow);
+                int i = 0;
+                GetHistories();
+                History copiedHistory = new History()
+                {
+                    AccountId = history.AccountId,
+                    ActivityId = history.ActivityId,
+                    Date = history.Date,
+                    Amount = history.Amount,
+                    Description = history.Description
+                };
+                while(i < dateDiff.Months)
+                {
+                    i++;
+                    bool flag = false;
+
+                    foreach (History ContainingHistory in Histories)
+                    {
+                        if (copiedHistory.Date.AddMonths(1) == ContainingHistory.Date && copiedHistory.ActivityId == ContainingHistory.ActivityId)
+                            flag = true;
+                    }
+                    copiedHistory.Date = copiedHistory.Date.AddMonths(1);
+                    copiedHistory.Id = Guid.NewGuid();
+                    if (flag)
+                        continue;
+                    historyRepository.Create(copiedHistory);
+                    //history.Date = historyDate;
+
+                }
+               
+            }
+        }
     }
     public class DateTimeConverter : IValueConverter
     {
@@ -122,7 +168,7 @@ namespace MoneyManager.Main.ViewModels
                 throw new NullReferenceException("value can not be null");
             }
             DateTime date = (DateTime)value;
-            return date.ToString("MM/dd/yyyy");
+            return date.ToString("dd/MM/yyyy");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

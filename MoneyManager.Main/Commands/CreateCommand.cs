@@ -25,7 +25,10 @@ namespace MoneyManager.Main.Commands
         }*/
         public bool CanExecute(object parameter)
         {
-            return true;
+            if (History.Activity != null)
+                return true;
+            else
+                return false;
         }
 
         public void Execute(object parameter)

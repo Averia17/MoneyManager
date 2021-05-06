@@ -260,3 +260,4 @@ D:\MoneyManager.Main\MoneyManager.Main\obj\Debug\Views\Register.g.cs
 D:\MoneyManager.Main\MoneyManager.Main\obj\Debug\Views\Register.baml
 D:\MoneyManager.Main\MoneyManager.Main\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 D:\MoneyManager.Main\MoneyManager.Main\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\MoneyManager.Main\MoneyManager.Main\bin\Debug\Itenso.TimePeriod.dll
