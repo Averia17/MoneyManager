@@ -10,8 +10,8 @@ using MoneyManager.Infrastructure;
 namespace MoneyManager.Infrastructure.Migrations
 {
     [DbContext(typeof(MoneyManagerContext))]
-    [Migration("20210425132757_update_account")]
-    partial class update_account
+    [Migration("20210506190520_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,8 +27,8 @@ namespace MoneyManager.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Balance")
-                        .HasColumnType("int");
+                    b.Property<double>("Balance")
+                        .HasColumnType("float");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");

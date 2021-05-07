@@ -22,7 +22,7 @@ namespace MoneyManager.Infrastructure.Repositories
             }
             return query;
         }
-
+        
         public void Delete(Guid id)
         {
             History history = DbSet.Find(id);
@@ -32,7 +32,6 @@ namespace MoneyManager.Infrastructure.Repositories
         //возможно надо по-другому хз
         public void Edit(History history)
         {
-            //ПРАБЛЕМЫ!ЫЫЫЫЫ!!
             History History = DbSet.Find(history.Id);
 /*            History.AccountId = history.Account.Id;
             History.ActivityId = history.Activity.Id;

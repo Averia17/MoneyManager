@@ -28,7 +28,7 @@ namespace MoneyManager.Infrastructure.Repositories
                 }
             }*/
 
-            var query = MakeInclusions().OrderByDescending(x => x.Title).AsQueryable();
+            var query = MakeInclusions().OrderByDescending(x => x.Id).AsQueryable();
             if (predicate != null)
             {
                 query = query.Where(predicate);

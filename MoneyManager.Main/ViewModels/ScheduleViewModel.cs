@@ -66,14 +66,14 @@ namespace MoneyManager.Main.ViewModels
         public void GetEncomes()
         {
 
-            Encomes = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" 
+            Encomes = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" && !x.IsRepeat
                                             && x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id)
                                             .ToList();
         }
         public void GetExpenses()
         {
 
-            Expenses = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы"
+            Expenses = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && !x.IsRepeat
                                             && x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id)       
                                             .ToList();
         }

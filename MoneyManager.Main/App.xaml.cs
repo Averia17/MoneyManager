@@ -63,6 +63,10 @@ namespace MoneyManager.Main
                 activityRepository.Create(activity);
                 activity = new Activity() { Id = Guid.NewGuid(), Title = "Покупка", ActivityTypeId = expence.Id };
                 activityRepository.Create(activity);
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Другое", ActivityTypeId = expence.Id };
+                activityRepository.Create(activity); 
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Другое", ActivityTypeId = encome.Id };
+                activityRepository.Create(activity);
                
             }
         }

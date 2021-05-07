@@ -12,11 +12,11 @@ namespace MoneyManager.Main.Commands
 {
     public class DeleteCommand : ICommand
     {
-        BalanceViewModel balanceViewModel { get; set; }
+        BaseViewModel balanceViewModel { get; set; }
 
         HistoryRepository historyRepository = new HistoryRepository();
 
-        public DeleteCommand(BalanceViewModel balanceViewModel)
+        public DeleteCommand(BaseViewModel balanceViewModel)
         {
             this.balanceViewModel = balanceViewModel;
         }

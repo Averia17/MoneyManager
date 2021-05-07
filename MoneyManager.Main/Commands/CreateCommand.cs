@@ -33,18 +33,11 @@ namespace MoneyManager.Main.Commands
 
         public void Execute(object parameter)
         {
-            //History history = (History)parameter;
-            /* History = new History()
-             {
-                 Id = Guid.NewGuid(),
-                 Date = 
-
-ц
-             };*/
-            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
-            Account account = currentAccount.Account;
+           
             History.Id = Guid.NewGuid();
-            History.AccountId = account.Id;
+            
+            History.AccountId = SingleCurrentAccount.GetInstance().Account.Id;
+            History.Account = null;
             History.ActivityId = History.Activity.Id;
             History.Activity = null;
             historyRepository.Create(History);

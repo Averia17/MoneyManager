@@ -166,21 +166,9 @@
     <Compile Include="Configurations\ActivityConfiguration.cs" />
     <Compile Include="Configurations\ActivityTypeConfiguration.cs" />
     <Compile Include="Configurations\HistoryConfiguration.cs" />
-    <Compile Include="Migrations\20210319220537_init.cs" />
-    <Compile Include="Migrations\20210319220537_init.designer.cs">
-      <DependentUpon>20210319220537_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210324091945_idchanged.cs" />
-    <Compile Include="Migrations\20210324091945_idchanged.designer.cs">
-      <DependentUpon>20210324091945_idchanged.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210425132757_update_account.cs" />
-    <Compile Include="Migrations\20210425132757_update_account.designer.cs">
-      <DependentUpon>20210425132757_update_account.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210425170134_update_account2.cs" />
-    <Compile Include="Migrations\20210425170134_update_account2.designer.cs">
-      <DependentUpon>20210425170134_update_account2.cs</DependentUpon>
+    <Compile Include="Migrations\20210506190520_init.cs" />
+    <Compile Include="Migrations\20210506190520_init.designer.cs">
+      <DependentUpon>20210506190520_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\MoneyManagerContextModelSnapshot.cs" />
     <Compile Include="MoneyManagerContext.cs" />
@@ -203,6 +191,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

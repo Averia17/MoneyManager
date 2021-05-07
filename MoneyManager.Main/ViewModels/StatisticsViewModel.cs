@@ -101,7 +101,7 @@ namespace MoneyManager.Main.ViewModels
             double sum = 0;
            
             List<History> histories = new List<History>();
-            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" 
+            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && !x.IsRepeat
                                                 && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id)
                                                 .ToList();
 
@@ -116,7 +116,7 @@ namespace MoneyManager.Main.ViewModels
             double sum = 0;
             
             List<History> histories = new List<History>();
-            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" 
+            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" && !x.IsRepeat
                                             && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id)
                                             .ToList();
 
@@ -136,7 +136,7 @@ namespace MoneyManager.Main.ViewModels
         {
             PieCharListExpenses.Clear();
             
-            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && x.Date >=TbFrom && x.Date <= TbTo && x.Account.Id == account.Id)
+            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && x.Date >=TbFrom && x.Date <= TbTo && x.Account.Id == account.Id && !x.IsRepeat)
                                                 .GroupBy(x => x.Activity.Title).
                                                 Select(g => new
                                                 {
@@ -152,7 +152,7 @@ namespace MoneyManager.Main.ViewModels
         {
             PieCharListEncomes.Clear();
             
-            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id)
+            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id && !x.IsRepeat)
                                                 .GroupBy(x => x.Activity.Title).
                                                 Select(g => new
                                                 {

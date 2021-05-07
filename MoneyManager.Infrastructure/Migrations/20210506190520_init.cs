@@ -12,8 +12,9 @@ namespace MoneyManager.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Balance = table.Column<int>(nullable: false),
+                    Email = table.Column<string>(nullable: true),
+                    Username = table.Column<string>(nullable: true),
+                    Balance = table.Column<double>(nullable: false),
                     Password = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
