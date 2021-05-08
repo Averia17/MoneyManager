@@ -6,41 +6,168 @@
              xmlns:local="clr-namespace:MoneyManager.Main.Views"
              xmlns:components="clr-namespace:MoneyManager.Main.Components"
              mc:Ignorable="d" 
-             Background="#aed6dc"
+            MinHeight="600"
             >
+
+    <!--<Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+            <Border CornerRadius="10" Grid.RowSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#7be9f6" Offset="0.0"/>
+                        <GradientStop Color="#ff8a80" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+
+            <StackPanel VerticalAlignment="Center">
+                <Image Source="/Assets/money.png" Width="100"/>
+                <TextBlock Text="Money Manager"
+                           FontWeight="Light"
+                           FontFamily="helvetica"
+                           FontSize="24"
+                           Foreground="White"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Text="Нельзя гоняться за деньгами — нужно идти им навстречу."
+                           Margin="0,5,0,0"
+                           FontWeight="Light"
+                           FontFamily="helvetica"
+                           FontSize="15.5"
+                           Foreground="White"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+            
+
+
+            <StackPanel Grid.Row="1" >
+                <Grid>
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="60 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Email"
+                                   FontFamily="Helvetica"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="#1f4247"
+                             Background="Transparent"
+                             Height="25"/>
+                        <TextBox Grid.Column="1" Margin="20 0 0 0"
+                                  FontFamily="Helvetica"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="#1f4247"
+                             Background="Transparent"
+                             Height="25"
+                            Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" />
+
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="60 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="6*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Пароль"  FontFamily="Helvetica"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="#1f4247"
+                             Background="Transparent"
+                             Height="25" />
+                        <components:BindablePasswordBox Grid.Column="1" Margin="20 0 0 0"
+                                                       FontFamily="Helvetica"
+                                                     FontSize="20"
+                                                     HorizontalAlignment="Center"
+                                                     Foreground="#1f4247"
+                                                     Background="Transparent"
+                                                     Height="25"
+                                                    Password="{Binding Password}" />        
+                    </Grid>
+                </Grid>
+                <TextBlock  Margin="0 10 0 0"
+                    HorizontalAlignment="Center"
+                    DataContext="{Binding ErrorMessageViewModel}"
+                    Foreground="DarkRed"
+                    Text="{Binding Message}"
+                    Visibility="{Binding HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <Button Width="90" Command="{Binding LoginCommand}"
+                    Content="Войти"
+                    IsDefault="True"  Margin="0 10 0 0"/>
+
+                <Button  Margin="0 10 0 0"
+                    HorizontalAlignment="Center"
+                    Background="Transparent"
+                    Command="{Binding UpdateViewCommand}"
+                    CommandParameter="Register"
+                    Content="У Вас нет аккаунта?"
+                    Foreground="Blue" />
+
+            </StackPanel>
+
+
+
+
+
+
+        </Grid>
+    </Grid>-->
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
 
-    <Border Margin="170,25,170,-0.4" Padding="50"
+    <Border Margin="170,25,170,-0.4" Padding="40 20" MinHeight="500"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
-        Background="White"
+
  
         BorderThickness="3"
-        CornerRadius="10" Height="425">
+        CornerRadius="10" >
         <Border.Effect>
             <DropShadowEffect BlurRadius="10" Color="Gray" />
         </Border.Effect>
+        <Border.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="#7be9f6" Offset="0.0"/>
+                <GradientStop Color="#ff8a80" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
         <Grid Grid.IsSharedSizeScope="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
+            <Image Source="/Assets/money.png" Width="110"/>
 
-            <TextBlock Grid.Row="0"
+            <TextBlock Grid.Row="1"
                 HorizontalAlignment="Center"
-                FontSize="48"
+                FontSize="32"
                 Text="Money Manager" />
 
-            <TextBlock Grid.Row="1" Margin="0 10"
+            <TextBlock Grid.Row="2" Margin="0 10"
                 HorizontalAlignment="Center"
-                FontSize="14"
+                FontSize="17.5"
                 FontWeight="Thin"
                 Text="Нельзя гоняться за деньгами — нужно идти им навстречу." />
 
-            <Grid Grid.Row="2" Margin="0 20">
+            <Grid Grid.Row="3" Margin="0 10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
@@ -49,50 +176,71 @@
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Margin="0 10">
+                <Grid Grid.Row="0" HorizontalAlignment="Center" Margin="-40 15 0 10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
-                        <ColumnDefinition Width="300" />
+                        <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" Text="Email" />
+                    <TextBlock Grid.Column="0" Text="Email"  
+                               FontFamily="Helvetica"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="#1f4247"
+                             Background="Transparent"
+                             Height="25"/>
                     <TextBox Grid.Column="1" Margin="20 0 0 0"
+                             FontFamily="Helvetica"
+                             FontSize="20"
+                             Foreground="#1f4247"
+                             Background="Transparent"
+                            
                         Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" />
 
                 </Grid>
 
-                <Grid Grid.Row="1" Margin="0 10">
+                <Grid Grid.Row="1" HorizontalAlignment="Center" Margin="-40 10 0 15">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
-                        <ColumnDefinition Width="300" />
+                        <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" Text="Пароль" />
+                    <TextBlock Grid.Column="0" Text="Пароль"
+                               FontFamily="Helvetica"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="#1f4247"
+                             Background="Transparent"
+                             Height="25"/>
                     <components:BindablePasswordBox Grid.Column="1" Margin="20 0 0 0"
+                                                     FontFamily="Helvetica"
+                             FontSize="20"
+                             Foreground="#1f4247"
+                             Background="Transparent"
                         Password="{Binding Password}" />
                 </Grid>
-
-                <Button Grid.Row="2" Margin="0 10"
-                    HorizontalAlignment="Center"
-                    Command="{Binding LoginCommand}"
-                    Content="Login"
-                    IsDefault="True" />
-
-                <Button Grid.Row="3" Margin="0 10 0 0"
-                    HorizontalAlignment="Center"
-                    Background="Transparent"
-                    Command="{Binding UpdateViewCommand}"
-                    CommandParameter="Register"
-                    Content="Don't have an account?"
-                    FontSize="14"
-                    Foreground="Blue" />
-
-                <TextBlock Grid.Row="4" Margin="0 10 0 0"
+                <TextBlock Grid.Row="2" Margin="0 7"
                     HorizontalAlignment="Center"
                     DataContext="{Binding ErrorMessageViewModel}"
                     Foreground="DarkRed"
                     Text="{Binding Message}"
                     Visibility="{Binding HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <Button Grid.Row="3" Margin="0 5" FontSize="18"
+                    HorizontalAlignment="Center"
+                    Command="{Binding LoginCommand}"
+                    Content="Войти"
+                    IsDefault="True" />
+
+                <Button Grid.Row="4" Margin="0 5 0 0" 
+                    HorizontalAlignment="Center"
+                    Background="Transparent"
+                    Command="{Binding UpdateViewCommand}"
+                    CommandParameter="Register"
+                    Content="У Вас нет аккаунта?"
+                    FontSize="18"
+                    Foreground="Blue" />
+
+                
             </Grid>
         </Grid>
     </Border>

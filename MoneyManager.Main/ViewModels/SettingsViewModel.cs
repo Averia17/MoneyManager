@@ -29,6 +29,7 @@ namespace MoneyManager.Main.ViewModels
         public History History { get; set; }
         public ICommand UpdateViewCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand LinkToEditCommand { get; set; }
         public SettingsViewModel()
         {
             historyRepository = new HistoryRepository();
@@ -37,6 +38,7 @@ namespace MoneyManager.Main.ViewModels
             History = new History();
             UpdateViewCommand = new UpdateViewCommand(MainWindow.MainView);
             DeleteCommand = new DeleteCommand(this);
+            LinkToEditCommand = new LinkToEditCommand();
             CurrentAccount = new Account();
             CurrentAccount = SingleCurrentAccount.GetInstance().Account;
             GetHistories();

@@ -7,13 +7,8 @@ namespace MoneyManager.Main.Commands
 {
     public class LinkToEditCommand : BaseViewModel, ICommand
     {
-        BalanceViewModel balanceViewModel { get; set; }
         public static History History { get; set; }
 
-        public LinkToEditCommand(BalanceViewModel balanceViewModel)
-        {
-            this.balanceViewModel = balanceViewModel;
-        }
 
         public event EventHandler CanExecuteChanged;
 
@@ -24,7 +19,8 @@ namespace MoneyManager.Main.Commands
 
         public void Execute(object parameter)
         {
-            balanceViewModel.UpdateViewCommand.Execute("EditHistory");
+            ICommand UpdateViewCommand = new UpdateViewCommand(MainWindow.MainView);
+            UpdateViewCommand.Execute("EditHistory");
 
             History = (History)parameter;
         }

@@ -86,7 +86,7 @@ namespace MoneyManager.Main.ViewModels
             UpdateViewCommand = new UpdateViewCommand(MainWindow.MainView);
             RefreshHistoryCollectionView();
             DeleteCommand = new DeleteCommand(this);
-            LinkToEditCommand = new LinkToEditCommand(this);
+            LinkToEditCommand = new LinkToEditCommand();
             SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
             CurrentAccount = currentAccount.Account;
         }
@@ -133,6 +133,7 @@ namespace MoneyManager.Main.ViewModels
                 int i = 0;
                 History copiedHistory = new History()
                 {
+                    Id = Guid.NewGuid(),
                     AccountId = history.AccountId,
                     ActivityId = history.ActivityId,
                     Date = history.Date,
@@ -140,8 +141,10 @@ namespace MoneyManager.Main.ViewModels
                     Description = history.Description,
                     IsRepeat = false
                 };
-                while(i < dateDiff.Months)
+
+                while (i < dateDiff.Months)
                 {
+                    
                     i++;
                   /*  bool flag = false;
 

@@ -15,7 +15,6 @@ namespace MoneyManager.Main.ViewModels
     {
         public ObservableCollection<PieCharItem> PieCharListExpenses { get; set; }
         public ObservableCollection<PieCharItem> PieCharListEncomes { get; set; }
-        UnitOfWork unitOfWork;
         public HistoryRepository historyRepository { get; set; }
 
         Account account { get; set; }
@@ -84,24 +83,22 @@ namespace MoneyManager.Main.ViewModels
             historyRepository = new HistoryRepository();
             SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
             account = currentAccount.Account;
-            unitOfWork = new UnitOfWork();
             StartUp();
         }
         public void StartUp()
         {
-            GetPieCharExpensesList();
-            GetPieCharEncomesList();
-            //unitOfWork.AccountRepository.List();
-            Encome = GetEncome();
-            Expense = GetExpense();
+            GetPieCharListByType("Расходы");
+            GetPieCharListByType("Доходы");
+            Encome = GetHistoriesByType("Доходы");
+            Expense = GetHistoriesByType("Расходы");
             Difference = GetDifference();
         }
-        public double GetExpense()
+        public double GetHistoriesByType(string Type)
         {
             double sum = 0;
-           
+
             List<History> histories = new List<History>();
-            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && !x.IsRepeat
+            histories = historyRepository.List(x => x.Activity.ActivityType.Title == Type && !x.IsRepeat
                                                 && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id)
                                                 .ToList();
 
@@ -111,32 +108,16 @@ namespace MoneyManager.Main.ViewModels
             }
             return sum;
         }
-        public double GetEncome()
-        {
-            double sum = 0;
-            
-            List<History> histories = new List<History>();
-            histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" && !x.IsRepeat
-                                            && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id)
-                                            .ToList();
-
-            foreach (History history in histories)
-            {
-                sum += history.Amount;
-            }
-            return sum;
-        }
+       
         public double GetDifference()
         {
-            return GetEncome() - GetExpense();
+            return GetHistoriesByType("Доходы") - GetHistoriesByType("Расходы");
         }
-
-
-        public void GetPieCharExpensesList()
+        public void GetPieCharListByType(string Type)
         {
             PieCharListExpenses.Clear();
-            
-            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && x.Date >=TbFrom && x.Date <= TbTo && x.Account.Id == account.Id && !x.IsRepeat)
+
+            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == Type && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id && !x.IsRepeat)
                                                 .GroupBy(x => x.Activity.Title).
                                                 Select(g => new
                                                 {
@@ -145,23 +126,7 @@ namespace MoneyManager.Main.ViewModels
                                                 }).ToList();
             foreach (var item in histories)
             {
-                PieCharListExpenses.Add(new PieCharItem() { TypeName = item.Key, TypeNumber = (int)item.Sum});
-            }
-        }
-        public void GetPieCharEncomesList()
-        {
-            PieCharListEncomes.Clear();
-            
-            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id && !x.IsRepeat)
-                                                .GroupBy(x => x.Activity.Title).
-                                                Select(g => new
-                                                {
-                                                    g.Key,
-                                                    Sum = g.Sum(s => s.Amount),
-                                                }).ToList();
-            foreach (var item in histories)
-            {
-                PieCharListEncomes.Add(new PieCharItem() { TypeName = item.Key, TypeNumber = (int)item.Sum });
+                PieCharListExpenses.Add(new PieCharItem() { TypeName = item.Key, TypeNumber = (int)item.Sum });
             }
         }
     }

@@ -8,11 +8,31 @@
              x:Name="SettingsView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="LBText" TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!--PathIcon-->
+        <Style x:Key="LBPath" TargetType="{x:Type Path}">
+            <Setter Property="Fill" Value="#C2C3C3"/>
+            <Setter Property="Stretch" Value="Uniform"/>
+            <Setter Property="Height" Value="25"/>
+        </Style>
+
+        <DropShadowBitmapEffect x:Key="DropShadowListItem" Softness="2" ShadowDepth="1" Color="LightGray" Direction="260"/>
+        <!--Listbox Item Style-->
+        
+    </UserControl.Resources>
+
+
+    
     <Grid >
         <Grid.Resources>
             <Style TargetType="TextBlock">
                 <Setter Property="TextBlock.FontFamily" Value="Tahoma"/>
                 <Setter Property="TextBlock.FontSize" Value="20"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
@@ -86,32 +106,116 @@
                 </Grid>
             </Grid>
             <Grid Grid.Row="1" >
-                
-                <ListView ItemsSource="{Binding RepeatedHistories}"  >
+
+                <ListBox  ItemsSource="{Binding RepeatedHistories}" Background="Transparent" BorderThickness="0">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="BitmapEffect" Value="{StaticResource DropShadowListItem}"/>
+                            <Setter Property="Height" Value="50"/>
+                            <Setter Property="Width" Value="800"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                                            <Grid>
+                                                
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="45*"/>
+                                                    <ColumnDefinition Width="83*"/>
+                                                    <ColumnDefinition Width="100*"/>
+                                                    <ColumnDefinition Width="183*"/>
+                                                    <ColumnDefinition Width="92*"/>
+                                                    <ColumnDefinition Width="50*"/>
+                                                    <ColumnDefinition Width="50*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <!--Icon-->
+                                                <!--<Path Width="36" Data="{Binding FileThumb}" Fill="{Binding Fill, TargetNullValue=#C2C3C3, FallbackValue=#C2C3C3}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource LBPath}"/>-->
+
+                                                <TextBlock Grid.Column="1" Text="{Binding Activity.Title}" Style="{StaticResource LBText}"/>
+                                                <StackPanel Grid.Column="2" Orientation="Horizontal" >
+                                                    <TextBlock Text="{Binding Path=Amount}"  Style="{StaticResource LBText}"/>
+                                                    <TextBlock Text=" рублей"  Style="{StaticResource LBText}"/>
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="3" Orientation="Horizontal" >
+                                                    <TextBlock Text="{Binding Path=Date, StringFormat='{}{0:dd}'}"  Style="{StaticResource LBText}"/>
+                                                    <TextBlock Text=" числа каждого месяца"  Style="{StaticResource LBText}"/>
+                                                </StackPanel>
+                                                <TextBlock Grid.Column="4"  Text="{Binding Description}" Style="{StaticResource LBText}" />
+
+
+
+                                                <Button Grid.Column="5"  Margin="5" HorizontalAlignment="Right" BorderBrush="#545d78" Background="#8790ab" Command="{Binding DataContext.LinkToEditCommand, ElementName=SettingsView,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Kind=ModeEdit}" Width="50"></Button>
+                                                <Button Grid.Column="6"  Margin="5" HorizontalAlignment="Right" BorderBrush="#ff0000" Background="#ff341a" Command="{Binding DataContext.DeleteCommand, ElementName=SettingsView,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Delete}" Width="50"></Button>
+
+                                                <!--<TextBlock Grid.Column="1" Text="{Binding FileName}" Style="{StaticResource LBText}"/>
+                                <TextBlock Grid.Column="2" Text="{Binding FileProgram}" Style="{StaticResource LBText}"/>
+                                <TextBlock Grid.Column="3" Text="{Binding ModifiedOn}" Style="{StaticResource LBText}"/>
+                                <TextBlock Grid.Column="4" Text="{Binding FileType}" Style="{StaticResource LBText}"/>-->
+
+
+                                                <!--<Path Grid.Column="5" Data="{DynamicResource more}" Style="{StaticResource LBPath}" Width="15"/>
+                                <Path Grid.Column="6" Data="{DynamicResource plus}" Style="{StaticResource LBPath}" Width="15"/>
+                                <Path Grid.Column="7" Data="{DynamicResource Shared}" Style="{StaticResource LBPath}" Width="15"/>-->
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="White"/>
+
+                                                <!--optional trigger, :P-->
+                                                <Setter Property="Width" Value="805"/>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Background" Value="White"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+
+
+                <!--<ListView ItemsSource="{Binding RepeatedHistories}"  >
                     <ListView.ItemTemplate>
                         <DataTemplate >
-                            <Grid>
-                                
+                            <Grid >
+                                <Grid.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontFamily" Value="Franklin Gothic Medium"/>
+                                        <Setter Property="FontSize" Value="18"/>
+                                    </Style>
+                                </Grid.Resources>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10*"/>
                                     <ColumnDefinition  Width="10*"/>
                                     <ColumnDefinition  Width="10*"/>
                                     <ColumnDefinition  Width="10*"/>
                                     <ColumnDefinition  Width="70"/>
+                                    <ColumnDefinition  Width="70"/>
                                 </Grid.ColumnDefinitions>
-                                <!--<Image Source="Assets/placeholder.png" Width="32" Height="32"
-                                HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
-                                <TextBlock Grid.Column="0" Margin="5" Text="{Binding Path=Activity.Title}" FontSize="17" FontFamily="Franklin Gothic Medium"/>
-                                <TextBlock Grid.Column="1" Margin="5" Text="{Binding Path=Amount}" FontSize="17" FontFamily="Franklin Gothic Medium"/>
-                                <TextBlock Grid.Column="2" Margin="5" Text="{Binding Path=Date, StringFormat='{}{0:dd/MM}'}" FontSize="17" FontFamily="Franklin Gothic Medium"/>
-                                <TextBlock Grid.Column="3" Margin="5" Text="{Binding Path=Description}" FontSize="17" FontFamily="Franklin Gothic Medium"/>
-                                <Button Grid.Column="4"  Margin="5" HorizontalAlignment="Right" Command="{Binding DataContext.DeleteCommand, ElementName=SettingsView,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Delete}"></Button>
+                                --><!--<Image Source="Assets/placeholder.png" Width="32" Height="32"
+                                HorizontalAlignment="Left" VerticalAlignment="Center"/>--><!--
+                                <TextBlock Grid.Column="0" Margin="5" Text="{Binding Path=Activity.Title}" />
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5">
+                                    <TextBlock Text="{Binding Path=Amount}" />
+                                    <TextBlock Text=" рублей" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="5">
+                                    <TextBlock Text="{Binding Path=Date, StringFormat='{}{0:dd}'}" />
+                                    <TextBlock Text=" числа каждого месяца" />
+                                </StackPanel>
+                                <TextBlock Grid.Column="3" Margin="5" Text="{Binding Path=Description}" />
+                                <Button Grid.Column="4"  Margin="5" HorizontalAlignment="Right" BorderBrush="#545d78" Background="#8790ab" Command="{Binding DataContext.UpdateViewCommand, ElementName=SettingsView,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="EditHistory" Content="{materialDesign:PackIcon Kind=ModeEdit}"></Button>
+                                <Button Grid.Column="5"  Margin="5" HorizontalAlignment="Right" BorderBrush="#ff0000" Background="#ff341a" Command="{Binding DataContext.DeleteCommand, ElementName=SettingsView,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Delete}"></Button>
 
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                   
-                </ListView>
+                </ListView>-->
                 
                 <!--<ScrollViewer>
                     <StackPanel>

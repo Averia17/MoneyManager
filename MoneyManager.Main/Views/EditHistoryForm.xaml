@@ -55,10 +55,10 @@
                 <TextBlock Margin="20 0 0 0" Width="200" Text="Описание" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
                 <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Description, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите описание"  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
+            <!--<StackPanel Orientation="Horizontal" Margin="0 30 0 0">
                 <TextBlock Margin="20 0 0 0" Text="Повторяется каждый месяц?" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
                 <CheckBox Margin="30 0 0 0" Width="239" IsChecked="{Binding History.IsRepeat, Mode=TwoWay}"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="24" />
-            </StackPanel>
+            </StackPanel>-->
             <StackPanel Margin="0 20 0 0">
                 <Button Width="150" Height="50" FontSize="24" Command="{Binding DataContext.EditCommand, ElementName=EditControl}">Сохранить</Button>
             </StackPanel>
