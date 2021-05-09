@@ -26,7 +26,7 @@ namespace MoneyManager.Main
             //Window window = serviceProvider.GetRequiredService<MainWindow>();
             //window.Show();
             InsertingData();
-           /* SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+/*            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
             currentAccount.Account = new AccountRepository().GetByEmail("feterfox@gmail.com");*/
             base.OnStartup(e);
         }

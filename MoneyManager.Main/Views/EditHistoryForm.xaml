@@ -7,62 +7,207 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              x:Name="EditControl"
-             d:DesignHeight="450" d:DesignWidth="569">
-    <Grid >
+             >
 
-        <StackPanel Orientation="Vertical" Margin="10 30">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <RadioButton  IsChecked="{Binding IsExpenseChecked}" GroupName="activityTypes" FontSize="24" Height="30" Command="{Binding ItemChangedCommand}"  CommandParameter="{Binding Expense}" Content="{Binding Expense.Title}" />
+    <UserControl.Resources>
+        <Style x:Key="ToolRadioButton" TargetType="{x:Type RadioButton}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="14 6 14 6" />
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Margin="{TemplateBinding Margin}"
+                            ClipToBounds="{TemplateBinding ClipToBounds}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                                            <VisualTransition.GeneratedEasingFunction>
+                                                <CircleEase EasingMode="EaseOut"/>
+                                            </VisualTransition.GeneratedEasingFunction>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState Name="Normal"/>
+                                    <VisualState Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
+                                                         To="0.15" Duration="0"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup Name="CheckedStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="*" To="Checked">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="CheckedBackgroundBorder" To="1" Duration="0">
+
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </VisualTransition>
+
+                                        <VisualTransition From="Checked" To="Unchecked">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="CheckedBackgroundBorder"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0" Duration="0"/>
+                                                <DoubleAnimation Storyboard.TargetName="Ripple"
+                                                             Storyboard.TargetProperty="FontWight"
+                                                             To="600" Duration="0"/>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+
+
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid>
+                                <Border x:Name="MouseOverBorder"
+                                    Opacity="0"
+                                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
+                                <Border x:Name="CheckedBackgroundBorder"
+                                    Background="{DynamicResource MaterialDesignDivider}"
+                                        Opacity="1"></Border>
+
+                                <TextBlock x:Name="Ripple" HorizontalAlignment="Center"
+                                        FontWeight="DemiBold"
+                                        Focusable="False"
+                                        
+                                        Text="{TemplateBinding Content}"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                        Padding="{TemplateBinding Padding}">
+                                </TextBlock>
+                                <Border x:Name="CheckedBorder"
+                                    Visibility="{TemplateBinding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    BorderThickness="0.5"
+                                    Opacity="1"
+                                    BorderBrush="{DynamicResource MaterialDesignDivider}" >
+                                    <Border.Background>
+                                        <SolidColorBrush Color="Black" Opacity="0.3" />
+                                    </Border.Background>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <!--<ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Ripple" Property="Opacity" Value="1" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>-->
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid Background="#aed6dc" >
+        <Grid Margin="70 0" >
+            <Border Padding="20 0" MinHeight="600"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+
+ 
+                BorderThickness="3"
+                CornerRadius="10" >
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#ffe8e6" Offset="0.0"/>
+                        <GradientStop Color="#ff8a80" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" Color="Gray" />
+                </Border.Effect>
+                <Grid >
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="8*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid VerticalAlignment="Bottom" Grid.Row="0" >
+                        <!--ItemsSource="{Binding activityTypes}"
+                                  SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" 
+                     
+                                 >-->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" Margin="20,0,0,0">
+                            <!--9bc472-->
+                            <RadioButton Style="{DynamicResource ToolRadioButton}" Background="#9bc472" Opacity="0.8" IsChecked="True" GroupName="activityTypes" FontSize="24" Height="50" Command="{Binding DataContext.ItemChangedCommand, ElementName=EditControl}"  CommandParameter="{Binding Expense}" Content="{Binding Expense.Title}">
+
+                            </RadioButton>
+                        </Grid>
+                        <!--ff8566-->
+                        <Grid Grid.Column="1"  Margin="0,0,20,0" >
+                            <RadioButton Style="{DynamicResource ToolRadioButton}"   Background="#ff8566" Opacity="0.8" GroupName="activityTypes" FontSize="24" Height="50" Command="{Binding DataContext.ItemChangedCommand, ElementName=EditControl}"  CommandParameter="{Binding Encome}" Content="{Binding Encome.Title}">
+
+                            </RadioButton>
+                        </Grid>
+                        <!--<ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel HorizontalAlignment="Stretch"/>
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <RadioButton  Width="230" IsChecked="{Binding DataContext.IsChecked, ElementName=EditControl}" GroupName="activityTypes" FontSize="24" Height="30" Command="{Binding DataContext.ItemChangedCommand, ElementName=EditControl}"  CommandParameter="{Binding}" Content="{Binding Path=Title}" />
+                                        <RadioButton  Width="230" IsChecked="{Binding DataContext.IsChecked, ElementName=EditControl}" GroupName="activityTypes" FontSize="24" Height="30" Command="{Binding DataContext.ItemChangedCommand, ElementName=EditControl}"  CommandParameter="{Binding}" Content="{Binding Path=Title}" />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>-->
+                    </Grid>
+                    <Grid Grid.Row="1"  HorizontalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition ></RowDefinition>
+                            <RowDefinition ></RowDefinition>
+                            <RowDefinition ></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,10">
+                            <TextBlock Margin="20 0 0 0" Width="200" Text="Дата" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
+                            <DatePicker Margin="30 0 0 0" Width="239" SelectedDate="{Binding History.Date, Mode=TwoWay}"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="22"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Orientation="Horizontal"  Margin="20 10">
+                            <TextBlock Margin="20 0 0 0" Width="200" Text="Сумма" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
+                            <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Amount, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите сумму, руб."  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal"  Margin="20,10">
+                            <TextBlock Margin="20 0 0 0" Width="200" Text="Категория"  VerticalAlignment="Bottom" FontSize="24"></TextBlock>
+                            <ComboBox Margin="30 0 0 0" Width="239"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="22"
+                              materialDesign:HintAssist.Hint="Выберите категорию" 
+                              ItemsSource="{Binding activities, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}"  
+                              SelectedItem="{Binding DataContext.History.Activity, ElementName=EditControl, Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <!--<TextBlock Text="{Binding Path=Id}"/>
+                                            <TextBlock Text=" - "/>-->
+                                            <TextBlock Text="{Binding Path=Title}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                        </StackPanel>
+                        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="20,10">
+                            <TextBlock Margin="20 0 0 0" Width="200" Text="Описание" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
+                            <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Description, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите описание"  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22"/>
+                        </StackPanel>
+                        
+                    </Grid>
+                    <Grid Margin="0 30 0 0" Grid.Row="3">
+                        <Button Width="150" Height="50" FontSize="24" Command="{Binding DataContext.CreateCommand, ElementName=EditControl}">Сохранить</Button>
+                    </Grid>
                 </Grid>
-                <Grid Grid.Column="1">
-                    <RadioButton IsChecked="{Binding IsEncomeChecked}"  GroupName="activityTypes" FontSize="24" Height="30" Command="{Binding ItemChangedCommand}"  CommandParameter="{Binding Encome}" Content="{Binding Encome.Title}" />
-                </Grid>
-            </Grid>
-
-            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
-
-                <TextBlock Margin="20 0 0 0" Width="200" Text="Дата" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                <DatePicker Margin="30 0 0 0" Width="239" SelectedDate="{Binding History.Date, Mode=TwoWay}"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="22"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
-                <TextBlock Margin="20 0 0 0" Width="200" Text="Сумма" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Amount, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите сумму, $"  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0 10 0 0" Height="64">
-                <TextBlock Margin="20 0 0 0" Width="200" Text="Категория" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                <ComboBox Margin="30 0 0 0" Width="239"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="22"
-                  materialDesign:HintAssist.Hint="Выберите категорию" 
-                  ItemsSource="{Binding activities, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}"  
-                  SelectedItem="{Binding DataContext.History.Activity, ElementName=EditControl, Mode=TwoWay}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <!--<TextBlock Text="{Binding Path=Id}"/>
-                                <TextBlock Text=" - "/>-->
-                                <TextBlock Text="{Binding Path=Title}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
-                <TextBlock Margin="20 0 0 0" Width="200" Text="Описание" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Description, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите описание"  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22"/>
-            </StackPanel>
-            <!--<StackPanel Orientation="Horizontal" Margin="0 30 0 0">
-                <TextBlock Margin="20 0 0 0" Text="Повторяется каждый месяц?" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                <CheckBox Margin="30 0 0 0" Width="239" IsChecked="{Binding History.IsRepeat, Mode=TwoWay}"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="24" />
-            </StackPanel>-->
-            <StackPanel Margin="0 20 0 0">
-                <Button Width="150" Height="50" FontSize="24" Command="{Binding DataContext.EditCommand, ElementName=EditControl}">Сохранить</Button>
-            </StackPanel>
-        </StackPanel>
-
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

@@ -109,10 +109,12 @@
 
                 <ListBox  ItemsSource="{Binding RepeatedHistories}" Background="Transparent" BorderThickness="0">
                     <ListBox.ItemContainerStyle>
+                        
                         <Style TargetType="{x:Type ListBoxItem}">
                             <Setter Property="BitmapEffect" Value="{StaticResource DropShadowListItem}"/>
                             <Setter Property="Height" Value="50"/>
                             <Setter Property="Width" Value="800"/>
+                            <Setter Property="FontSize" Value="15"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -121,12 +123,12 @@
                                                 
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="45*"/>
-                                                    <ColumnDefinition Width="83*"/>
-                                                    <ColumnDefinition Width="100*"/>
-                                                    <ColumnDefinition Width="183*"/>
+                                                    <ColumnDefinition Width="73*"/>
+                                                    <ColumnDefinition Width="70*"/>
+                                                    <ColumnDefinition Width="113*"/>
                                                     <ColumnDefinition Width="92*"/>
-                                                    <ColumnDefinition Width="50*"/>
-                                                    <ColumnDefinition Width="50*"/>
+                                                    <ColumnDefinition Width="35*"/>
+                                                    <ColumnDefinition Width="35*"/>
                                                 </Grid.ColumnDefinitions>
 
                                                 <!--Icon-->
@@ -139,14 +141,14 @@
                                                 </StackPanel>
                                                 <StackPanel Grid.Column="3" Orientation="Horizontal" >
                                                     <TextBlock Text="{Binding Path=Date, StringFormat='{}{0:dd}'}"  Style="{StaticResource LBText}"/>
-                                                    <TextBlock Text=" числа каждого месяца"  Style="{StaticResource LBText}"/>
+                                                    <TextBlock Text=" числа"  Style="{StaticResource LBText}"/>
                                                 </StackPanel>
                                                 <TextBlock Grid.Column="4"  Text="{Binding Description}" Style="{StaticResource LBText}" />
 
 
 
-                                                <Button Grid.Column="5"  Margin="5" HorizontalAlignment="Right" BorderBrush="#545d78" Background="#8790ab" Command="{Binding DataContext.LinkToEditCommand, ElementName=SettingsView,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Kind=ModeEdit}" Width="50"></Button>
-                                                <Button Grid.Column="6"  Margin="5" HorizontalAlignment="Right" BorderBrush="#ff0000" Background="#ff341a" Command="{Binding DataContext.DeleteCommand, ElementName=SettingsView,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Delete}" Width="50"></Button>
+                                                <Button Grid.Column="5"  Margin="5" HorizontalAlignment="Right" BorderBrush="#545d78" Background="#8790ab" Command="{Binding DataContext.LinkToEditCommand, ElementName=SettingsView,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Kind=ModeEdit}" ></Button>
+                                                <Button Grid.Column="6"  Margin="5" HorizontalAlignment="Right" BorderBrush="#ff0000" Background="#ff341a" Command="{Binding DataContext.DeleteCommand, ElementName=SettingsView,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Delete}" ></Button>
 
                                                 <!--<TextBlock Grid.Column="1" Text="{Binding FileName}" Style="{StaticResource LBText}"/>
                                 <TextBlock Grid.Column="2" Text="{Binding FileProgram}" Style="{StaticResource LBText}"/>

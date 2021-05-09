@@ -44,12 +44,15 @@ namespace MoneyManager.Main.Commands
             History.ActivityId = History.Activity.Id;
             History.Activity = null;
             historyRepository.Create(History);
+
             if (History.IsRepeat)
             {
                 History.IsRepeat = false;
+                History.Id = Guid.NewGuid();
                 historyRepository.Create(History);
                 CheckRepeatHistories();
             }
+            
             //balanceViewModel.GetHistories();
         }
         public void CheckRepeatHistories()
