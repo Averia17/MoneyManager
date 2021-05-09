@@ -15,8 +15,40 @@
             <DatePicker Margin="0 0 40 0" Width="200" SelectedDate="{Binding TbTo}"  HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="22"/>
         </Grid>
         <Grid Margin="0,105, 0,0 ">
-            <ListView AlternationCount="2" 
-              ItemsSource="{Binding HistoriesCollectionView, Mode=TwoWay}" Padding="0,0,0,10">
+            <ListView Grid.Row="1" Margin="0 60 0 0 " AlternationCount="2"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+          ItemsSource="{Binding HistoriesCollectionView, Mode=TwoWay}" Padding="0,0,0,10">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border  CornerRadius="5" Width="800" >
+                            <Grid>
+                                <Grid.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontSize" Value="16"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </Grid.Resources>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25*"/>
+                                    <ColumnDefinition Width="40*"/>
+                                    <ColumnDefinition Width="45*"/>
+                                    <ColumnDefinition Width="40*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--Icon-->
+                                <!--<Path Width="36" Data="{Binding FileThumb}" Fill="{Binding Fill, TargetNullValue=#C2C3C3, FallbackValue=#C2C3C3}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource LBPath}"/>-->
+
+                                <TextBlock Grid.Column="1" Text="{Binding Activity.Title}" />
+                                <StackPanel Grid.Column="2" Orientation="Horizontal" >
+                                    <TextBlock Text="{Binding Path=Amount}"  />
+                                    <TextBlock Text=" рублей" />
+                                </StackPanel>
+
+                                <TextBlock Grid.Column="3"  Text="{Binding Description}" HorizontalAlignment="Left"/>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
                 <ListView.GroupStyle>
                     <GroupStyle>
                         <GroupStyle.ContainerStyle>
@@ -25,17 +57,24 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type GroupItem}">
-                                            <Expander IsExpanded="True" BorderBrush="#FFA4B97F" 
-                                                BorderThickness="0,0,0,1">
-                                                <Expander.Header>
-                                                    <DockPanel>
-                                                        <TextBlock FontWeight="Bold" Text="Date: "/>
-                                                        <TextBlock FontWeight="Bold" Text="{Binding Path=Name}"/>
+                                            <Expander IsExpanded="True" BorderBrush="#ececec" Style="{DynamicResource MaterialDesignExpander}"
+                                            BorderThickness="0,0,0,1">
+                                                <Expander.Header >
+                                                    <DockPanel >
+                                                        <TextBlock FontWeight="Bold"
+                                                               FontFamily="Helvetica"
+                                                               FontSize="20"
+                                                               Foreground="#1f4247"
+                                                               Text="Date: "/>
+                                                        <TextBlock FontWeight="Bold"
+                                                               FontFamily="Helvetica"
+                                                               Foreground="#1f4247"
+                                                               
+                                                               FontSize="20"
+                                                               Text="{Binding Path=Name}"/>
                                                     </DockPanel>
                                                 </Expander.Header>
-                                                <Expander.Content>
-                                                    <ItemsPresenter />
-                                                </Expander.Content>
+                                                <ItemsPresenter />
                                             </Expander>
                                         </ControlTemplate>
                                     </Setter.Value>
@@ -44,16 +83,6 @@
                         </GroupStyle.ContainerStyle>
                     </GroupStyle>
                 </ListView.GroupStyle>
-
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="150"
-                          DisplayMemberBinding="{Binding Path=Activity.Title}"/>
-                        <GridViewColumn Width="150"
-                          DisplayMemberBinding="{Binding Path=Amount}"/>
-
-                    </GridView>
-                </ListView.View>
             </ListView>
         </Grid>
     </Grid>

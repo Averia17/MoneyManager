@@ -204,7 +204,7 @@
                         
                     </Grid>
                     <Grid Margin="0 30 0 0" Grid.Row="3">
-                        <Button Width="150" Height="50" FontSize="24" Command="{Binding DataContext.CreateCommand, ElementName=EditControl}">Сохранить</Button>
+                        <Button Width="150" Height="50" FontSize="24" Command="{Binding DataContext.EditCommand, ElementName=EditControl}">Сохранить</Button>
                     </Grid>
                 </Grid>
             </Border>

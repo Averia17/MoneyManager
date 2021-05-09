@@ -11,10 +11,112 @@
     
     
     <Grid>
+       
+        <!--<StackPanel>
+            <StackPanel.Resources>
+
+                <Style TargetType="Border" x:Key="RacePitBorderStyle" >
+                    <Style.Resources>
+                        <LinearGradientBrush x:Key="BackBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Color="#EF3132" Offset="0.1" />
+                            <GradientStop Color="#D62B2B" Offset="0.9" />
+                        </LinearGradientBrush>
+                    </Style.Resources>
+                    <Setter Property="Background" Value="{StaticResource BackBrush}"/>
+                </Style>
+
+                <DataTemplate x:Key="titleText">
+                    <Border Style="{StaticResource RacePitBorderStyle}" Height="24">
+                        <TextBlock Text="{Binding}" 
+                        Margin="4 0"
+                        VerticalAlignment="Center"
+                        Foreground="White"
+                        FontSize="11" 
+                        FontWeight="Normal"
+                        Width="{Binding
+                        RelativeSource={RelativeSource
+                        Mode=FindAncestor,
+                        AncestorType={x:Type Expander}},
+                        Path=ActualWidth}"
+                        TextWrapping="Wrap"/>
+                    </Border>
+                </DataTemplate>
+
+                <Style TargetType="{x:Type Expander}">
+                    <Setter Property="HeaderTemplate" Value="{StaticResource titleText}"/>
+                </Style>
+
+            </StackPanel.Resources>
+
+            <Expander Name="hcontCtrl" Header="This is the header.">
+                <StackPanel>
+                    <TextBox>This is a textbox</TextBox>
+                    <Button>A button</Button>
+                </StackPanel>
+            </Expander>
+
+        </StackPanel>-->
 
 
-        <ListView Margin="0 20 0 0 " AlternationCount="2"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+        <Grid VerticalAlignment="Top" >
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30 15 0 0">
+                <TextBlock 
+                    FontFamily="Helvetica"
+                    Foreground="#1f4247"
+                    Text="Ваш баланс " FontSize="25"  ></TextBlock>
+                <TextBlock Text="{Binding Balance, Mode=TwoWay}"
+                           FontFamily="Helvetica"
+                           Foreground="#1f4247"
+                           FontSize="25" 
+                           Margin="10 0 0 0"></TextBlock>
+
+            </StackPanel>
+            <Button  HorizontalAlignment="Right" Padding="5 0" Margin="0 15 20 0"  Command="{Binding UpdateViewCommand}" CommandParameter="FilterBalance">
+                <StackPanel Orientation="Horizontal" >
+                    <materialDesign:PackIcon Kind="Search" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+                    <TextBlock Margin="2 0 6 0"  FontSize="18" VerticalAlignment="Center">Поиск</TextBlock>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <ListView Grid.Row="1" Margin="0 60 0 0 " AlternationCount="2"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
           ItemsSource="{Binding HistoryCollectionView, Mode=TwoWay}" Padding="0,0,0,10">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border  CornerRadius="5" Width="800" >
+                        <Grid>
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="16"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*"/>
+                                <ColumnDefinition Width="40*"/>
+                                <ColumnDefinition Width="45*"/>
+                                <ColumnDefinition Width="40*"/>
+                                <ColumnDefinition Width="32*"/>
+                                <ColumnDefinition Width="32*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--Icon-->
+                            <!--<Path Width="36" Data="{Binding FileThumb}" Fill="{Binding Fill, TargetNullValue=#C2C3C3, FallbackValue=#C2C3C3}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource LBPath}"/>-->
+
+                            <TextBlock Grid.Column="1" Text="{Binding Activity.Title}" />
+                            <StackPanel Grid.Column="2" Orientation="Horizontal" >
+                                <TextBlock Text="{Binding Path=Amount}"  />
+                                <TextBlock Text=" рублей" />
+                            </StackPanel>
+                      
+                            <TextBlock Grid.Column="3"  Text="{Binding Description}" HorizontalAlignment="Left"/>
+
+                            <Button Grid.Column="4"  Margin="5,5,0,5" HorizontalAlignment="Right" BorderBrush="#545d78" Background="#8790ab" Command="{Binding DataContext.LinkToEditCommand, ElementName=BalanceControl,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Kind=ModeEdit}" ></Button>
+                            <Button Grid.Column="5"  Margin="5,5,65,5" HorizontalAlignment="Right" BorderBrush="#ff0000" Background="#ff341a" Command="{Binding DataContext.DeleteCommand, ElementName=BalanceControl,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Delete}" ></Button>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
             <ListView.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.ContainerStyle>
@@ -23,17 +125,24 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type GroupItem}">
-                                        <Expander IsExpanded="True" BorderBrush="#FFA4B97F" 
+                                        <Expander IsExpanded="True" BorderBrush="#ececec" Style="{DynamicResource MaterialDesignExpander}"
                                             BorderThickness="0,0,0,1">
-                                            <Expander.Header>
-                                                <DockPanel>
-                                                    <TextBlock FontWeight="Bold" Text="Date: "/>
-                                                    <TextBlock FontWeight="Bold" Text="{Binding Path=Name}"/>
+                                            <Expander.Header >
+                                                <DockPanel >
+                                                    <TextBlock FontWeight="Bold"
+                                                               FontFamily="Helvetica"
+                                                               FontSize="20"
+                                                               Foreground="#1f4247"
+                                                               Text="Date: "/>
+                                                    <TextBlock FontWeight="Bold"
+                                                               FontFamily="Helvetica"
+                                                               Foreground="#1f4247"
+                                                               
+                                                               FontSize="20"
+                                                               Text="{Binding Path=Name}"/>
                                                 </DockPanel>
                                             </Expander.Header>
-                                            <Expander.Content>
                                                 <ItemsPresenter />
-                                            </Expander.Content>
                                         </Expander>
                                     </ControlTemplate>
                                 </Setter.Value>
@@ -42,8 +151,24 @@
                     </GroupStyle.ContainerStyle>
                 </GroupStyle>
             </ListView.GroupStyle>
-            
-            <ListView.View>
+        </ListView>
+
+
+
+
+
+        <!--<TextBlock Grid.Column="1" Text="{Binding FileName}" Style="{StaticResource LBText}"/>
+                                <TextBlock Grid.Column="2" Text="{Binding FileProgram}" Style="{StaticResource LBText}"/>
+                                <TextBlock Grid.Column="3" Text="{Binding ModifiedOn}" Style="{StaticResource LBText}"/>
+                                <TextBlock Grid.Column="4" Text="{Binding FileType}" Style="{StaticResource LBText}"/>-->
+
+
+                    <!--<Path Grid.Column="5" Data="{DynamicResource more}" Style="{StaticResource LBPath}" Width="15"/>
+                                <Path Grid.Column="6" Data="{DynamicResource plus}" Style="{StaticResource LBPath}" Width="15"/>
+                                <Path Grid.Column="7" Data="{DynamicResource Shared}" Style="{StaticResource LBPath}" Width="15"/>-->
+
+
+                <!--<ListView.View>
                 <GridView >
                     <GridViewColumn Width="150"
                       DisplayMemberBinding="{Binding Path=Activity.Title}"/>
@@ -64,28 +189,16 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                 </GridView>
-            </ListView.View>
-        </ListView>
-        
-        <Grid Height="60" VerticalAlignment="Top" >
-            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30 0 0 0">
-                <TextBlock Text="Ваш баланс " FontSize="20"  ></TextBlock>
-                <TextBlock Text="{Binding Balance, Mode=TwoWay}" FontSize="20" Margin="10 0 0 0"></TextBlock>
+            </ListView.View>-->
 
-            </StackPanel>
-             <Button   HorizontalAlignment="Right" Padding="5 0" Margin="0 0 20 0"  Command="{Binding UpdateViewCommand}" CommandParameter="FilterBalance">
-                <StackPanel Orientation="Horizontal" >
-                    <materialDesign:PackIcon Kind="Search" Margin="5" VerticalAlignment="Center"/>
-                    <TextBlock Margin="  0 2 6 0">Поиск</TextBlock>
-                </StackPanel>
-            </Button>
-        </Grid>
-        <Grid Height="100" Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Button
-                        Command="{Binding UpdateViewCommand}" CommandParameter="CreateHistory"
+
+
+        <Grid Margin="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" >
+            <Button  
+                        Command="{Binding UpdateViewCommand}" CommandParameter="CreateHistory" Background="#fc745c"
                         Style="{DynamicResource MaterialDesignFloatingActionDarkButton}"
                         materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                        materialDesign:ButtonProgressAssist.Value="-1" 
+                        materialDesign:ButtonProgressAssist.Value="1" 
                         materialDesign:ButtonProgressAssist.IsIndeterminate="True"
                         Content="{materialDesign:PackIcon Add}" 
                         />
