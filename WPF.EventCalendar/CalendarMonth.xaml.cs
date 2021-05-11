@@ -206,10 +206,32 @@ namespace WPF.EventCalendar
                     if (e.DataContext == eventToSelect.DataContext)
                     {
                         e.BackgroundColor = HighlightColor;
+                        if (e.EventTextBlock.IsVisible == true)
+                        {
+                            e.EventTextBlock.Visibility = Visibility.Collapsed;
+                            e.EventAmount.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            e.EventAmount.Visibility = Visibility.Collapsed;
+                            e.EventTextBlock.Visibility = Visibility.Visible;
+                        }
+
                     }
                     else
                     {
                         e.BackgroundColor = e.DefaultBackfoundColor;
+                        if (e.EventTextBlock.IsVisible == true)
+                        {
+                            e.EventTextBlock.Visibility = Visibility.Collapsed;
+                            e.EventAmount.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            e.EventAmount.Visibility = Visibility.Collapsed;
+                            e.EventTextBlock.Visibility = Visibility.Visible;
+                        }
+
                     }
                 }
             }
@@ -440,7 +462,7 @@ namespace WPF.EventCalendar
                             // but if there are some events before, event won't be on the first row, but after previous events
                             if (day.Events.Items.Count > eventRow)
                             {
-                                //eventRow = Grid.GetRow(day.Events.Children[day.Events.Children.Count - 1]) + 1;
+                                //eventRow = Grid.GetRow(day.Events.Items[day.Events.Items.Count - 1]) + 1;
                             }
                             CalendarEventView calendarEventView;
                             // get color for event

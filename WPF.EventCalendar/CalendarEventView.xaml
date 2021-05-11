@@ -8,11 +8,18 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <Grid MouseDown="EventMouseDown" Width="100">
-        <TextBlock
+    <Grid MouseDown="EventMouseDown" Width="100" >
+
+        <TextBlock FontFamily="Tahoma" Padding="3.5,0,0,0"
+            x:Name="EventAmount"
+            Background="{Binding ElementName=calendarEventView, Path=BackgroundColor, UpdateSourceTrigger=PropertyChanged}"
+            
+            Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock FontFamily="Tahoma" Padding="3.5,0,0,0"
             x:Name="EventTextBlock"
             Background="{Binding ElementName=calendarEventView, Path=BackgroundColor, UpdateSourceTrigger=PropertyChanged}"
             
             Text="{Binding Label, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </UserControl>
+    

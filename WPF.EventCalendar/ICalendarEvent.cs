@@ -10,5 +10,6 @@ namespace WPF.EventCalendar
         string Label { get; set; }
         string Color { get; set; }
         bool IsRepeat { get; set; }
+        double Amount { get; set; }
     }
 }

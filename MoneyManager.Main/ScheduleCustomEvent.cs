@@ -16,6 +16,7 @@ namespace MoneyManager.Main
         public string Label { get; set; }
         public string Color { get; set; }
         public bool IsRepeat { get; set; }
+        public double Amount { get; set; }
 
     }
 }

@@ -5,9 +5,6 @@ namespace PieChart
     public class PieCharItem : INotifyPropertyChanged
     {
         private string _typeName;
-        /// <summary>
-        /// 类型名称
-        /// </summary>
         public string TypeName
         {
             get { return _typeName; }
@@ -22,9 +19,6 @@ namespace PieChart
         }
 
         private int _typeNumber;
-        /// <summary>
-        /// 类型数量
-        /// </summary>
         public int TypeNumber
         {
             get { return _typeNumber; }

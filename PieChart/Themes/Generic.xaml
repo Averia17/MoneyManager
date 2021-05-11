@@ -3,11 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:PieChart">
 
-    <!--饼图标题样式-->
-    
-    
-
-    <!--数量居左样式-->
     <Style x:Key="TextBoxRight" TargetType="{x:Type TextBox}">
         <Setter Property="Template">
             <Setter.Value>
@@ -26,7 +21,6 @@
         <Setter Property="TextBlock.LineHeight" Value="30"></Setter>
     </Style>
 
-    <!--数量居右样式-->
     <Style x:Key="TextBoxLeft" TargetType="{x:Type TextBox}">
         <Setter Property="Template">
             <Setter.Value>
@@ -45,25 +39,18 @@
         <Setter Property="TextBlock.LineHeight" Value="30"></Setter>
     </Style>
 
-    <!--饼图控件样式-->
     <Style TargetType="{x:Type local:PieCharControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:PieCharControl}">
-                    <!--Border阴影效果-->
                     <Border BorderThickness="0"  Margin="0,0,7,7">
                         <Border.Effect>
                             <DropShadowEffect ShadowDepth="7" BlurRadius="6" Opacity="0.35"/>
                         </Border.Effect>
-                        <!--第一层布局：标题栏高48，内容栏自适应-->
                         <Grid>
                           
-                            <!--标题栏-->
-                            <!--内容栏-->
                             <Grid  Background="#e2eefb" >
-                                <!--内容栏 行布局：Row1 自适应 ，Row2 30高度用于放图例-->
 
-                                <!--内容栏 列布局：Col1 170宽度用于放置类型和数量，Col2 自适应用于放置饼图-->
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="6*"></ColumnDefinition>
                                     <ColumnDefinition Width="5*"></ColumnDefinition>
@@ -72,7 +59,6 @@
                                     <RowDefinition Height="*"></RowDefinition>
                                     <RowDefinition Height="8*"></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <!--饼图容器-->
                                 <TextBlock Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="24" Margin="0,10,0,0" FontFamily="Tahomo">Ваши расходы</TextBlock>
 
                                 <Grid x:Name="Z_Parid_timePoint"  Margin="20,0,0,0"  Grid.Row="1" Grid.Column="0"></Grid>
@@ -81,7 +67,6 @@
                                     <ListView x:Name="Z_Parid_legendGrid_View"  VerticalAlignment="Center">
                                     </ListView>
                                 </Grid>
-                                <!--图例容器-->
                             </Grid>
                         </Grid>
                     </Border>
