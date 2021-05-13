@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using MoneyManager.Main.States.Accounts;
+using System.Windows.Input;
+using MoneyManager.Main.Commands;
 
 namespace MoneyManager.Main.ViewModels
 {
@@ -16,7 +18,39 @@ namespace MoneyManager.Main.ViewModels
     {
         public List<History> Histories { get; set; }
         public HistoryRepository historyRepository { get; set; }
-        public ICollectionView HistoriesCollectionView { get; set; }
+        private ICollectionView _historiesCollectionView { get; set; }
+        public ICollectionView HistoriesCollectionView
+        {
+            get { return _historiesCollectionView; }
+            set
+            {
+                _historiesCollectionView = value;
+                OnPropertyChanged(nameof(HistoriesCollectionView));
+            }
+        }
+        private ActivityType _activityTypeExpence { get; set; }
+
+        public ActivityType ActivityTypeExpence
+        {
+            get { return _activityTypeExpence; }
+            set
+            {
+                _activityTypeExpence = value;
+                OnPropertyChanged(nameof(ActivityTypeExpence));
+            }
+        }
+
+        private ActivityType _activityTypeEncome { get; set; }
+
+        public ActivityType ActivityTypeEncome
+        {
+            get { return _activityTypeEncome; }
+            set
+            {
+                _activityTypeEncome = value;
+                OnPropertyChanged(nameof(ActivityTypeEncome));
+            }
+        }
 
         private double _encome { get; set; }
         public double Encome
@@ -88,6 +122,8 @@ namespace MoneyManager.Main.ViewModels
                 HistoriesCollectionView.Refresh();
             }
         }
+
+        public ICommand ChangeRadioButtonCommand { get; set; }
         public FilterBalanceViewModel()
         {
             historyRepository = new HistoryRepository();
@@ -101,6 +137,20 @@ namespace MoneyManager.Main.ViewModels
             HistoriesCollectionView.Filter = FilterHistories;
             HistoriesCollectionView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(History.Date), new DateTimeConverter()));
 
+            ActivityTypeExpence = new ActivityTypeRepository().List().ToList()[0];
+            ActivityTypeEncome = new ActivityTypeRepository().List().ToList()[1];
+
+            ChangeRadioButtonCommand = new ChangeRadioButtonCommand(this);
+
+            UpdateProperties();
+
+        }
+        public void RefreshHistoryCollectionView()
+        {
+            HistoriesCollectionView = CollectionViewSource.GetDefaultView(Histories);
+            HistoriesCollectionView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(History.Date), new DateTimeConverter()));
+
+            HistoriesCollectionView.Refresh();
             UpdateProperties();
 
         }

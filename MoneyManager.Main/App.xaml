@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MoneyManager.Main"
              xmlns:views="clr-namespace:MoneyManager.Main.Views"
-             xmlns:viewmodels="clr-namespace:MoneyManager.Main.ViewModels"
+             xmlns:viewmodels="clr-namespace:MoneyManager.Main.ViewModels" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -40,6 +40,50 @@
             <DataTemplate DataType="{x:Type viewmodels:RegisterViewModel}">
                 <views:Register/>
             </DataTemplate>
+
+            <Style x:Key="CustomWindowStyle" TargetType="{x:Type Window}">
+                <Setter Property="WindowStyle" Value="None"/>
+                <Setter Property="AllowsTransparency" Value="True"/>
+                <Setter Property="ResizeMode" Value="NoResize"/>
+                <Setter Property="Background" Value="#273d48"/>
+                <Setter Property="BorderBrush" Value="#FFD9E3FA"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Window}">
+                            <Grid Background="{TemplateBinding Background}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                              
+                                <StackPanel >
+                                    <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,1"
+                       FontSize="15"
+                       FontWeight="DemiBold"
+                       FontFamily="Tahomo"
+                       Foreground="#FFD9E3FA"
+                       Text="{TemplateBinding Title}"/>
+                                </StackPanel>
+                                <StackPanel
+                      Orientation="Horizontal"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Center"
+                      Margin="0 0 15 0">
+                                    <Button Content="+" Background="#fb6a50" BorderBrush="#273d48"
+                    Width="17"
+                    Height="17"
+                    Margin="0 0 10 0"/>
+                                    <Button Content="{materialDesign:PackIcon Close}" Command="Close"  Padding="0" Background="#fb6a50" BorderBrush="#273d48" HorizontalContentAlignment="Center"
+                    Width="17"
+                    Height="17" />
+                                </StackPanel>
+                                <!-- here goes the content -->
+                                <ContentPresenter Grid.Row="1"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
 
     </Application.Resources>

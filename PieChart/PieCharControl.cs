@@ -57,6 +57,14 @@ namespace PieChart
                         new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e6cf0d")),
                         new SolidColorBrush((Color)ColorConverter.ConvertFromString("#8346e0")),
                         new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e6cf0d")),
+                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#000099")),
+                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ff3399")),
+                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ffb84d")),
+                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#006600")),
+                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#cccc00")),
+                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e60000")),
+                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#666633")),
+                        new SolidColorBrush((Color)ColorConverter.ConvertFromString("#006666")),
                         new SolidColorBrush((Color)ColorConverter.ConvertFromString("#99b54e"))
                     };
                 }

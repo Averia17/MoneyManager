@@ -22,6 +22,11 @@ namespace MoneyManager.Main
             UpdateViewCommand.Execute("Balance");
 
         }
+        public void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
 
     }
 }

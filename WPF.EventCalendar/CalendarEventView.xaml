@@ -10,12 +10,17 @@
     mc:Ignorable="d">
     <Grid MouseDown="EventMouseDown" Width="120" >
 
-        <TextBlock FontFamily="Tahoma" Padding="0,0,0,0"
-            x:Name="EventAmount"
-            Background="{Binding ElementName=calendarEventView, Path=BackgroundColor, UpdateSourceTrigger=PropertyChanged}"
+
+        <StackPanel  Orientation="Horizontal" x:Name="EventAmount" Background="{Binding ElementName=calendarEventView, Path=BackgroundColor, UpdateSourceTrigger=PropertyChanged}">
+            <TextBlock FontFamily="Tahoma" Padding="0,0,0,0"
+            
             
             Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}" />
-        <TextBlock FontFamily="Tahoma" Padding="0,0,0,0"
+            <TextBlock FontFamily="Tahoma" Text=" рублей"></TextBlock>
+
+        </StackPanel>
+        
+        <TextBlock FontFamily="Tahoma" Padding="0,0,0,0" 
             x:Name="EventTextBlock"
             Background="{Binding ElementName=calendarEventView, Path=BackgroundColor, UpdateSourceTrigger=PropertyChanged}"
             

@@ -22,8 +22,8 @@
                     <DropShadowEffect ShadowDepth="7" BlurRadius="6" Opacity="0.35"/>
                 </Border.Effect>
                 <Grid Background="#e2eefb">
-                <DatePicker Margin="40 0 0 0" Width="200" SelectedDate="{Binding TbFrom}"  HorizontalAlignment="Left"  FontSize="22"/>
-                <DatePicker Margin="0 0 40 0" Width="200" SelectedDate="{Binding TbTo}"  HorizontalAlignment="Right"  FontSize="22"/>
+                <DatePicker Margin="100 0 0 0" Width="200" SelectedDate="{Binding TbFrom}"  HorizontalAlignment="Left"  FontSize="22"/>
+                <DatePicker Margin="0 0 100 0" Width="200" SelectedDate="{Binding TbTo}"  HorizontalAlignment="Right"  FontSize="22"/>
 
                 </Grid>
             </Border>
@@ -41,15 +41,15 @@
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" Margin="20,0, 0, 0">
+                    <Grid Grid.Row="0" Margin="50,0, 0, 0">
                         <StackPanel VerticalAlignment="Bottom"   Orientation="Horizontal">
-                            <TextBlock FontSize="16"  Margin="0,0,20,0">Доход</TextBlock>
-                            <TextBlock FontSize="16"  Text="{Binding Encome}"></TextBlock>
+                            <TextBlock FontSize="17"  Margin="0,0,20,0">Доход</TextBlock>
+                            <TextBlock FontSize="17"  Text="{Binding Encome}"></TextBlock>
                         </StackPanel>
                         
                     </Grid>
 
-                    <Grid Grid.Row="1" Margin="20, 0, 0, 0">
+                    <Grid Grid.Row="1" Margin="50, 0, 0, 0">
                         <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                             <TextBlock FontSize="16"  Margin="0,0,20,0">Расход</TextBlock>
                             <TextBlock FontSize="16"  Text="{Binding Expense}"></TextBlock>
@@ -57,10 +57,10 @@
 
                     </Grid>
                     <!--лево верх право низ-->
-                    <Grid Grid.Row="2" Margin="20, 0, 0, 0">
+                    <Grid Grid.Row="2" Margin="50, 0, 0, 0">
                         <StackPanel VerticalAlignment="Top"  Orientation="Horizontal">
-                            <TextBlock FontSize="16"  Margin="0,0,20,0">Изменение баланса</TextBlock>
-                            <TextBlock FontSize="16"  Text="{Binding Difference}"></TextBlock>
+                            <TextBlock FontSize="17"  Margin="0,0,20,0">Изменение баланса</TextBlock>
+                            <TextBlock FontSize="17"  Text="{Binding Difference}"></TextBlock>
 
                         </StackPanel>
 

@@ -6,20 +6,39 @@
              xmlns:local="clr-namespace:MoneyManager.Main.Views"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             d:DesignHeight="450" d:DesignWidth="569">
+            >
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Height="100" VerticalAlignment="Top" Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid  VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Center" Margin="0,5,0,0">
 
-            <TextBox Grid.Row="0" Height="50" Padding="0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите категорию" FontSize="22" Text="{Binding HistoriesFilter, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-            <DatePicker Margin="40 0 0 0" Width="200" SelectedDate="{Binding TbFrom}"  HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="22"/>
-            <DatePicker Margin="0 0 40 0" Width="200" SelectedDate="{Binding TbTo}"  HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="22"/>
+            <TextBox Padding="0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите категорию" FontSize="22" Text="{Binding HistoriesFilter, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+            
         </Grid>
-        <Grid   Grid.Row="1" Margin="20,10">
+        <Grid Grid.Row="1" Grid.Column="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <DatePicker  SelectedDate="{Binding TbFrom}"  FontSize="22" Width="140"/>
+                <DatePicker  SelectedDate="{Binding TbTo}"  Margin="60,0,0,0" FontSize="22" Width="140"/>
+
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2" Margin="0,5"  Grid.Column="0" HorizontalAlignment="Center">
+            <RadioButton Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}" Background="#ff0000" Opacity="2" GroupName="ActivityTypes" FontSize="22" Height="38"  Content="Выбрать только расходы" Command="{Binding ChangeRadioButtonCommand}" CommandParameter="{Binding ActivityTypeExpence}"/>
+        </Grid>
+        <Grid Grid.Row="2" Margin="0,5"  Grid.Column="1" HorizontalAlignment="Center">
+
+            <RadioButton Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}"   Background="#008000 " Opacity="2" GroupName="ActivityTypes" FontSize="22" Height="38" Content="Выбрать только доходы" Command="{Binding ChangeRadioButtonCommand}" CommandParameter="{Binding ActivityTypeEncome}"/>
+
+        </Grid>
+        <Grid   Grid.RowSpan="2" Margin="40,20"  Grid.Column="1" >
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -27,31 +46,31 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Margin="20,0, 0, 0">
                 <StackPanel VerticalAlignment="Bottom"   Orientation="Horizontal">
-                    <TextBlock FontSize="16"  Margin="0,0,20,0">Доход</TextBlock>
-                    <TextBlock FontSize="16"  Text="{Binding Encome}"></TextBlock>
+                    <TextBlock FontSize="20"  Margin="0,0,20,0">Доход</TextBlock>
+                    <TextBlock FontSize="20"  Text="{Binding Encome}"></TextBlock>
                 </StackPanel>
 
             </Grid>
 
             <Grid Grid.Row="1" Margin="20, 0, 0, 0">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                    <TextBlock FontSize="16"  Margin="0,0,20,0">Расход</TextBlock>
-                    <TextBlock FontSize="16"  Text="{Binding Expense}"></TextBlock>
+                    <TextBlock FontSize="20"  Margin="0,0,20,0">Расход</TextBlock>
+                    <TextBlock FontSize="20"  Text="{Binding Expense}"></TextBlock>
                 </StackPanel>
 
             </Grid>
             <!--лево верх право низ-->
             <Grid Grid.Row="2" Margin="20, 0, 0, 0">
                 <StackPanel VerticalAlignment="Top"  Orientation="Horizontal">
-                    <TextBlock FontSize="16"  Margin="0,0,20,0">Изменение баланса</TextBlock>
-                    <TextBlock FontSize="16"  Text="{Binding Difference}"></TextBlock>
+                    <TextBlock FontSize="20"  Margin="0,0,20,0">Изменение баланса</TextBlock>
+                    <TextBlock FontSize="20"  Text="{Binding Difference}"></TextBlock>
 
                 </StackPanel>
 
             </Grid>
         </Grid>
-        <Grid Grid.Row="2">
-            <ListView Grid.Row="1" Margin="0 60 0 0 " AlternationCount="2"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+        <Grid Grid.Row="3"  Grid.ColumnSpan="2">
+            <ListView Grid.Row="1"  AlternationCount="2"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
           ItemsSource="{Binding HistoriesCollectionView, Mode=TwoWay}" Padding="0,0,0,10">
                 <ListView.ItemTemplate>
                     <DataTemplate>
