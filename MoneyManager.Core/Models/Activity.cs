@@ -16,7 +16,7 @@ namespace MoneyManager.Core.Models
 
         public ICollection<History> Histories { get; set; }
 
-        //public string Image { get; set; }
+        public string Image { get; set; }
 
         public override string ToString()
         {

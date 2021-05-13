@@ -92,7 +92,7 @@
                                 </Style>
                             </Grid.Resources>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="25*"/>
+                                <ColumnDefinition Width="12*"/>
                                 <ColumnDefinition Width="25*"/>
                                 <ColumnDefinition Width="35*"/>
                                 <ColumnDefinition Width="45*"/>
@@ -101,9 +101,9 @@
                             </Grid.ColumnDefinitions>
 
                             <!--Icon-->
-                            <!--<Path Width="36" Data="{Binding FileThumb}" Fill="{Binding Fill, TargetNullValue=#C2C3C3, FallbackValue=#C2C3C3}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource LBPath}"/>-->
+                            <Image Width="25" Source="{Binding Path=Activity.Image}"  HorizontalAlignment="Right" VerticalAlignment="Center" />
 
-                            <TextBlock Grid.Column="1" Text="{Binding Activity.Title}" />
+                            <TextBlock Grid.Column="1" Text="{Binding Activity.Title}"  Margin="5,0,0,0"/>
                             <StackPanel Grid.Column="2" Orientation="Horizontal" >
                                 <TextBlock Text="{Binding Path=Amount}"  />
                                 <TextBlock Text=" рублей" />

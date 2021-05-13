@@ -51,6 +51,9 @@ namespace MoneyManager.Infrastructure.Migrations
                     b.Property<Guid>("ActivityTypeId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 

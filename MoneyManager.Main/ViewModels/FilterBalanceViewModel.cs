@@ -17,6 +17,39 @@ namespace MoneyManager.Main.ViewModels
         public List<History> Histories { get; set; }
         public HistoryRepository historyRepository { get; set; }
         public ICollectionView HistoriesCollectionView { get; set; }
+
+        private double _encome { get; set; }
+        public double Encome
+        {
+            get { return _encome; }
+            set
+            {
+                _encome = value;
+                OnPropertyChanged(nameof(Encome));
+            }
+        }
+
+        private double _expense { get; set; }
+        public double Expense
+        {
+            get { return _expense; }
+            set
+            {
+                _expense = value;
+                OnPropertyChanged(nameof(Expense));
+            }
+        }
+
+        private double _difference { get; set; }
+        public double Difference
+        {
+            get { return _difference; }
+            set
+            {
+                _difference = value;
+                OnPropertyChanged(nameof(Difference));
+            }
+        }
         private string _historiesFilter = string.Empty;
         public string HistoriesFilter
         {
@@ -29,6 +62,7 @@ namespace MoneyManager.Main.ViewModels
                 _historiesFilter = value;
                 OnPropertyChanged(nameof(HistoriesFilter));
                 HistoriesCollectionView.Refresh();
+                UpdateProperties();
             }
         }
 
@@ -67,6 +101,8 @@ namespace MoneyManager.Main.ViewModels
             HistoriesCollectionView.Filter = FilterHistories;
             HistoriesCollectionView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(History.Date), new DateTimeConverter()));
 
+            UpdateProperties();
+
         }
         private bool FilterHistories(object obj)
         {
@@ -77,9 +113,39 @@ namespace MoneyManager.Main.ViewModels
                 else
                     return history.Activity.Title.ToUpper().Contains(HistoriesFilter.ToUpper()) ;
             }
-           
+            UpdateProperties();
+
             return false;
         }
-        
+
+        private void UpdateProperties()
+        {
+            Encome = GetHistoriesByType("Доходы");
+            Expense = GetHistoriesByType("Расходы");
+            Difference = GetDifference();
+        }
+
+        private double GetHistoriesByType(string Type)
+        {
+            double sum = 0;
+
+            List<History> histories = new List<History>();
+            
+
+            //Не изменяется после применения фильтров 
+
+            histories = ((List<History>)HistoriesCollectionView.SourceCollection).Where(x => x.Activity.ActivityType.Title == Type).ToList();
+
+            foreach (History history in histories)
+            {
+                sum += history.Amount;
+            }
+            return sum;
+        }
+
+        private double GetDifference()
+        {
+            return GetHistoriesByType("Доходы") - GetHistoriesByType("Расходы");
+        }
     }
 }

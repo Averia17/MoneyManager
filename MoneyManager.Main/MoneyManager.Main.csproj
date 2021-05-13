@@ -364,6 +364,53 @@
   <ItemGroup>
     <Resource Include="Assets\money.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\chart-line_expence.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\chart-line_encome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\charity.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\cash-multiple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\car-multiple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\cart-variant.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\seal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\sack-percent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\view-grid-plus_encome.png" />
+    <Resource Include="Assets\view-grid-plus_expence.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\tshirt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\slot-machine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\hamburger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\gift-encome.png" />
+    <Resource Include="Assets\gift-expence.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\weight-lifter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\theater.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

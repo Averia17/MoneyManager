@@ -170,6 +170,10 @@
     <Compile Include="Migrations\20210506190520_init.designer.cs">
       <DependentUpon>20210506190520_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210512115622_add_image.cs" />
+    <Compile Include="Migrations\20210512115622_add_image.designer.cs">
+      <DependentUpon>20210512115622_add_image.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\MoneyManagerContextModelSnapshot.cs" />
     <Compile Include="MoneyManagerContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

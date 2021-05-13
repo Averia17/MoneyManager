@@ -26,8 +26,8 @@ namespace MoneyManager.Main
             //Window window = serviceProvider.GetRequiredService<MainWindow>();
             //window.Show();
             InsertingData();
-            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
-            currentAccount.Account = new AccountRepository().GetByEmail("feterfox@gmail.com");
+/*            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+            currentAccount.Account = new AccountRepository().GetByEmail("feterfox@gmail.com");*/
             base.OnStartup(e);
         }
         protected void InsertingData()
@@ -43,29 +43,39 @@ namespace MoneyManager.Main
                 ActivityType encome = new ActivityType() { Id = Guid.NewGuid(), Title = "Доходы" };
                 activityTypeRepository.Create(encome);
 
-                Activity activity = new Activity() { Id = Guid.NewGuid(), Title = "Инвестиции", ActivityTypeId = encome.Id };
+                Activity activity = new Activity() { Id = Guid.NewGuid(), Title = "Инвестиции", ActivityTypeId = encome.Id, Image="/Assets/chart-line_encome.png"};
                 activityRepository.Create(activity);
-                activity = new Activity() { Id = Guid.NewGuid(), Title = "Выигрыш", ActivityTypeId = encome.Id };
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Выигрыш", ActivityTypeId = encome.Id, Image = "/Assets/slot-machine.png" };
                 activityRepository.Create(activity);
-                activity = new Activity() { Id = Guid.NewGuid(), Title = "Зарплата", ActivityTypeId = encome.Id };
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Вклад", ActivityTypeId = encome.Id, Image = "/Assets/sack-percent.png" };
                 activityRepository.Create(activity);
-                activity = new Activity() { Id = Guid.NewGuid(), Title = "Подарок", ActivityTypeId = encome.Id };
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Зарплата", ActivityTypeId = encome.Id, Image = "/Assets/cash-multiple.png" };
                 activityRepository.Create(activity);
-                activity = new Activity() { Id = Guid.NewGuid(), Title = "Развлечение", ActivityTypeId = expence.Id };
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Подарок", ActivityTypeId = encome.Id, Image="/Assets/gift-encome.png" };
                 activityRepository.Create(activity);
-                activity = new Activity() { Id = Guid.NewGuid(), Title = "Подарок", ActivityTypeId = expence.Id };
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Развлечение", ActivityTypeId = expence.Id, Image = "/Assets/theater.png" };
                 activityRepository.Create(activity);
-                activity = new Activity() { Id = Guid.NewGuid(), Title = "Транспорт", ActivityTypeId = expence.Id };
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Фитнес", ActivityTypeId = expence.Id, Image="/Assets/weight-lifter.png" };
                 activityRepository.Create(activity);
-                activity = new Activity() { Id = Guid.NewGuid(), Title = "Еда", ActivityTypeId = expence.Id };
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Одежда", ActivityTypeId = expence.Id,  Image="/Assets/tshirt.png"};
                 activityRepository.Create(activity);
-                activity = new Activity() { Id = Guid.NewGuid(), Title = "Инвестиции", ActivityTypeId = expence.Id };
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Благотворительность", ActivityTypeId = expence.Id, Image = "/Assets/charity.png" };
                 activityRepository.Create(activity);
-                activity = new Activity() { Id = Guid.NewGuid(), Title = "Покупка", ActivityTypeId = expence.Id };
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Награда", ActivityTypeId = expence.Id, Image = "/Assets/seal.png" };
                 activityRepository.Create(activity);
-                activity = new Activity() { Id = Guid.NewGuid(), Title = "Другое", ActivityTypeId = expence.Id };
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Подарок", ActivityTypeId = expence.Id, Image="/Assets/gift-expence.png" };
+                activityRepository.Create(activity);
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Транспорт", ActivityTypeId = expence.Id, Image = "/Assets/car-multiple.png" };
+                activityRepository.Create(activity);
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Еда", ActivityTypeId = expence.Id, Image = "/Assets/hamburger.png" };
+                activityRepository.Create(activity);
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Инвестиции", ActivityTypeId = expence.Id, Image = "/Assets/chart-line_expence.png" };
+                activityRepository.Create(activity);
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Покупка", ActivityTypeId = expence.Id, Image = "/Assets/cart-variant.png" };
+                activityRepository.Create(activity);
+                activity = new Activity() { Id = new Guid("ACAEB171-50B8-457E-ABAC-00006FBE7EA9"), Title = "Другое", ActivityTypeId = expence.Id, Image = "/Assets/view-grid-plus_expence.png" };
                 activityRepository.Create(activity); 
-                activity = new Activity() { Id = Guid.NewGuid(), Title = "Другое", ActivityTypeId = encome.Id };
+                activity = new Activity() { Id = new Guid("C506E1EB-CF72-49AD-939E-00008C32915B"), Title = "Другое", ActivityTypeId = encome.Id, Image = "/Assets/view-grid-plus_encome.png" };
                 activityRepository.Create(activity);
                
             }
