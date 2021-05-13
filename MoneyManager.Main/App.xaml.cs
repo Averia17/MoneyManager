@@ -26,8 +26,8 @@ namespace MoneyManager.Main
             //Window window = serviceProvider.GetRequiredService<MainWindow>();
             //window.Show();
             InsertingData();
-/*            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
-            currentAccount.Account = new AccountRepository().GetByEmail("feterfox@gmail.com");*/
+            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+            currentAccount.Account = new AccountRepository().GetByEmail("feterfox@gmail.com");
             base.OnStartup(e);
         }
         protected void InsertingData()
@@ -61,7 +61,7 @@ namespace MoneyManager.Main
                 activityRepository.Create(activity);
                 activity = new Activity() { Id = Guid.NewGuid(), Title = "Благотворительность", ActivityTypeId = expence.Id, Image = "/Assets/charity.png" };
                 activityRepository.Create(activity);
-                activity = new Activity() { Id = Guid.NewGuid(), Title = "Награда", ActivityTypeId = expence.Id, Image = "/Assets/seal.png" };
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Награда", ActivityTypeId = encome.Id, Image = "/Assets/seal.png" };
                 activityRepository.Create(activity);
                 activity = new Activity() { Id = Guid.NewGuid(), Title = "Подарок", ActivityTypeId = expence.Id, Image="/Assets/gift-expence.png" };
                 activityRepository.Create(activity);

@@ -193,9 +193,9 @@
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <!--<TextBlock Text="{Binding Path=Id}"/>
-                                            <TextBlock Text=" - "/>-->
-                                        <TextBlock Text="{Binding Path=Title}"/>
+                                            <Image Width="24" Source="{Binding Path=Image}"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
+
+                                            <TextBlock  Text="{Binding Path=Title}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>

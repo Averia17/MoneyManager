@@ -75,6 +75,8 @@ namespace MoneyManager.Main.ViewModels
 
         public BalanceViewModel()
         {
+            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+            CurrentAccount = currentAccount.Account;
             historyRepository = new HistoryRepository();
             Histories = new List<History>();
             GetHistories();
@@ -87,12 +89,11 @@ namespace MoneyManager.Main.ViewModels
             RefreshHistoryCollectionView();
             DeleteCommand = new DeleteCommand(this);
             LinkToEditCommand = new LinkToEditCommand();
-            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
-            CurrentAccount = currentAccount.Account;
+
         }
         public override void GetHistories()
         {
-            Histories = historyRepository.List(x => x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id && !x.IsRepeat).ToList();
+            Histories = historyRepository.List(x => x.Account.Id == CurrentAccount.Id && !x.IsRepeat).ToList();
             Balance = GetBalance(Histories);
 
         }
@@ -120,7 +121,7 @@ namespace MoneyManager.Main.ViewModels
         public void CheckRepeatHistories()
         {
             List<History> RepeatHistoriesList = new List<History>();
-            RepeatHistoriesList = historyRepository.List(x => x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id && x.IsRepeat).ToList();
+            RepeatHistoriesList = historyRepository.List(x => x.Account.Id == CurrentAccount.Id && x.IsRepeat).ToList();
             DateTime datenow = new DateTime();
             datenow = DateTime.Now;
             //идея в том чтобы добавить в отдельный список все хистори с isrepeat и их не показывать в обычных хистори

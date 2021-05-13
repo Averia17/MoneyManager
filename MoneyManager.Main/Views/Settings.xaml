@@ -123,8 +123,8 @@
                                             <Grid>
                                                 
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="25*"/>
-                                                    <ColumnDefinition Width="40*"/>
+                                                    <ColumnDefinition Width="10*"/>
+                                                    <ColumnDefinition Width="55*"/>
                                                     <ColumnDefinition Width="45*"/>
                                                     <ColumnDefinition Width="40*"/>
                                                     <ColumnDefinition Width="92*"/>
@@ -132,8 +132,7 @@
                                                     <ColumnDefinition Width="20*"/>
                                                 </Grid.ColumnDefinitions>
 
-                                                <!--Icon-->
-                                                <!--<Path Width="36" Data="{Binding FileThumb}" Fill="{Binding Fill, TargetNullValue=#C2C3C3, FallbackValue=#C2C3C3}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource LBPath}"/>-->
+                                                <Image Width="25" Source="{Binding Path=Activity.Image}"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,4,0"/>
 
                                                 <TextBlock Grid.Column="1" Text="{Binding Activity.Title}" Style="{StaticResource LBText}"/>
                                                 <StackPanel Grid.Column="2" Orientation="Horizontal" >

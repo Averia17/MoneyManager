@@ -132,8 +132,6 @@ namespace MoneyManager.Main.ViewModels
             List<History> histories = new List<History>();
             
 
-            //Не изменяется после применения фильтров 
-
             histories = ((List<History>)HistoriesCollectionView.SourceCollection).Where(x => x.Activity.ActivityType.Title == Type).ToList();
 
             foreach (History history in histories)

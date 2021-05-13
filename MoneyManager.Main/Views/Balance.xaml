@@ -93,7 +93,7 @@
                             </Grid.Resources>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="12*"/>
-                                <ColumnDefinition Width="25*"/>
+                                <ColumnDefinition Width="39*"/>
                                 <ColumnDefinition Width="35*"/>
                                 <ColumnDefinition Width="45*"/>
                                 <ColumnDefinition Width="27*"/>
@@ -111,8 +111,8 @@
                       
                             <TextBlock Grid.Column="3"  Text="{Binding Description}" HorizontalAlignment="Left"/>
 
-                            <Button Grid.Column="4"  Margin="5,5,0,5" HorizontalAlignment="Right" BorderBrush="#545d78" Background="#8790ab" Command="{Binding DataContext.LinkToEditCommand, ElementName=BalanceControl,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Kind=ModeEdit}" ></Button>
-                            <Button Grid.Column="5"  Margin="5,5,65,5" HorizontalAlignment="Right" BorderBrush="#ff0000" Background="#ff341a" Command="{Binding DataContext.DeleteCommand, ElementName=BalanceControl,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Delete}" ></Button>
+                            <Button Grid.Column="4"  Margin="5,0,0,0" HorizontalAlignment="Right" BorderBrush="#545d78" Background="#8790ab" Command="{Binding DataContext.LinkToEditCommand, ElementName=BalanceControl,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Kind=ModeEdit}" ></Button>
+                            <Button Grid.Column="5"  Margin="5,0,65,0" HorizontalAlignment="Right" BorderBrush="#ff0000" Background="#ff341a" Command="{Binding DataContext.DeleteCommand, ElementName=BalanceControl,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Delete}" ></Button>
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -132,6 +132,7 @@
                                                     <TextBlock FontWeight="Bold"
                                                                FontFamily="Helvetica"
                                                                FontSize="19.5"
+                                                               Margin="10,0,0,0"
                                                                Foreground="#1f4247"
                                                                Text="Дата: "/>
                                                     <TextBlock FontWeight="Bold"

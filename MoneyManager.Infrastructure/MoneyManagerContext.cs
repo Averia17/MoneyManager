@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MoneyManager.Core.Models;
 using MoneyManager.Infrastructure.Configurations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoneyManager.Infrastructure
 {
@@ -18,6 +13,7 @@ namespace MoneyManager.Infrastructure
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EFBDConnection"].ConnectionString;
             optionsBuilder.UseSqlServer(@"Server=(local);Database=MoneyManager.Db;Integrated Security=True");
            // optionsBuilder.UseSqlServer(@"Server=tcp:averiatest.database.windows.net,1433;Initial Catalog=MoneyManager.Db;Persist Security Info=False;User ID=artyom;Password=Somehard1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             base.OnConfiguring(optionsBuilder);

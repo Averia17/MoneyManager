@@ -91,6 +91,7 @@ D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\MoneyManager.Infrastructu
 D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\MoneyManager.Infrastructure.dll.config
 D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\MoneyManager.Infrastructure.dll
 D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\MoneyManager.Infrastructure.pdb
+D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\Microsoft.Bcl.HashCode.dll
 D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\Microsoft.Data.SqlClient.dll
@@ -128,6 +129,7 @@ D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\System.Numerics.Vecto
 D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\System.Threading.Tasks.Extensions.dll
 D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\MoneyManager.Core.pdb
+D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\Microsoft.Bcl.HashCode.xml
 D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\Microsoft.Data.SqlClient.pdb
@@ -173,10 +175,8 @@ D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\pt-BR\Microsoft.Data.
 D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\ru\Microsoft.Data.SqlClient.resources.dll
 D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+D:\MoneyManager.Main\MoneyManager.Infrastructure\obj\Debug\MoneyManager.Infrastructure.csprojAssemblyReference.cache
 D:\MoneyManager.Main\MoneyManager.Infrastructure\obj\Debug\MoneyManager.Infrastructure.csproj.CoreCompileInputs.cache
 D:\MoneyManager.Main\MoneyManager.Infrastructure\obj\Debug\MoneyManager.Infrastructure.csproj.CopyComplete
 D:\MoneyManager.Main\MoneyManager.Infrastructure\obj\Debug\MoneyManager.Infrastructure.dll
 D:\MoneyManager.Main\MoneyManager.Infrastructure\obj\Debug\MoneyManager.Infrastructure.pdb
-D:\MoneyManager.Main\MoneyManager.Infrastructure\obj\Debug\MoneyManager.Infrastructure.csprojAssemblyReference.cache
-D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-D:\MoneyManager.Main\MoneyManager.Infrastructure\bin\Debug\Microsoft.AspNet.Identity.Core.xml

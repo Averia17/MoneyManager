@@ -5,10 +5,10 @@ D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\MoneyManager.Core\obj\Deb
 D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\MoneyManager.Core\obj\Debug\MoneyManager.Core.pdb
 D:\MoneyManager.Main\MoneyManager.Core\bin\Debug\MoneyManager.Core.dll
 D:\MoneyManager.Main\MoneyManager.Core\bin\Debug\MoneyManager.Core.pdb
-D:\MoneyManager.Main\MoneyManager.Core\obj\Debug\MoneyManager.Core.csproj.CoreCompileInputs.cache
-D:\MoneyManager.Main\MoneyManager.Core\obj\Debug\MoneyManager.Core.dll
-D:\MoneyManager.Main\MoneyManager.Core\obj\Debug\MoneyManager.Core.pdb
 D:\MoneyManager.Main\MoneyManager.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 D:\MoneyManager.Main\MoneyManager.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
-D:\MoneyManager.Main\MoneyManager.Core\obj\Debug\MoneyManager.Core.csproj.CopyComplete
 D:\MoneyManager.Main\MoneyManager.Core\obj\Debug\MoneyManager.Core.csprojAssemblyReference.cache
+D:\MoneyManager.Main\MoneyManager.Core\obj\Debug\MoneyManager.Core.csproj.CoreCompileInputs.cache
+D:\MoneyManager.Main\MoneyManager.Core\obj\Debug\MoneyManager.Core.csproj.CopyComplete
+D:\MoneyManager.Main\MoneyManager.Core\obj\Debug\MoneyManager.Core.dll
+D:\MoneyManager.Main\MoneyManager.Core\obj\Debug\MoneyManager.Core.pdb
