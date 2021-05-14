@@ -38,10 +38,24 @@ namespace MoneyManager.Main.Commands
 
             //КУДА????
             _loginViewModel.ErrorMessage = string.Empty;
-
-            bool success = _authenticator.Login(_loginViewModel.Email, _loginViewModel.Password);
-            if (success)
+            try
+            {
+                _authenticator.Login(_loginViewModel.Email, _loginViewModel.Password);
                 updateViewCommand.Execute("Balance");
+            }
+            catch (AccountNotFoundException)
+            {
+                _loginViewModel.ErrorMessage = "Пользователя с таким email не существует";
+            }
+            catch (InvalidPasswordException)
+            {
+                _loginViewModel.ErrorMessage = "Неверный пароль";
+            }
+            catch (Exception)
+            {
+                _loginViewModel.ErrorMessage = "Не получилось авторизоваться";
+            }
+
 
         }
 

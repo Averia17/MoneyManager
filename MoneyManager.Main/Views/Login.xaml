@@ -217,13 +217,15 @@
                              FontSize="20"
                              Foreground="#1f4247"
                              Background="Transparent"
-                        Password="{Binding Password}" />
+                        Password="{Binding Password, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
                 <TextBlock Grid.Row="2" Margin="0 7"
                     HorizontalAlignment="Center"
                     DataContext="{Binding ErrorMessageViewModel}"
                     Foreground="DarkRed"
                     Text="{Binding Message}"
+                    FontSize="18"
+                           
                     Visibility="{Binding HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <Button Grid.Row="3" Margin="0 5" FontSize="18"
                     HorizontalAlignment="Center"

@@ -36,19 +36,9 @@ namespace MoneyManager.Main.States.Authenticators
         public bool IsLoggedIn => CurrentAccount != null;
         public event Action StateChanged;
 
-        public bool Login(string email, string password)
+        public void Login(string email, string password)
         {
-            bool success = true;
-            try
-            {
-                CurrentAccount = _authenticationRepository.Login(email, password);
-            }
-            catch (Exception)
-            {
-                success = false;
-            }
-            return success;
-
+            CurrentAccount = _authenticationRepository.Login(email, password);
         }
 
         public void Logout()

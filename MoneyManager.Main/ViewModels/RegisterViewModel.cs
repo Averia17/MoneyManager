@@ -112,7 +112,5 @@ namespace MoneyManager.Main.ViewModels
             UpdateViewCommand = new UpdateViewCommand(MainWindow.MainView);
 
         }
-
-
     }
 }

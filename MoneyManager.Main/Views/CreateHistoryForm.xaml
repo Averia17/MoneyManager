@@ -178,11 +178,11 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,10">
                         <TextBlock Margin="20 0 0 0" Width="200" Text="Дата" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                        <DatePicker Margin="30 0 0 0" Width="239" SelectedDate="{Binding History.Date, Mode=TwoWay}"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="22"/>
+                            <DatePicker Margin="30 0 0 0" Width="239" SelectedDate="{Binding History.Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="22"/>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Horizontal"  Margin="20 10">
                         <TextBlock Margin="20 0 0 0" Width="200" Text="Сумма" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                        <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Amount, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите сумму, руб."  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22" />
+                            <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите сумму, руб."  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22" />
                     </StackPanel>
                     <StackPanel Grid.Row="2" Orientation="Horizontal"  Margin="20,10">
                         <TextBlock Margin="20 0 0 0" Width="200" Text="Категория"  VerticalAlignment="Bottom" FontSize="24"></TextBlock>
@@ -204,15 +204,15 @@
                     </StackPanel>
                      <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="20,10">
                         <TextBlock Margin="20 0 0 0" Width="200" Text="Описание" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                        <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Description, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите описание"  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22"/>
+                            <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите описание"  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22"/>
                     </StackPanel>
                     <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="20,10">
                             <TextBlock  Margin="20 0 0 0" Text="Повторяется каждый месяц?" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="24"></TextBlock>
-                            <CheckBox Margin="20 0 0 0" IsChecked="{Binding History.IsRepeat, Mode=TwoWay}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <CheckBox Margin="20 0 0 0" IsChecked="{Binding History.IsRepeat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Grid>
                 <Grid Margin="0 30 0 0" Grid.Row="3">
-                    <Button Width="150" Height="50" FontSize="24" Command="{Binding DataContext.CreateCommand, ElementName=CreateHistory}">Сохранить</Button>
+                    <Button Width="150" Height="50" FontSize="24" IsDefault="True" Command="{Binding DataContext.CreateCommand, ElementName=CreateHistory}">Сохранить</Button>
                 </Grid>
             </Grid>
             </Border>

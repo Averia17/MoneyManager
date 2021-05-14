@@ -54,7 +54,7 @@ namespace MoneyManager.Core.RepositoryIntarfaces.AuthenticationRepository
                 result = RegistrationResult.PasswordDoNotMatch;
             }
 
-            Account  potentiallyExistedUser = _accountRepository.GetByEmail(username);
+            Account  potentiallyExistedUser = _accountRepository.GetByEmail(email);
 
             if (potentiallyExistedUser != null)
             {

@@ -15,7 +15,7 @@ namespace MoneyManager.Main.States.Authenticators
 
         event Action StateChanged;
         RegistrationResult Register(string email, string username, string password, string confirmPassword, double balance);
-        bool Login(string username, string password);
+        void Login(string username, string password);
         void Logout();
     }
 }

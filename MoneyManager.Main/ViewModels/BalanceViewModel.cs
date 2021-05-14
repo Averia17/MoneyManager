@@ -83,7 +83,6 @@ namespace MoneyManager.Main.ViewModels
 
             CheckRepeatHistories();
 
-
             Balance = GetBalance(Histories);
             UpdateViewCommand = new UpdateViewCommand(MainWindow.MainView);
             RefreshHistoryCollectionView();

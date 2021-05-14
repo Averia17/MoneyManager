@@ -53,20 +53,20 @@ namespace MoneyManager.Main.Commands
                         _registerRenavigator.Execute("Login");
                         break;
                     case RegistrationResult.PasswordDoNotMatch:
-                        _registerViewModel.ErrorMessage = "Password does not match confirm password.";
+                        _registerViewModel.ErrorMessage = "Пароли не совпадают";
                         break;
                     case RegistrationResult.EmailAlreadyExist:
-                        _registerViewModel.ErrorMessage = "An account for this email already exists.";
+                        _registerViewModel.ErrorMessage = "Аккаунт с таким email уже существует";
                         break;
                     
                     default:
-                        _registerViewModel.ErrorMessage = "Registration failed.";
+                        _registerViewModel.ErrorMessage = "Не получилось зарегистрироваться";
                         break;
                 }
             }
             catch (Exception)
             {
-                _registerViewModel.ErrorMessage = "Registration failed.";
+                _registerViewModel.ErrorMessage = "Не получилось зарегистрироваться";
             }
         }
 

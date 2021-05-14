@@ -165,21 +165,25 @@
                                 </ListBox.ItemTemplate>-->
                     </Grid>
                     <Grid Grid.Row="1"  HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="197*"/>
+                            <ColumnDefinition Width="68*"/>
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition ></RowDefinition>
                             <RowDefinition ></RowDefinition>
                             <RowDefinition ></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,10">
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,10,19.6,10.2" Grid.ColumnSpan="2">
                             <TextBlock Margin="20 0 0 0" Width="200" Text="Дата" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                            <DatePicker Margin="30 0 0 0" Width="239" SelectedDate="{Binding History.Date, Mode=TwoWay}"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="22"/>
+                            <DatePicker Margin="30 0 0 0" Width="239" SelectedDate="{Binding History.Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="22"/>
                         </StackPanel>
-                        <StackPanel Grid.Row="1" Orientation="Horizontal"  Margin="20 10">
+                        <StackPanel Grid.Row="1" Orientation="Horizontal"  Margin="20,9.8,19.6,10.4" Grid.ColumnSpan="2">
                             <TextBlock Margin="20 0 0 0" Width="200" Text="Сумма" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                            <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Amount, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите сумму, руб."  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22" />
+                            <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите сумму, руб."  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22" />
                         </StackPanel>
-                        <StackPanel Grid.Row="2" Orientation="Horizontal"  Margin="20,10">
+                        <StackPanel Grid.Row="2" Orientation="Horizontal"  Margin="20,9.6,19.6,9.6" Grid.ColumnSpan="2">
                             <TextBlock Margin="20 0 0 0" Width="200" Text="Категория"  VerticalAlignment="Bottom" FontSize="24"></TextBlock>
                             <ComboBox Margin="30 0 0 0" Width="239"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="22"
                               materialDesign:HintAssist.Hint="Выберите категорию" 
@@ -197,14 +201,14 @@
                             </ComboBox>
 
                         </StackPanel>
-                        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="20,10">
+                        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="20,10.4,19.6,10" Grid.ColumnSpan="2">
                             <TextBlock Margin="20 0 0 0" Width="200" Text="Описание" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                            <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Description, Mode=TwoWay}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите описание"  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22"/>
+                            <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите описание"  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22"/>
                         </StackPanel>
-                        
+
                     </Grid>
                     <Grid Margin="0 30 0 0" Grid.Row="3">
-                        <Button Width="150" Height="50" FontSize="24" Command="{Binding DataContext.EditCommand, ElementName=EditControl}">Сохранить</Button>
+                        <Button Width="150" Height="50" IsDefault="True" FontSize="24" Command="{Binding DataContext.EditCommand, ElementName=EditControl}">Сохранить</Button>
                     </Grid>
                 </Grid>
             </Border>
