@@ -1,4 +1,5 @@
 ﻿using Itenso.TimePeriod;
+using MoneyManager.Core.Exceptions;
 using MoneyManager.Core.Models;
 using MoneyManager.Infrastructure.Repositories;
 using MoneyManager.Main.States.Accounts;
@@ -14,55 +15,74 @@ namespace MoneyManager.Main.Commands
     {
         //BalanceViewModel balanceViewModel { get; set; }
         public History History { get; set; }
-        public CreateCommand(History history)
+        private readonly CreateHistoryViewModel _createHistoryViewModel;
+        public CreateCommand(History history, CreateHistoryViewModel createHistoryViewModel)
         {
             History = history;
+            _createHistoryViewModel = createHistoryViewModel;
         }
         HistoryRepository historyRepository = new HistoryRepository();
 
         public event EventHandler CanExecuteChanged;
 
-       /* public CreateCommand(BalanceViewModel balanceViewModel)
-        {
-            this.balanceViewModel = balanceViewModel;
-        }*/
         public bool CanExecute(object parameter)
         {
-            if (History.Activity != null)
-                return true;
-            else
-                return false;
+            return _createHistoryViewModel.CanCreate;
         }
 
         public void Execute(object parameter)
         {
-           
-            History.Id = Guid.NewGuid();
-            
-            History.AccountId = SingleCurrentAccount.GetInstance().Account.Id;
-            History.Account = null;
-            History.ActivityId = History.Activity.Id;
-            History.Activity = null;
-            historyRepository.Create(History);
 
-            if (History.IsRepeat)
+            _createHistoryViewModel.ErrorMessage = string.Empty;
+            try
             {
-                History.IsRepeat = false;
+                double Amount = double.Parse(_createHistoryViewModel.Amount.Replace('.',','));
+                if (Amount <= 0)
+                {
+                    throw new AmountLessThanZeroException(History.Amount);
+                }
                 History.Id = Guid.NewGuid();
+                
+                History.AccountId = SingleCurrentAccount.GetInstance().Account.Id;
+                History.Account = null;
+                History.ActivityId = History.Activity.Id;
+                History.Activity = null;
+                History.Amount = Amount;
                 historyRepository.Create(History);
-                CheckRepeatHistories();
+
+                if (History.IsRepeat)
+                {
+                    History.IsRepeat = false;
+                    History.Id = Guid.NewGuid();
+                    historyRepository.Create(History);
+                    CheckRepeatHistories();
+                }
             }
+            catch(FormatException)
+            {
+                _createHistoryViewModel.ErrorMessage = "Вы что-то ввели не так";
+
+            }
+            catch (AmountLessThanZeroException)
+            {
+                _createHistoryViewModel.ErrorMessage = "Нужно вводить положительную сумму";
+            }
+            catch (Exception)
+            {
+                _createHistoryViewModel.ErrorMessage = "Не получилось создать...";
+            }
+            
             
             //balanceViewModel.GetHistories();
         }
-        public void CheckRepeatHistories()
+        public static void CheckRepeatHistories()
         {
             List<History> RepeatHistoriesList = new List<History>();
+            HistoryRepository historyRepository = new HistoryRepository();
             RepeatHistoriesList = historyRepository.List(x => x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id && x.IsRepeat).ToList();
             DateTime datenow = new DateTime();
             datenow = DateTime.Now;
             //идея в том чтобы добавить в отдельный список все хистори с isrepeat и их не показывать в обычных хистори
-            //            var RepeatHistoris = RepeatHistoriesList.GroupBy(x => x.Id).ToList();
 
             foreach (History history in RepeatHistoriesList)
             {
@@ -79,21 +99,9 @@ namespace MoneyManager.Main.Commands
                     IsRepeat = false
                 };
                 int i = 0;
-
                 while (i < dateDiff.Months)
                 {
-
                     i++;
-                    /*  bool flag = false;
-
-                      foreach (History ContainingHistory in Histories)
-                      {
-                          if (copiedHistory.Date == ContainingHistory.Date && copiedHistory.ActivityId == ContainingHistory.ActivityId)
-                              flag = true;
-                      }
-
-                      if (flag)
-                          continue;*/
                     copiedHistory.Id = Guid.NewGuid();
                     copiedHistory.Date = copiedHistory.Date.AddMonths(1);
 

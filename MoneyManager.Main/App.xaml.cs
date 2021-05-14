@@ -22,12 +22,10 @@ namespace MoneyManager.Main
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            //IServiceProvider serviceProvider = CreateServiceProvider();
-            //Window window = serviceProvider.GetRequiredService<MainWindow>();
-            //window.Show();
+
             InsertingData();
-    /*        SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
-            currentAccount.Account = new AccountRepository().GetByEmail("feterfox@gmail.com");*/
+            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+            currentAccount.Account = new AccountRepository().GetByEmail("feterfox@gmail.com");
             base.OnStartup(e);
         }
         protected void InsertingData()

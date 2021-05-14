@@ -6,10 +6,13 @@
              xmlns:local="clr-namespace:MoneyManager.Main.Views"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
+             xmlns:converter="clr-namespace:MoneyManager.Main.ViewModels"
+             
              x:Name="EditControl"
              >
 
     <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <Style x:Key="ToolRadioButton" TargetType="{x:Type RadioButton}">
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="14 6 14 6" />
@@ -132,10 +135,7 @@
                         <RowDefinition Height="2*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid VerticalAlignment="Bottom" Grid.Row="0" >
-                        <!--ItemsSource="{Binding activityTypes}"
-                                  SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" 
-                     
-                                 >-->
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -152,17 +152,7 @@
 
                             </RadioButton>
                         </Grid>
-                        <!--<ListBox.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <WrapPanel HorizontalAlignment="Stretch"/>
-                                    </ItemsPanelTemplate>
-                                </ListBox.ItemsPanel>
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <RadioButton  Width="230" IsChecked="{Binding DataContext.IsChecked, ElementName=EditControl}" GroupName="activityTypes" FontSize="24" Height="30" Command="{Binding DataContext.ItemChangedCommand, ElementName=EditControl}"  CommandParameter="{Binding}" Content="{Binding Path=Title}" />
-                                        <RadioButton  Width="230" IsChecked="{Binding DataContext.IsChecked, ElementName=EditControl}" GroupName="activityTypes" FontSize="24" Height="30" Command="{Binding DataContext.ItemChangedCommand, ElementName=EditControl}"  CommandParameter="{Binding}" Content="{Binding Path=Title}" />
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>-->
+
                     </Grid>
                     <Grid Grid.Row="1"  HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
@@ -174,14 +164,15 @@
                             <RowDefinition ></RowDefinition>
                             <RowDefinition ></RowDefinition>
                             <RowDefinition></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,10,19.6,10.2" Grid.ColumnSpan="2">
                             <TextBlock Margin="20 0 0 0" Width="200" Text="Дата" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
                             <DatePicker Margin="30 0 0 0" Width="239" SelectedDate="{Binding History.Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="22"/>
                         </StackPanel>
-                        <StackPanel Grid.Row="1" Orientation="Horizontal"  Margin="20,9.8,19.6,10.4" Grid.ColumnSpan="2">
+                        <StackPanel Grid.Row="1" Orientation="Horizontal"  Margin="20,5" Grid.ColumnSpan="2">
                             <TextBlock Margin="20 0 0 0" Width="200" Text="Сумма" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                            <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите сумму, руб."  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22" />
+                            <TextBox Margin="30 0 0 0" Width="239" Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите сумму, руб."  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22" />
                         </StackPanel>
                         <StackPanel Grid.Row="2" Orientation="Horizontal"  Margin="20,9.6,19.6,9.6" Grid.ColumnSpan="2">
                             <TextBlock Margin="20 0 0 0" Width="200" Text="Категория"  VerticalAlignment="Bottom" FontSize="24"></TextBlock>
@@ -201,13 +192,21 @@
                             </ComboBox>
 
                         </StackPanel>
-                        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="20,10.4,19.6,10" Grid.ColumnSpan="2">
+                        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="20,10" Grid.ColumnSpan="2">
                             <TextBlock Margin="20 0 0 0" Width="200" Text="Описание" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
                             <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите описание"  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22"/>
                         </StackPanel>
+                        <TextBlock  Grid.Row="4" 
+                         Margin="40 0 0 0"
+                        DataContext="{Binding ErrorMessageViewModel}"
+                        Foreground="DarkRed"
+                        Text="{Binding Message}"
+                        FontSize="20"
+                           
+                        Visibility="{Binding HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                     </Grid>
-                    <Grid Margin="0 30 0 0" Grid.Row="3">
+                    <Grid Margin="0 0 0 0" Grid.Row="3">
                         <Button Width="150" Height="50" IsDefault="True" FontSize="24" Command="{Binding DataContext.EditCommand, ElementName=EditControl}">Сохранить</Button>
                     </Grid>
                 </Grid>

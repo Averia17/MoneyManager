@@ -19,7 +19,7 @@ namespace MoneyManager.Main
             MainView = new MainViewModel();
             ICommand UpdateViewCommand = new UpdateViewCommand(MainView);
             DataContext = MainView;
-            UpdateViewCommand.Execute("Login");
+            UpdateViewCommand.Execute("Balance");
 
         }
         public void Close_Click(object sender, RoutedEventArgs e)

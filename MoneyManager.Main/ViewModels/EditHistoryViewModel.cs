@@ -63,16 +63,19 @@ namespace MoneyManager.Main.ViewModels
 
         public EditHistoryViewModel()
         {
+            ErrorMessageViewModel = new MessageViewModel();
 
             ItemChangedCommand = new ItemChangedCommand(this);
             History = LinkToEditCommand.History;
-            EditCommand = new EditCommand(History);
+            EditCommand = new EditCommand(History,this);
             if (History?.Activity?.ActivityType?.Title == "Доходы")
                 IsEncomeChecked = true;
             else
                 IsExpenseChecked = true;
             if (History != null)
-            { 
+            {
+                Amount = History.Amount.ToString();
+
                 SelectedActivity = History.Activity;
                 if (IsExpenseChecked)
                     ItemChangedCommand.Execute(Expense);

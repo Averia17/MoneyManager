@@ -7,6 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MoneyManager.Main.Views"
+             xmlns:converter="clr-namespace:MoneyManager.Main.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:local1="clr-namespace:MoneyManager.Main.ViewModels"
              mc:Ignorable="d" 
              x:Name="CreateHistory"
@@ -14,6 +15,7 @@
              >
 
     <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <Style x:Key="ToolRadioButton" TargetType="{x:Type RadioButton}">
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="14 6 14 6" />
@@ -135,54 +137,39 @@
                     <RowDefinition Height="8*"></RowDefinition>
                     <RowDefinition Height="2*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid VerticalAlignment="Bottom" Grid.Row="0" >
-                    <!--ItemsSource="{Binding activityTypes}"
-                                  SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" 
-                     
-                                 >-->
-                    <Grid.ColumnDefinitions>
+                    <Grid VerticalAlignment="Bottom" Grid.Row="0" >
+                        <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0" Margin="20,0,0,0">
-                            <!--9bc472-->
                             <RadioButton Style="{DynamicResource ToolRadioButton}" Background="#9bc472" Opacity="0.8" IsChecked="True" GroupName="activityTypes" FontSize="24" Height="50" Command="{Binding DataContext.ItemChangedCommand, ElementName=CreateHistory}"  CommandParameter="{Binding Expense}" Content="{Binding Expense.Title}">
                                 
                             </RadioButton>
                         </Grid>
-                        <!--ff8566-->
                         <Grid Grid.Column="1"  Margin="0,0,20,0" >
                             <RadioButton Style="{DynamicResource ToolRadioButton}"   Background="#ff8566" Opacity="0.8" GroupName="activityTypes" FontSize="24" Height="50" Command="{Binding DataContext.ItemChangedCommand, ElementName=CreateHistory}"  CommandParameter="{Binding Encome}" Content="{Binding Encome.Title}">
                                
                             </RadioButton>
                         </Grid>
-                    <!--<ListBox.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <WrapPanel HorizontalAlignment="Stretch"/>
-                                    </ItemsPanelTemplate>
-                                </ListBox.ItemsPanel>
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <RadioButton  Width="230" IsChecked="{Binding DataContext.IsChecked, ElementName=CreateHistory}" GroupName="activityTypes" FontSize="24" Height="30" Command="{Binding DataContext.ItemChangedCommand, ElementName=CreateHistory}"  CommandParameter="{Binding}" Content="{Binding Path=Title}" />
-                                        <RadioButton  Width="230" IsChecked="{Binding DataContext.IsChecked, ElementName=CreateHistory}" GroupName="activityTypes" FontSize="24" Height="30" Command="{Binding DataContext.ItemChangedCommand, ElementName=CreateHistory}"  CommandParameter="{Binding}" Content="{Binding Path=Title}" />
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>-->
-                </Grid>
+
+                    </Grid>
                     <Grid Grid.Row="1"  HorizontalAlignment="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition ></RowDefinition>
                         <RowDefinition ></RowDefinition>
                         <RowDefinition ></RowDefinition>
-                        <RowDefinition></RowDefinition>
                         <RowDefinition ></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,10">
                         <TextBlock Margin="20 0 0 0" Width="200" Text="Дата" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
                             <DatePicker Margin="30 0 0 0" Width="239" SelectedDate="{Binding History.Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="22"/>
                     </StackPanel>
-                    <StackPanel Grid.Row="1" Orientation="Horizontal"  Margin="20 10">
+                    <StackPanel Grid.Row="1" Orientation="Horizontal"  Margin="20 5">
                         <TextBlock Margin="20 0 0 0" Width="200" Text="Сумма" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
-                            <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите сумму, руб."  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22" />
+                            <TextBox Margin="30 0 0 0" Width="239" Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите сумму, руб."  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22" />
                     </StackPanel>
                     <StackPanel Grid.Row="2" Orientation="Horizontal"  Margin="20,10">
                         <TextBlock Margin="20 0 0 0" Width="200" Text="Категория"  VerticalAlignment="Bottom" FontSize="24"></TextBlock>
@@ -206,12 +193,21 @@
                         <TextBlock Margin="20 0 0 0" Width="200" Text="Описание" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
                             <TextBox Margin="30 0 0 0" Width="239" Text="{Binding History.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Введите описание"  HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22"/>
                     </StackPanel>
-                    <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="20,10">
+                    <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="20,10,20,0">
                             <TextBlock  Margin="20 0 0 0" Text="Повторяется каждый месяц?" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="24"></TextBlock>
                             <CheckBox Margin="20 0 0 0" IsChecked="{Binding History.IsRepeat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </StackPanel>
-                </Grid>
-                <Grid Margin="0 30 0 0" Grid.Row="3">
+                        <TextBlock  Grid.Row="5" 
+                         Margin="40 0 0 0"
+                        DataContext="{Binding ErrorMessageViewModel}"
+                        Foreground="DarkRed"
+                        Text="{Binding Message}"
+                        FontSize="20"
+                           
+                        Visibility="{Binding HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </Grid>
+                  
+                <Grid Margin="0 10 0 0" Grid.Row="4">
                     <Button Width="150" Height="50" FontSize="24" IsDefault="True" Command="{Binding DataContext.CreateCommand, ElementName=CreateHistory}">Сохранить</Button>
                 </Grid>
             </Grid>

@@ -30,8 +30,7 @@ namespace MoneyManager.Main.ViewModels
                 }
             }
         }
-
-
+       
         private ActivityType _SelectedItem { get; set; }
         public ActivityType SelectedItem
         {
@@ -45,10 +44,12 @@ namespace MoneyManager.Main.ViewModels
         }
         public CreateHistoryViewModel()
         {
+            ErrorMessageViewModel = new MessageViewModel();
+
             History = new History();
             ItemChangedCommand = new ItemChangedCommand(this);
             ActivityTypeRepository activityTypeRepository = new ActivityTypeRepository();
-            CreateCommand = new CreateCommand(History);
+            CreateCommand = new CreateCommand(History, this);
             ItemChangedCommand.Execute(Expense);
 
         }

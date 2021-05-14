@@ -3,9 +3,11 @@ using MoneyManager.Infrastructure.Repositories;
 using MoneyManager.Main.Commands;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace MoneyManager.Main.ViewModels
@@ -46,7 +48,25 @@ namespace MoneyManager.Main.ViewModels
                 OnPropertyChanged(nameof(History));
             }
         }
+        double a;
+        public bool CanCreate => !ReferenceEquals(History.Activity, null);
 
+        public MessageViewModel ErrorMessageViewModel { get; set; }
+
+        public string ErrorMessage
+        {
+            set => ErrorMessageViewModel.Message = value;
+        }
+        public string _amount { get; set; }
+        public string Amount
+        {
+            get { return _amount; }
+            set
+            {
+                _amount = value;
+                OnPropertyChanged(nameof(Amount));
+            }
+        }
         public SaveHistoryViewModel()
         {
             History = new History();
@@ -71,5 +91,7 @@ namespace MoneyManager.Main.ViewModels
         {
             activities = (List<Activity>)activityRepository.List();
         }
+
     }
+   
 }

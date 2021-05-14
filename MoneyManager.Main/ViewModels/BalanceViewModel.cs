@@ -70,7 +70,7 @@ namespace MoneyManager.Main.ViewModels
                 OnPropertyChanged(nameof(Balance));
             }
         }
-
+      
         private HistoryRepository historyRepository;
 
         public BalanceViewModel()
@@ -81,7 +81,7 @@ namespace MoneyManager.Main.ViewModels
             Histories = new List<History>();
             GetHistories();
 
-            CheckRepeatHistories();
+            CreateCommand.CheckRepeatHistories();
 
             Balance = GetBalance(Histories);
             UpdateViewCommand = new UpdateViewCommand(MainWindow.MainView);
@@ -117,57 +117,7 @@ namespace MoneyManager.Main.ViewModels
             HistoryCollectionView.Refresh();
         }
 
-        public void CheckRepeatHistories()
-        {
-            List<History> RepeatHistoriesList = new List<History>();
-            RepeatHistoriesList = historyRepository.List(x => x.Account.Id == CurrentAccount.Id && x.IsRepeat).ToList();
-            DateTime datenow = new DateTime();
-            datenow = DateTime.Now;
-            //идея в том чтобы добавить в отдельный список все хистори с isrepeat и их не показывать в обычных хистори
-            //            var RepeatHistoris = RepeatHistoriesList.GroupBy(x => x.Id).ToList();
-
-            foreach (History history in RepeatHistoriesList)
-            {
-                DateTime historyDate = history.Date;
-                DateDiff dateDiff = new DateDiff(history.Date, datenow);
-                int i = 0;
-                History copiedHistory = new History()
-                {
-                    Id = Guid.NewGuid(),
-                    AccountId = history.AccountId,
-                    ActivityId = history.ActivityId,
-                    Date = history.Date,
-                    Amount = history.Amount,
-                    Description = history.Description,
-                    IsRepeat = false
-                };
-
-                while (i < dateDiff.Months)
-                {
-                    
-                    i++;
-                  /*  bool flag = false;
-
-                    foreach (History ContainingHistory in Histories)
-                    {
-                        if (copiedHistory.Date == ContainingHistory.Date && copiedHistory.ActivityId == ContainingHistory.ActivityId)
-                            flag = true;
-                    }
-      
-                    if (flag)
-                        continue;*/
-                    copiedHistory.Id = Guid.NewGuid();
-                    copiedHistory.Date = copiedHistory.Date.AddMonths(1);
-
-                    historyRepository.Create(copiedHistory);
-
-                    //history.Date = historyDate;
-
-                }
-                history.Date = history.Date.AddMonths(dateDiff.Months);
-                historyRepository.Edit(history);
-            }
-        }
+       
     }
     public class DateTimeConverter : IValueConverter
     {
