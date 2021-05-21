@@ -14,7 +14,7 @@ namespace MoneyManager.Infrastructure.Repositories
         public Account Find(Guid id) => DbSet.SingleOrDefault(x => x.Id == id);
 
 
-        public Account GetByEmail(string email) => DbSet.SingleOrDefault(x => x.Email == email);
+        public Account GetByUsername(string username) => DbSet.SingleOrDefault(x => x.Username == username);
 
         public IEnumerable<Account> List(Expression<Func<Account, bool>> predicate = null)
         {

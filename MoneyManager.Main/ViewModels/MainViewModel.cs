@@ -51,7 +51,7 @@ namespace MoneyManager.Main.ViewModels
         {
             SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
             CurrentAccount = currentAccount.Account;
-            if (CurrentAccount.Email == null)
+            if (CurrentAccount.Username == null)
                 IsLoggin = false;
             else
                 IsLoggin = true;

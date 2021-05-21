@@ -46,9 +46,9 @@ namespace MoneyManager.Main.States.Authenticators
             CurrentAccount = null;
         }
 
-        public RegistrationResult Register(string email, string username, string password, string confirmPassword, double balance)
+        public RegistrationResult Register( string username, string password, string confirmPassword, double balance)
         {
-            return _authenticationRepository.Register(email, username, password, confirmPassword, balance);
+            return _authenticationRepository.Register(username, password, confirmPassword, balance);
         }
     }
 }

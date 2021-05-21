@@ -40,12 +40,12 @@ namespace MoneyManager.Main.Commands
             _loginViewModel.ErrorMessage = string.Empty;
             try
             {
-                _authenticator.Login(_loginViewModel.Email, _loginViewModel.Password);
+                _authenticator.Login(_loginViewModel.Username, _loginViewModel.Password);
                 updateViewCommand.Execute("Balance");
             }
             catch (AccountNotFoundException)
             {
-                _loginViewModel.ErrorMessage = "Пользователя с таким email не существует";
+                _loginViewModel.ErrorMessage = "Пользователя с таким именем не существует";
             }
             catch (InvalidPasswordException)
             {

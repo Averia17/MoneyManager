@@ -9,8 +9,6 @@ namespace MoneyManager.Core.RepositoryIntarfaces.AuthenticationRepository
 {
     public interface IAuthenticationRepository
     {
-        
-
         Account Login(string username, string password);
     }
 }

@@ -182,7 +182,7 @@
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" Text="Email"  
+                    <TextBlock Grid.Column="0" Text="Имя пользователя"  
                                FontFamily="Helvetica"
                              FontSize="20"
                              HorizontalAlignment="Center"
@@ -195,7 +195,7 @@
                              Foreground="#1f4247"
                              Background="Transparent"
                             
-                        Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
 
                 </Grid>
 

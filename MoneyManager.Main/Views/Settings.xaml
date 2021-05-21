@@ -46,7 +46,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <TextBlock Margin="20,0,0,0" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="24" Grid.Row="0" Text="{Binding CurrentAccount.Username}"></TextBlock>
                 <Grid  Margin="20,0,0,0" Grid.Row="1" >
@@ -65,14 +64,7 @@
 
                     </StackPanel>
                 </Grid>
-                <Grid Grid.Row="2"  Margin="20,0,0,0">
-                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                        <TextBlock Text="Email:"></TextBlock>
-                        <TextBlock  Margin="15,0,0,0"  Text="{Binding CurrentAccount.Email}"></TextBlock>
-
-
-                    </StackPanel>
-                </Grid>
+              
 
             </Grid>
 

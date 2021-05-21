@@ -11,17 +11,17 @@ namespace MoneyManager.Main.ViewModels
 {
 	public class LoginViewModel : BaseViewModel
 	{
-		private string _email = "Аноним";
-		public string Email
+		private string _username = "Аноним";
+		public string Username
 		{
 			get
 			{
-				return _email;
+				return _username;
 			}
 			set
 			{
-				_email = value;
-				OnPropertyChanged(nameof(Email));
+				_username = value;
+				OnPropertyChanged(nameof(Username));
 				OnPropertyChanged(nameof(CanLogin));
 			}
 		}
@@ -41,7 +41,7 @@ namespace MoneyManager.Main.ViewModels
 			}
 		}
 		public ICommand UpdateViewCommand { get; set; }
-		public bool CanLogin => !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password);
+		public bool CanLogin => !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password);
 
 		public MessageViewModel ErrorMessageViewModel { get; }
 

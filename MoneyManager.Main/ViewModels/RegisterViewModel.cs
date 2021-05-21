@@ -11,20 +11,7 @@ namespace MoneyManager.Main.ViewModels
 {
     public class RegisterViewModel : BaseViewModel
     {
-        private string _email;
-        public string Email
-        {
-            get
-            {
-                return _email;
-            }
-            set
-            {
-                _email = value;
-                OnPropertyChanged(nameof(Email));
-                OnPropertyChanged(nameof(CanRegister));
-            }
-        }
+        
 
         private string _username;
         public string Username
@@ -87,7 +74,7 @@ namespace MoneyManager.Main.ViewModels
         }
 
         // TODO СДЕЛАТЬ ПРОВЕРКУ НА БАЛАНС
-        public bool CanRegister => !string.IsNullOrEmpty(Email) &&
+        public bool CanRegister => 
             !string.IsNullOrEmpty(Username) &&
             !string.IsNullOrEmpty(Password) &&
             !string.IsNullOrEmpty(ConfirmPassword);

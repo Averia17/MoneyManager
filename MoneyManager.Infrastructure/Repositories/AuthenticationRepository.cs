@@ -28,24 +28,24 @@ namespace MoneyManager.Core.RepositoryIntarfaces.AuthenticationRepository
             _passwordHasher = passwordHasher;
         }
 
-        public Account Login(string email, string password)
+        public Account Login(string username, string password)
         {
-            Account storedAccount = _accountRepository.GetByEmail(email);
+            Account storedAccount = _accountRepository.GetByUsername(username);
             if (storedAccount == null)
             {
-                throw new AccountNotFoundException(email);
+                throw new AccountNotFoundException(username);
             }
 
             PasswordVerificationResult passwordResult = _passwordHasher.VerifyHashedPassword(storedAccount.Password, password);
 
             if (passwordResult != PasswordVerificationResult.Success)
             {
-                throw new InvalidPasswordException(email, password);
+                throw new InvalidPasswordException(username, password);
             }
             return storedAccount;
         }
 
-        public RegistrationResult Register(string email, string username, string password, string confirmPassword, double balance)
+        public RegistrationResult Register(string username, string password, string confirmPassword, double balance)
         {
             RegistrationResult result = RegistrationResult.Success;
 
@@ -54,7 +54,7 @@ namespace MoneyManager.Core.RepositoryIntarfaces.AuthenticationRepository
                 result = RegistrationResult.PasswordDoNotMatch;
             }
 
-            Account  potentiallyExistedUser = _accountRepository.GetByEmail(email);
+            Account  potentiallyExistedUser = _accountRepository.GetByUsername(username);
 
             if (potentiallyExistedUser != null)
             {
@@ -68,7 +68,6 @@ namespace MoneyManager.Core.RepositoryIntarfaces.AuthenticationRepository
                 Account user = new Account()
                 {
                     Id = guid,
-                    Email = email,
                     Username = username,
                     Password = hashedPassword,
                     Balance = balance,

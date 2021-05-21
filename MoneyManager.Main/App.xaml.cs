@@ -24,8 +24,8 @@ namespace MoneyManager.Main
         {
 
             InsertingData();
-/*            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
-            currentAccount.Account = new AccountRepository().GetByEmail("feterfox@gmail.com");*/
+            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+            currentAccount.Account = new AccountRepository().GetByUsername("artyom");
             base.OnStartup(e);
         }
         protected void InsertingData()

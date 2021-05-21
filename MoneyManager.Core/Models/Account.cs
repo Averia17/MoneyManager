@@ -8,8 +8,6 @@ namespace MoneyManager.Core.Models
 {
     public class Account : Entity<Guid>
     {
-        public string Email { get; set; }
-
         public string Username { get; set; }
 
         public double Balance { get; set; }

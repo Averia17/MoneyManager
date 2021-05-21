@@ -50,7 +50,6 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <Grid.Resources>
                     <Style TargetType="TextBlock">
@@ -62,18 +61,9 @@
                     </Style>
               
                 </Grid.Resources>
+                
+
                 <Grid Grid.Row="0" Margin="0,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
-                        <ColumnDefinition Width="220" />
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="0" Text="Email" />
-                    <TextBox Grid.Column="1" Margin="20,0,0,0" FontSize="20"
-                        Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" />
-                </Grid>
-
-                <Grid Grid.Row="1" Margin="0,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
                         <ColumnDefinition Width="220" />
@@ -84,7 +74,7 @@
                         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
 
-                <Grid Grid.Row="2" Margin="0,10">
+                <Grid Grid.Row="1" Margin="0,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
                         <ColumnDefinition Width="220" />
@@ -95,7 +85,7 @@
                         Password="{Binding Password, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
 
-                <Grid Grid.Row="3" Margin="0,10">
+                <Grid Grid.Row="2" Margin="0,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
                         <ColumnDefinition Width="220" />
@@ -105,7 +95,7 @@
                     <components:BindablePasswordBox Grid.Column="1" Margin="20,0,0,0" FontSize="20"
                         Password="{Binding ConfirmPassword, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
-                <Grid Grid.Row="4" Margin="0,10">
+                <Grid Grid.Row="3" Margin="0,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
                         <ColumnDefinition Width="220" />
@@ -115,7 +105,7 @@
                     <TextBox Grid.Column="1" Margin="20,0,0,0" FontSize="20"
                         Text="{Binding Balance, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
-                <TextBlock Grid.Row="5" Margin="0,5,0,0"
+                <TextBlock Grid.Row="4" Margin="0,5,0,0"
                     HorizontalAlignment="Center"
                     FontSize="18"
                     DataContext="{Binding ErrorMessageViewModel}"
@@ -124,13 +114,13 @@
                     Visibility="{Binding HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
 
-                <Button Grid.Row="6" Margin="0,4"
+                <Button Grid.Row="5" Margin="0,4"
                     HorizontalAlignment="Center"
                     Command="{Binding RegisterCommand}"
                     Content="Register"
                     IsDefault="True" />
 
-                <Button Grid.Row="7" Margin="0,5,0,0"
+                <Button Grid.Row="6" Margin="0,5,0,0"
                     HorizontalAlignment="Center"
                     Background="Transparent"
                     Command="{Binding UpdateViewCommand}"

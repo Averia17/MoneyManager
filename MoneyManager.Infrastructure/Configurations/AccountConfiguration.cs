@@ -15,7 +15,6 @@ namespace MoneyManager.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Account> builder)
         {
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Email);
             builder.Property(e => e.Username);
             builder.Property(e => e.Password);
             builder.Property(e => e.Balance);

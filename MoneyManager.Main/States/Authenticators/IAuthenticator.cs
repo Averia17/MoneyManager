@@ -14,7 +14,7 @@ namespace MoneyManager.Main.States.Authenticators
         bool IsLoggedIn { get; }
 
         event Action StateChanged;
-        RegistrationResult Register(string email, string username, string password, string confirmPassword, double balance);
+        RegistrationResult Register( string username, string password, string confirmPassword, double balance);
         void Login(string username, string password);
         void Logout();
     }

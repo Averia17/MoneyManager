@@ -40,7 +40,6 @@ namespace MoneyManager.Main.Commands
             try
             {
                 RegistrationResult registrationResult =  _authenticator.Register(
-                       _registerViewModel.Email,
                        _registerViewModel.Username,
                        _registerViewModel.Password,
                        _registerViewModel.ConfirmPassword,
@@ -56,7 +55,7 @@ namespace MoneyManager.Main.Commands
                         _registerViewModel.ErrorMessage = "Пароли не совпадают";
                         break;
                     case RegistrationResult.EmailAlreadyExist:
-                        _registerViewModel.ErrorMessage = "Аккаунт с таким email уже существует";
+                        _registerViewModel.ErrorMessage = "Аккаунт с таким именем уже существует";
                         break;
                     
                     default:

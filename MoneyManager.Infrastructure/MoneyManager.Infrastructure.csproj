@@ -175,6 +175,10 @@
     <Compile Include="Migrations\20210512115622_add_image.designer.cs">
       <DependentUpon>20210512115622_add_image.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210521111040_delete_email.cs" />
+    <Compile Include="Migrations\20210521111040_delete_email.designer.cs">
+      <DependentUpon>20210521111040_delete_email.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\MoneyManagerContextModelSnapshot.cs" />
     <Compile Include="MoneyManagerContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
