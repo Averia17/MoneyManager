@@ -129,21 +129,5 @@ namespace MoneyManager.Main.ViewModels
                 PieCharListExpenses.Add(new PieCharItem() { TypeName = item.Key, TypeNumber = (int)item.Sum });
             }
         }
-        /*public void GetPieCharEncomesList()
-        {
-            PieCharListEncomes.Clear();
-
-            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Доходы" && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id && !x.IsRepeat)
-                                                    .GroupBy(x => x.Activity.Title).
-                                                    Select(g => new
-                                                    {
-                                                        g.Key,
-                                                        Sum = g.Sum(s => s.Amount),
-                                                    }).ToList();
-            foreach (var item in histories)
-            {
-                PieCharListExpenses.Add(new PieCharItem() { TypeName = item.Key, TypeNumber = (int)item.Sum });
-            }
-        }*/
     }
 }

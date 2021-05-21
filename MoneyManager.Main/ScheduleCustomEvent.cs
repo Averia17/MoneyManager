@@ -15,7 +15,6 @@ namespace MoneyManager.Main
         public DateTime? DateTo { get; set; }
         public string Label { get; set; }
         public string Color { get; set; }
-        public bool IsRepeat { get; set; }
         public double Amount { get; set; }
 
     }

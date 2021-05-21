@@ -41,10 +41,9 @@
                 <views:Register/>
             </DataTemplate>
 
-            <Style x:Key="CustomWindowStyle" TargetType="{x:Type Window}">
+            <!--<Style x:Key="CustomWindowStyle" TargetType="{x:Type Window}">
                 <Setter Property="WindowStyle" Value="None"/>
                 <Setter Property="AllowsTransparency" Value="True"/>
-                <Setter Property="ResizeMode" Value="NoResize"/>
                 <Setter Property="Background" Value="#273d48"/>
                 <Setter Property="BorderBrush" Value="#FFD9E3FA"/>
                 <Setter Property="Template">
@@ -77,13 +76,13 @@
                     Width="17"
                     Height="17" />
                                 </StackPanel>
-                                <!-- here goes the content -->
+                                --><!-- here goes the content --><!--
                                 <ContentPresenter Grid.Row="1"/>
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-            </Style>
+            </Style>-->
         </ResourceDictionary>
 
     </Application.Resources>

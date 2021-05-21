@@ -68,11 +68,11 @@ namespace MoneyManager.Main.ViewModels
         {
             foreach (History history in Encomes)
             {
-                Events.Add(new ScheduleCustomEvent() { DateFrom = history.Date, DateTo = history.Date, Label = $"{history.Activity.Title}", Color = "Green" , IsRepeat = history.IsRepeat, Amount=history.Amount}) ;
+                Events.Add(new ScheduleCustomEvent() { DateFrom = history.Date, DateTo = history.Date, Label = $"{history.Activity.Title}", Color = "Green" , Amount=history.Amount}) ;
             }
             foreach (History history in Expenses)
             {
-                Events.Add(new ScheduleCustomEvent() { DateFrom = history.Date, DateTo = history.Date, Label = $"{history.Activity.Title}", Color = "Red", IsRepeat = history.IsRepeat, Amount=history.Amount });
+                Events.Add(new ScheduleCustomEvent() { DateFrom = history.Date, DateTo = history.Date, Label = $"{history.Activity.Title}", Color = "Red", Amount=history.Amount });
             }
         }
         public void OnPropertyChanged<T>(Expression<Func<T>> exp)

@@ -29,20 +29,10 @@ namespace MoneyManager.Infrastructure.Repositories
             DbSet.Remove(history);
             Context.SaveChanges();
         }
-        //возможно надо по-другому хз
         public void Edit(History history)
         {
             History History = DbSet.Find(history.Id);
-/*            History.AccountId = history.Account.Id;
-            History.ActivityId = history.Activity.Id;
-            History.Amount = history.Amount;
-            History.Date = history.Date;
-            History.Description = history.Description;
-            History.IsRepeat = History.IsRepeat;*/
             Context.Entry(History).CurrentValues.SetValues(history);
-            /*Delete(history.Id);
-            
-            Create(history);*/
             Context.SaveChanges();
         }
         public void Create(History history)

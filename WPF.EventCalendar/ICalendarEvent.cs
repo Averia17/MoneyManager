@@ -9,7 +9,6 @@ namespace WPF.EventCalendar
         DateTime? DateTo { get; set; }
         string Label { get; set; }
         string Color { get; set; }
-        bool IsRepeat { get; set; }
         double Amount { get; set; }
     }
 }

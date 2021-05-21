@@ -49,7 +49,7 @@ namespace MoneyManager.Main.ViewModels
             }
         }
         double a;
-        public bool CanCreate => !ReferenceEquals(History.Activity, null);
+        public bool CanCreate => History.Activity != null;
 
         public MessageViewModel ErrorMessageViewModel { get; set; }
 

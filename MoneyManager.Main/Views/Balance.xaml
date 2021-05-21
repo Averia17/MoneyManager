@@ -80,7 +80,7 @@
             </Button>
         </Grid>
 
-        <ListView Grid.Row="1" Margin="0 60 0 0 " AlternationCount="2"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+        <!--<ListView Grid.Row="1" Margin="0 60 0 0 " AlternationCount="2"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
           ItemsSource="{Binding HistoryCollectionView, Mode=TwoWay}" Padding="0,0,0,10">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -101,7 +101,7 @@
                                 <ColumnDefinition Width="26*"/>
                             </Grid.ColumnDefinitions>
 
-                            <!--Icon-->
+                            --><!--Icon--><!--
                             <Image Width="25" Source="{Binding Path=Activity.Image}"  HorizontalAlignment="Right" VerticalAlignment="Center" />
 
                             <TextBlock Grid.Column="1" Text="{Binding Activity.Title}"  Margin="5,0,0,0"/>
@@ -153,8 +153,108 @@
                     </GroupStyle.ContainerStyle>
                 </GroupStyle>
             </ListView.GroupStyle>
-        </ListView>
+        </ListView>-->
 
+        <ListBox  ItemsSource="{Binding HistoryCollectionView}" Background="Transparent" BorderThickness="0"   Margin="0 60 0 0 " >
+            <ListBox.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Margin" Value="0,0,0,5"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <Expander IsExpanded="True" BorderBrush="#ececec" Style="{DynamicResource MaterialDesignExpander}"
+                                            BorderThickness="0,0,0,1">
+                                                <Expander.Header >
+                                                    <DockPanel >
+                                                        <TextBlock FontWeight="Bold"
+                                                               FontFamily="Helvetica"
+                                                               FontSize="19.5"
+                                                               Margin="10,0,0,0"
+                                                               Foreground="#1f4247"
+                                                               Text="Дата: "/>
+                                                        <TextBlock FontWeight="Bold"
+                                                               FontFamily="Helvetica"
+                                                               Foreground="#1f4247"
+                                                               
+                                                               FontSize="19.5"
+                                                               Text="{Binding Path=Name}"/>
+                                                    </DockPanel>
+                                                </Expander.Header>
+                                                <ItemsPresenter />
+                                            </Expander>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+            </ListBox.GroupStyle>
+            <ListBox.ItemContainerStyle>
+
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Height" Value="50"/>
+                    <Setter Property="Margin" Value="10 0 50 0"/>
+                    <Setter Property="FontSize" Value="15"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                                    <Grid>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="12*"/>
+                                            <ColumnDefinition Width="40*"/>
+                                            <ColumnDefinition Width="20*"/>
+                                            <ColumnDefinition Width="70*"/>
+                                            <ColumnDefinition Width="13*"/>
+                                            <ColumnDefinition Width="13*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Grid.Column="0" Width="25" Source="{Binding Path=Activity.Image}"  HorizontalAlignment="Right" VerticalAlignment="Center" />
+
+                                        <TextBlock Grid.Column="1" Text="{Binding Activity.Title}" VerticalAlignment="Center"  Margin="5,0,0,0"/>
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal" >
+                                            <TextBlock Text="{Binding Path=Amount}"  VerticalAlignment="Center" />
+                                            <TextBlock Text=" рублей"  VerticalAlignment="Center"/>
+                                        </StackPanel>
+
+                                        <TextBlock Grid.Column="3"  Text="{Binding Description}" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+
+
+
+                                        <Button Grid.Column="4"  Margin="5" HorizontalAlignment="Right" BorderBrush="#545d78" Background="#aed6dc" Command="{Binding DataContext.LinkToEditCommand, ElementName=BalanceControl,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Kind=ModeEdit}" ></Button>
+                                        <Button Grid.Column="5"  Margin="5" HorizontalAlignment="Right" BorderBrush="#545d78" Background="#ff341a" Command="{Binding DataContext.DeleteCommand, ElementName=BalanceControl,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Delete}" ></Button>
+
+                                        <!--<TextBlock Grid.Column="1" Text="{Binding FileName}" Style="{StaticResource LBText}"/>
+                                <TextBlock Grid.Column="2" Text="{Binding FileProgram}" Style="{StaticResource LBText}"/>
+                                <TextBlock Grid.Column="3" Text="{Binding ModifiedOn}" Style="{StaticResource LBText}"/>
+                                <TextBlock Grid.Column="4" Text="{Binding FileType}" Style="{StaticResource LBText}"/>-->
+
+
+                                        <!--<Path Grid.Column="5" Data="{DynamicResource more}" Style="{StaticResource LBPath}" Width="15"/>
+                                <Path Grid.Column="6" Data="{DynamicResource plus}" Style="{StaticResource LBPath}" Width="15"/>
+                                <Path Grid.Column="7" Data="{DynamicResource Shared}" Style="{StaticResource LBPath}" Width="15"/>-->
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="White"/>
+
+                                        <!--optional trigger, :P-->
+                                        <Setter Property="Margin" Value="17 0 50 0 "/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="White"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
 
 
 
