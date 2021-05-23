@@ -14,19 +14,11 @@ namespace MoneyManager.Infrastructure.Repositories
     {
 
         public Activity Find(Guid id) => MakeInclusions().SingleOrDefault(x => x.Id == id);
+        public Activity GetByTitle(string title) => DbSet.SingleOrDefault(x => x.Title == title);
+
 
         public IEnumerable<Activity> List(Expression<Func<Activity, bool>> predicate = null)
         {
-            /*using (var transaction = Context.Database.BeginTransaction())
-            {
-                try
-                { 
-                }
-                catch (Exception ex)
-                {
-                    Context.Database.RollbackTransaction();
-                }
-            }*/
 
             var query = MakeInclusions().OrderByDescending(x => x.Id).AsQueryable();
             if (predicate != null)

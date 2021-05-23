@@ -13,6 +13,8 @@ namespace MoneyManager.Infrastructure.Repositories
         private MoneyManagerContext _context;
         private IAccountRepository _accountRepository;
         private IHistoryRepository _historyRepository;
+        private IActivityRepository _activityRepository;
+        private IActivityTypeRepository _activityTypeRepository;
 
 
         private MoneyManagerContext Context
@@ -44,6 +46,24 @@ namespace MoneyManager.Infrastructure.Repositories
                 if (_accountRepository == null)
                     _accountRepository = new AccountRepository();
                 return _accountRepository;
+            }
+        }
+        public IActivityTypeRepository ActivityTypeRepository
+        {
+            get
+            {
+                if (_activityTypeRepository == null)
+                    _activityTypeRepository = new ActivityTypeRepository();
+                return _activityTypeRepository;
+            }
+        }
+        public IActivityRepository ActivityRepository
+        {
+            get
+            {
+                if (_activityRepository == null)
+                    _activityRepository = new ActivityRepository();
+                return _activityRepository;
             }
         }
 

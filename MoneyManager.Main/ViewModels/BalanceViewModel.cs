@@ -13,6 +13,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using MoneyManager.Main.States.Accounts;
 using Itenso.TimePeriod;
+using System.Globalization;
 
 namespace MoneyManager.Main.ViewModels
 {
@@ -70,7 +71,7 @@ namespace MoneyManager.Main.ViewModels
                 OnPropertyChanged(nameof(Balance));
             }
         }
-      
+
         private HistoryRepository historyRepository;
 
         public BalanceViewModel()
@@ -132,6 +133,22 @@ namespace MoneyManager.Main.ViewModels
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+    }
+    public class ObjectConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            if (Equals(value, "Расходы"))
+                return true;
+            else
+                return false;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;
         }

@@ -390,9 +390,8 @@ namespace WPF.EventCalendar
 
                     var ColorToSet = e.Color;
                     // loop all days of current event
-                    DateTime date = dateFrom;
 
-                    for (; date <= new DateTime(2101, 1, 1); date = date.AddMonths(1))
+                    for (DateTime date = dateFrom; date <= dateTo; date = date.AddMonths(1))
                     {
 
                         CalendarDay day = DaysInCurrentMonth.Where(d => d.Date.Date == date.Date).FirstOrDefault();

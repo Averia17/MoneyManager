@@ -35,19 +35,9 @@ namespace MoneyManager.Main.Commands
         public void Execute(object parameter)
         {
             ActivityType activityType = (ActivityType)parameter;
-            //Console.WriteLine(parameter);
             saveHistoryViewModel.activities = (List<Activity>)activityRepository.List(x => x.ActivityType.Id == activityType.Id);
             saveHistoryViewModel.History.Activity = saveHistoryViewModel.activities[0];
 
-            /*if (parameter.ToString() == "доходы")
-            {
-                createHistoryViewModel.activities = (List<Activity>)activityRepository.List(x => x.ActivityType.Title == "доходы");
-            }
-            else if (parameter.ToString() == "расходы")
-            {
-                createHistoryViewModel.activities = (List<Activity>)activityRepository.List(x => x.ActivityType.Title == "расходы");
-
-            }*/
         }
         protected void OnPropertyChanged(string propertyName)
         {

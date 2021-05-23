@@ -36,7 +36,6 @@ D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Deb
 D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.pdb
 D:\MoneyManager.Main\WPF.EventCalendar\bin\Debug\WPF.EventCalendar.dll
 D:\MoneyManager.Main\WPF.EventCalendar\bin\Debug\WPF.EventCalendar.pdb
-D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\WPF.EventCalendar.csprojAssemblyReference.cache
 D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\CalendarDay.baml
 D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\CalendarEventView.baml
 D:\MoneyManager.Main\WPF.EventCalendar\obj\Debug\CalendarDay.g.cs

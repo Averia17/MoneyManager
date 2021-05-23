@@ -35,6 +35,6 @@ namespace MoneyManager.Infrastructure.Repositories
             DbSet.Add(activityType);
             Context.SaveChanges();
         }
-
+        public ActivityType GetByTitle(string title) => DbSet.SingleOrDefault(x => x.Title == title);
     }
 }

@@ -10,5 +10,6 @@ namespace MoneyManager.Core.RepositoryIntarfaces
     public interface IActivityTypeRepository : IRepository<ActivityType, Guid>
     {
         void Delete(Guid id);
+        ActivityType GetByTitle(string title);
     }
 }

@@ -5,8 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MoneyManager.Main.Views"
              mc:Ignorable="d" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-            >
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:conv="clr-namespace:MoneyManager.Main.ViewModels">
+    <UserControl.Resources>
+        <conv:ObjectConverter x:Key="ObjectConverter" />
+    </UserControl.Resources>
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -70,40 +72,8 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="3"  Grid.ColumnSpan="2">
-            <ListView Grid.Row="1"  AlternationCount="2"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-          ItemsSource="{Binding HistoriesCollectionView, Mode=TwoWay}" Padding="0,0,0,10">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Border  CornerRadius="5" Width="800" >
-                            <Grid>
-                                <Grid.Resources>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="FontSize" Value="16"/>
-                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                    </Style>
-                                </Grid.Resources>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="5*"/>
-                                    <ColumnDefinition Width="15*"/>
-                                    <ColumnDefinition Width="13*"/>
-                                    <ColumnDefinition Width="40*"/>
-                                </Grid.ColumnDefinitions>
-                                
-                                <Image Width="25" Source="{Binding Path=Activity.Image}"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-
-                                <TextBlock Grid.Column="1" Text="{Binding Activity.Title}" />
-                                <StackPanel Grid.Column="2" Orientation="Horizontal" >
-                                    <TextBlock Text="{Binding Path=Amount}"  />
-                                    <TextBlock Text=" рублей" />
-                                </StackPanel>
-
-                                <TextBlock Grid.Column="3"  Text="{Binding Description}" HorizontalAlignment="Left"/>
-
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.GroupStyle>
+            <ListBox  ItemsSource="{Binding HistoriesCollectionView, Mode=TwoWay}" Background="Transparent" BorderThickness="0"    >
+                <ListBox.GroupStyle>
                     <GroupStyle>
                         <GroupStyle.ContainerStyle>
                             <Style TargetType="{x:Type GroupItem}">
@@ -117,14 +87,15 @@
                                                     <DockPanel >
                                                         <TextBlock FontWeight="Bold"
                                                                FontFamily="Helvetica"
-                                                               FontSize="20"
+                                                               FontSize="19.5"
+                                                               Margin="10,0,0,0"
                                                                Foreground="#1f4247"
-                                                               Text="Date: "/>
+                                                               Text="Дата: "/>
                                                         <TextBlock FontWeight="Bold"
                                                                FontFamily="Helvetica"
                                                                Foreground="#1f4247"
                                                                
-                                                               FontSize="20"
+                                                               FontSize="19.5"
                                                                Text="{Binding Path=Name}"/>
                                                     </DockPanel>
                                                 </Expander.Header>
@@ -136,8 +107,62 @@
                             </Style>
                         </GroupStyle.ContainerStyle>
                     </GroupStyle>
-                </ListView.GroupStyle>
-            </ListView>
+                </ListBox.GroupStyle>
+                <ListBox.ItemContainerStyle>
+
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Height" Value="50"/>
+                        <Setter Property="Margin" Value="10 0 50 0"/>
+                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                                        <Grid>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="10*"/>
+                                                <ColumnDefinition Width="30*"/>
+                                                <ColumnDefinition Width="20*"/>
+                                                <ColumnDefinition Width="70*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image Grid.Column="0" Width="25" Source="{Binding Path=Activity.Image}"  HorizontalAlignment="Right" VerticalAlignment="Center" />
+
+                                            <TextBlock Grid.Column="1" Text="{Binding Activity.Title}" VerticalAlignment="Center"  Margin="5,0,0,0"/>
+                                            <StackPanel Grid.Column="2" Orientation="Horizontal" >
+                                                <TextBlock Text="{Binding Path=Amount}"  VerticalAlignment="Center" />
+                                                <TextBlock Text=" рублей"  VerticalAlignment="Center"/>
+                                            </StackPanel>
+
+                                            <TextBlock Grid.Column="3"  Text="{Binding Description}" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="White"/>
+
+                                            <!--optional trigger, :P-->
+                                            <Setter Property="Margin" Value="17 0 50 0 "/>
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="White"/>
+                                        </Trigger>
+                                        <DataTrigger Binding="{Binding Path=Activity.ActivityType.Title, Converter={StaticResource ObjectConverter} }" Value="False">
+                                            <Setter Property="Background" Value="#cce1b7"/>
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding Path=Activity.ActivityType.Title, Converter={StaticResource ObjectConverter} }" Value="True">
+                                            <Setter Property="Background" Value="#ffc2b3"/>
+                                        </DataTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
         </Grid>
     </Grid>
 </UserControl>

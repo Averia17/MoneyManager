@@ -30,6 +30,18 @@ namespace MoneyManager.Main.ViewModels
         public ICommand UpdateViewCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand LinkToEditCommand { get; set; }
+        public ICommand ShowBelarusBankHistoriesCommand { get; set; }
+        private List<History> _historiesFromBelarusBank { get; set; }
+        public List<History> HistoriesFromBelarusBank
+        {
+            get { return _historiesFromBelarusBank; }
+            set
+            {
+                _historiesFromBelarusBank = value;
+                OnPropertyChanged(nameof(HistoriesFromBelarusBank));
+            }
+        }
+
         public SettingsViewModel()
         {
             historyRepository = new HistoryRepository();
@@ -39,10 +51,12 @@ namespace MoneyManager.Main.ViewModels
             UpdateViewCommand = new UpdateViewCommand(MainWindow.MainView);
             DeleteCommand = new DeleteCommand(this);
             LinkToEditCommand = new LinkToEditCommand();
+            ShowBelarusBankHistoriesCommand = new ShowBelarusBankHistoriesCommand(this);
             CurrentAccount = new Account();
             CurrentAccount = SingleCurrentAccount.GetInstance().Account;
             GetHistories();
             Balance = BalanceViewModel.GetBalance(Histories);
+
         }
         public override void GetHistories()
         {

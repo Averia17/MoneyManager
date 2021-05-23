@@ -10,7 +10,8 @@ namespace MoneyManager.Core.RepositoryIntarfaces
     {
         IHistoryRepository HistoryRepository { get; }
         IAccountRepository AccountRepository { get; }
-
+        IActivityRepository ActivityRepository { get; }
+        IActivityTypeRepository ActivityTypeRepository { get; }
         void Commit();
     }
 }

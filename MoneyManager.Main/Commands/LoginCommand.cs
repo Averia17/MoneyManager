@@ -36,7 +36,6 @@ namespace MoneyManager.Main.Commands
         public void Execute(object parameter)
         {
 
-            //КУДА????
             _loginViewModel.ErrorMessage = string.Empty;
             try
             {

@@ -13,7 +13,6 @@ D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\PieChart\obj\Debug\PieCha
 D:\ЧЕТВЕРТЫЙ СЕМЕСТР\MoneyManager.Main\PieChart\obj\Debug\PieChart.pdb
 D:\MoneyManager.Main\PieChart\bin\Debug\PieChart.dll
 D:\MoneyManager.Main\PieChart\bin\Debug\PieChart.pdb
-D:\MoneyManager.Main\PieChart\obj\Debug\PieChart.csprojAssemblyReference.cache
 D:\MoneyManager.Main\PieChart\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\MoneyManager.Main\PieChart\obj\Debug\PieChart_MarkupCompile.cache
 D:\MoneyManager.Main\PieChart\obj\Debug\PieChart_MarkupCompile.lref

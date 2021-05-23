@@ -13,7 +13,6 @@ namespace MoneyManager.Main.Commands
 {
     public class CreateCommand : ICommand
     {
-        //BalanceViewModel balanceViewModel { get; set; }
         public History History { get; set; }
         private readonly CreateHistoryViewModel _createHistoryViewModel;
         public CreateCommand(History history, CreateHistoryViewModel createHistoryViewModel)
@@ -73,7 +72,6 @@ namespace MoneyManager.Main.Commands
             }
             
             
-            //balanceViewModel.GetHistories();
         }
         public static void CheckRepeatHistories()
         {
