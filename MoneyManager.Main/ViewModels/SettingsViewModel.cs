@@ -31,6 +31,7 @@ namespace MoneyManager.Main.ViewModels
         public ICommand DeleteCommand { get; set; }
         public ICommand LinkToEditCommand { get; set; }
         public ICommand ShowBelarusBankHistoriesCommand { get; set; }
+        public ICommand AddHistoryToDatabaseCommand { get; set; }
         private List<History> _historiesFromBelarusBank { get; set; }
         public List<History> HistoriesFromBelarusBank
         {
@@ -51,6 +52,7 @@ namespace MoneyManager.Main.ViewModels
             UpdateViewCommand = new UpdateViewCommand(MainWindow.MainView);
             DeleteCommand = new DeleteCommand(this);
             LinkToEditCommand = new LinkToEditCommand();
+            AddHistoryToDatabaseCommand = new AddHistoryToDatabaseCommand(this);
             ShowBelarusBankHistoriesCommand = new ShowBelarusBankHistoriesCommand(this);
             CurrentAccount = new Account();
             CurrentAccount = SingleCurrentAccount.GetInstance().Account;

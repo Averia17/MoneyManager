@@ -10,15 +10,7 @@
         Icon="Assets/money.png"
         
         WindowStartupLocation="CenterScreen" >
-    <WindowChrome.WindowChrome>
-        <WindowChrome     
-             CaptionHeight="30"
-                CornerRadius="4"
-               GlassFrameThickness="0"
-             NonClientFrameEdges="None"
-               ResizeBorderThickness="5"
-             UseAeroCaptionButtons="False" />
-    </WindowChrome.WindowChrome>
+
     <Window.CommandBindings>
         <CommandBinding Command="Close" Executed="Close_Click"></CommandBinding>
     </Window.CommandBindings>

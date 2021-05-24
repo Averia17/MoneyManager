@@ -52,8 +52,8 @@ namespace MoneyManager.Main
                 Match match = new Regex(@"(\d+.\d+)").Match(rowTd[3].Text);
                 history.Amount = double.Parse(match.Value.Replace('.', ','));
                 //history.Date = new DateTime();
-                match = new Regex(@"обслуживания: (.*)").Match(rows[i + 1].Text);
-                history.Description = match.Value;
+                string description = new Regex(@"обслуживания: (.*)").Match(rows[i + 1].Text).Value;
+                history.Description = description.Split(' ')[1];
                 history.ActivityId = activity.Id;
                 history.Activity = activity;
                 Histories.Add(history);
