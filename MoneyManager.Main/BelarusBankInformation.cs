@@ -7,6 +7,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -15,18 +16,38 @@ using System.Threading.Tasks;
 
 namespace MoneyManager.Main
 {
-    public class BelarusBankInformation
+    public class BelarusBankInformation : INotifyPropertyChanged
     {
         private const string URL = "https://ibank.asb.by/";
         private IUnitOfWork unitOfWork;
+
         History history;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public IWebDriver driver { get; set; }
         public Account CurrentAccount { get; set; }
-        public List<History> Histories { get; set; }
+        private List<History> _histories { get; set; }
+        public List<History> Histories
+        {
+            get { return _histories; }
+            set
+            {
+                _histories = value;
+                OnPropertyChanged(nameof(Histories));
+            }
+        }
+
         public BelarusBankInformation()
         {
+            ChromeDriverService service = ChromeDriverService.CreateDefaultService();
+            service.HideCommandPromptWindow = true;
+          
             unitOfWork = new UnitOfWork();
             Histories = new List<History>();
             CurrentAccount = SingleCurrentAccount.GetInstance().Account;
+            driver = new ChromeDriver(service);
+
         }
         public void GetBelarusBankHistories()
         {
@@ -53,7 +74,7 @@ namespace MoneyManager.Main
                 history.Amount = double.Parse(match.Value.Replace('.', ','));
                 //history.Date = new DateTime();
                 string description = new Regex(@"обслуживания: (.*)").Match(rows[i + 1].Text).Value;
-                history.Description = description.Split(' ')[1];
+                history.Description = description.Split(new char[] { ' ' }, 2)[1].Trim();
                 history.ActivityId = activity.Id;
                 history.Activity = activity;
                 Histories.Add(history);
@@ -63,10 +84,10 @@ namespace MoneyManager.Main
 
         private List<IWebElement> GetHistoriesTable()
         {
-            IWebDriver driver = new ChromeDriver();
             driver.Url = URL;
-            WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 2, 0));
+            WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 3, 0));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("top_link_1")));
+
             IWebElement webElement = driver.FindElement(By.XPath("//*[@id='top_link_1']/a"));
             webElement.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.ClassName("stmtLink")));
@@ -76,6 +97,10 @@ namespace MoneyManager.Main
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("/html/body/div[4]/div/div[3]/div/div[2]/table/tbody/tr/td/div/form/table/tbody/tr[1]/td/div/table[3]/tbody/tr")));
             List<IWebElement> rows = driver.FindElements(By.XPath("/html/body/div[4]/div/div[3]/div/div[2]/table/tbody/tr/td/div/form/table/tbody/tr[1]/td/div/table[3]/tbody/tr")).ToList();
             return rows;
+        }
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

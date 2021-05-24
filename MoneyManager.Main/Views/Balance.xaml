@@ -91,8 +91,8 @@
 
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="12*"/>
-                                            <ColumnDefinition Width="40*"/>
-                                            <ColumnDefinition Width="20*"/>
+                                            <ColumnDefinition Width="36*"/>
+                                            <ColumnDefinition Width="25*"/>
                                             <ColumnDefinition Width="70*"/>
                                             <ColumnDefinition Width="13*"/>
                                             <ColumnDefinition Width="13*"/>

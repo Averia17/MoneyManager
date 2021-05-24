@@ -23,6 +23,7 @@
         <DropShadowBitmapEffect x:Key="DropShadowListItem" Softness="2" ShadowDepth="1" Color="LightGray" Direction="260"/>
         <!--Listbox Item Style-->
 
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <conv:ObjectConverter x:Key="ObjectConverter" />
     </UserControl.Resources>
 
@@ -37,19 +38,19 @@
             </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"></RowDefinition>
-            <RowDefinition MaxHeight="270" Height="1*"></RowDefinition>
+            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition MaxHeight="270" Height="0.7*"></RowDefinition>
             <RowDefinition  Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" >
 
             <Grid  Background="white" >
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Margin="20,0,0,0" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="24" Grid.Row="0" Text="{Binding CurrentAccount.Username}"></TextBlock>
-                <Grid  Margin="20,0,0,10" Grid.Row="1" >
+                <TextBlock Margin="20,0,0,0" FontWeight="DemiBold"  FontSize="22" Grid.Row="0" Text="{Binding CurrentAccount.Username}"></TextBlock>
+                <Grid  Margin="20,0,0,5" Grid.Row="1" >
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -70,10 +71,10 @@
             </Grid>
 
         </Grid>
-        <Grid Grid.Row="1" Background="white" Margin="0,20,0,0">
+        <Grid Grid.Row="1" Background="white" Margin="0,10,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="6*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -85,14 +86,14 @@
                 </Grid>
                 <Grid Grid.Column="1">
                     <Button Margin="0,0,0,0"
-                            VerticalAlignment="Center"  Width="35" Height="32" Padding="0" Background="#fb6a50" BorderBrush="#273d48" 
+                            VerticalAlignment="Center"  Width="28" Height="26" Padding="0" Background="#fb6a50" BorderBrush="#273d48" 
                              Command="{Binding UpdateViewCommand}" CommandParameter="CreateHistory"
                             Style="{DynamicResource MaterialDesignRaisedLightButton}"
                             Content="{materialDesign:PackIcon Add}" 
                             ></Button>
                 </Grid>
             </Grid>
-            <Grid Grid.Row="1" Margin="0,10" >
+            <Grid Grid.Row="1" Margin="0,2" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="7*"/>
                     <ColumnDefinition Width="33*"/>
@@ -118,7 +119,7 @@
                                                     <ColumnDefinition Width="45*"/>
                                                     <ColumnDefinition Width="40*"/>
                                                     <ColumnDefinition Width="92*"/>
-                                                    <ColumnDefinition Width="20*"/>
+                                                    <ColumnDefinition Width="22*"/>
                                                     <ColumnDefinition Width="22*"/>
                                                 </Grid.ColumnDefinitions>
 
@@ -140,15 +141,6 @@
                                                 <Button Grid.Column="5"  Margin="5" HorizontalAlignment="Right" BorderBrush="#545d78" Background="#aed6dc" Command="{Binding DataContext.LinkToEditCommand, ElementName=SettingsView,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Kind=ModeEdit}" ></Button>
                                                 <Button Grid.Column="6"  Margin="5" HorizontalAlignment="Right" BorderBrush="#545d78" Background="#ff341a" Command="{Binding DataContext.DeleteCommand, ElementName=SettingsView,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Delete}" ></Button>
 
-                                                <!--<TextBlock Grid.Column="1" Text="{Binding FileName}" Style="{StaticResource LBText}"/>
-                                <TextBlock Grid.Column="2" Text="{Binding FileProgram}" Style="{StaticResource LBText}"/>
-                                <TextBlock Grid.Column="3" Text="{Binding ModifiedOn}" Style="{StaticResource LBText}"/>
-                                <TextBlock Grid.Column="4" Text="{Binding FileType}" Style="{StaticResource LBText}"/>-->
-
-
-                                                <!--<Path Grid.Column="5" Data="{DynamicResource more}" Style="{StaticResource LBPath}" Width="15"/>
-                                <Path Grid.Column="6" Data="{DynamicResource plus}" Style="{StaticResource LBPath}" Width="15"/>
-                                <Path Grid.Column="7" Data="{DynamicResource Shared}" Style="{StaticResource LBPath}" Width="15"/>-->
                                             </Grid>
                                         </Border>
                                         <ControlTemplate.Triggers>
@@ -184,10 +176,19 @@
         <Grid Grid.Row="2" Background="white">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition ></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition  ></RowDefinition>
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Command="{Binding ShowBelarusBankHistoriesCommand}">Показать из карты</Button>
-            <ListBox  ItemsSource="{Binding HistoriesFromBelarusBank}"  Grid.Row="1" Background="Transparent" BorderThickness="0" Grid.ColumnSpan="2" Margin="0,0,0,0.4" >
+            <Button Grid.Row="0" Command="{Binding ShowBelarusBankHistoriesCommand}" Margin="20 4 40 4 "  Background="#fb6a50" BorderBrush="#273d48" Foreground="White">Показать операции из карты</Button>
+            <TextBlock Grid.Row="1" Margin="0 7"
+                    HorizontalAlignment="Center"
+                    DataContext="{Binding ErrorMessageViewModel}"
+                    Foreground="DarkRed"
+                    Text="{Binding Message}"
+                    FontSize="20"
+                           
+                    Visibility="{Binding HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <ListBox  ItemsSource="{Binding HistoriesFromBelarusBank}"  Grid.Row="2" Background="Transparent" BorderThickness="0" Grid.ColumnSpan="2" Margin="0,0,0,0.4" >
                 <ListBox.ItemContainerStyle>
 
                     <Style TargetType="{x:Type ListBoxItem}">
@@ -225,16 +226,6 @@
 
 
                                             <Button Grid.Column="5"  Margin="5" HorizontalAlignment="Right" BorderBrush="#545d78"  Command="{Binding DataContext.AddHistoryToDatabaseCommand, ElementName=SettingsView,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{materialDesign:PackIcon Kind=Add}" ></Button>
-
-                                            <!--<TextBlock Grid.Column="1" Text="{Binding FileName}" Style="{StaticResource LBText}"/>
-                                <TextBlock Grid.Column="2" Text="{Binding FileProgram}" Style="{StaticResource LBText}"/>
-                                <TextBlock Grid.Column="3" Text="{Binding ModifiedOn}" Style="{StaticResource LBText}"/>
-                                <TextBlock Grid.Column="4" Text="{Binding FileType}" Style="{StaticResource LBText}"/>-->
-
-
-                                            <!--<Path Grid.Column="5" Data="{DynamicResource more}" Style="{StaticResource LBPath}" Width="15"/>
-                                <Path Grid.Column="6" Data="{DynamicResource plus}" Style="{StaticResource LBPath}" Width="15"/>
-                                <Path Grid.Column="7" Data="{DynamicResource Shared}" Style="{StaticResource LBPath}" Width="15"/>-->
                                         </Grid>
                                     </Border>
                                     <ControlTemplate.Triggers>

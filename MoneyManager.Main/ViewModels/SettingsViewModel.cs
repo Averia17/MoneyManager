@@ -3,7 +3,9 @@ using MoneyManager.Infrastructure.Repositories;
 using MoneyManager.Main.Commands;
 using MoneyManager.Main.States.Accounts;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace MoneyManager.Main.ViewModels
@@ -40,7 +42,25 @@ namespace MoneyManager.Main.ViewModels
             {
                 _historiesFromBelarusBank = value;
                 OnPropertyChanged(nameof(HistoriesFromBelarusBank));
+                if (HistoryCollectionView != null)
+                    RefreshHistoryCollectionView();
             }
+        }
+        private ICollectionView _historyCollectionView { get; set; }
+        public ICollectionView HistoryCollectionView
+        {
+            get { return _historyCollectionView; }
+            set
+            {
+                _historyCollectionView = value;
+                OnPropertyChanged(nameof(HistoryCollectionView));
+            }
+        }
+        public MessageViewModel ErrorMessageViewModel { get; }
+
+        public string ErrorMessage
+        {
+            set => ErrorMessageViewModel.Message = value;
         }
 
         public SettingsViewModel()
@@ -52,11 +72,16 @@ namespace MoneyManager.Main.ViewModels
             UpdateViewCommand = new UpdateViewCommand(MainWindow.MainView);
             DeleteCommand = new DeleteCommand(this);
             LinkToEditCommand = new LinkToEditCommand();
+            HistoriesFromBelarusBank = new List<History>();
             AddHistoryToDatabaseCommand = new AddHistoryToDatabaseCommand(this);
             ShowBelarusBankHistoriesCommand = new ShowBelarusBankHistoriesCommand(this);
             CurrentAccount = new Account();
             CurrentAccount = SingleCurrentAccount.GetInstance().Account;
+            ErrorMessageViewModel = new MessageViewModel();
+
             GetHistories();
+            RefreshHistoryCollectionView();
+
             Balance = BalanceViewModel.GetBalance(Histories);
 
         }
@@ -66,6 +91,12 @@ namespace MoneyManager.Main.ViewModels
 
             RepeatedHistories = historyRepository.List(x => x.Account.Id == CurrentAccount.Id && x.IsRepeat).ToList();
 
+        }
+        public void RefreshHistoryCollectionView()
+        {
+            HistoryCollectionView = CollectionViewSource.GetDefaultView(HistoriesFromBelarusBank);
+
+            HistoryCollectionView.Refresh();
         }
     }
 }

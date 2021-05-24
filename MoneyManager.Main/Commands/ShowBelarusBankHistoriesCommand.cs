@@ -25,11 +25,21 @@ namespace MoneyManager.Main.Commands
 
         public void Execute(object parameter)
         {
+            SettingsViewModel.ErrorMessage = string.Empty;
             BelarusBankInformation BelarusBankInformation = new BelarusBankInformation();
-            BelarusBankInformation.GetBelarusBankHistories();
-            SettingsViewModel.HistoriesFromBelarusBank = BelarusBankInformation.Histories;
 
+            try
+            {
+                BelarusBankInformation.GetBelarusBankHistories();
+                SettingsViewModel.HistoriesFromBelarusBank = BelarusBankInformation.Histories;
+                BelarusBankInformation.driver.Quit();
 
+            }
+            catch (Exception)
+            {
+                SettingsViewModel.ErrorMessage = "Не получилось получить данные из карты";
+                BelarusBankInformation.driver.Quit();
+            }
         }
     }
 }
