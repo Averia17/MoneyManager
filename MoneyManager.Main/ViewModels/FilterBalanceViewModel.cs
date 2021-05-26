@@ -11,13 +11,13 @@ using System.Windows.Data;
 using MoneyManager.Main.States.Accounts;
 using System.Windows.Input;
 using MoneyManager.Main.Commands;
+using MoneyManager.Core.RepositoryIntarfaces;
 
 namespace MoneyManager.Main.ViewModels
 {
     public class FilterBalanceViewModel : BaseViewModel
     {
         public List<History> Histories { get; set; }
-        public HistoryRepository historyRepository { get; set; }
         private ICollectionView _historiesCollectionView { get; set; }
         public ICollectionView HistoriesCollectionView
         {
@@ -132,23 +132,34 @@ namespace MoneyManager.Main.ViewModels
                 HistoriesCollectionView.Refresh();
             }
         }
+        private List<Activity> _activities;
 
+        public List<Activity> activities
+        {
+            get { return _activities; }
+            set
+            {
+                _activities = value;
+                OnPropertyChanged(nameof(activities));
+            }
+        }
+        public IUnitOfWork unitOfWork { get; set; }
         public ICommand ChangeRadioButtonCommand { get; set; }
         public FilterBalanceViewModel()
         {
-            historyRepository = new HistoryRepository();
+            unitOfWork = new UnitOfWork();
 
             Histories = new List<History>();
-
+            activities = new List<Activity>();
             FilteredHistories = new List<History>();
-            Histories = historyRepository.List(x => x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id && !x.IsRepeat).ToList();
+            Histories = unitOfWork.HistoryRepository.List(x => x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id && !x.IsRepeat).ToList();
             HistoriesCollectionView = CollectionViewSource.GetDefaultView(Histories);
 
             HistoriesCollectionView.Filter = FilterHistories;
             HistoriesCollectionView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(History.Date), new DateTimeConverter()));
 
-            ActivityTypeExpence = new ActivityTypeRepository().List().ToList()[0];
-            ActivityTypeEncome = new ActivityTypeRepository().List().ToList()[1];
+            ActivityTypeExpence = unitOfWork.ActivityTypeRepository.List().ToList()[0];
+            ActivityTypeEncome = unitOfWork.ActivityTypeRepository.List().ToList()[1];
 
             ChangeRadioButtonCommand = new ChangeRadioButtonCommand(this);
             
