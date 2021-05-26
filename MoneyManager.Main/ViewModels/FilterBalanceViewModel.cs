@@ -111,7 +111,17 @@ namespace MoneyManager.Main.ViewModels
                 HistoriesCollectionView.Refresh();
             }
         }
-
+        private List<History> _filteredHistories { get; set; }
+        public List<History> FilteredHistories
+        {
+            get { return _filteredHistories; }
+            set
+            {
+                _filteredHistories = value;
+                OnPropertyChanged(nameof(FilteredHistories));
+                UpdateProperties();
+            }
+        }
         private DateTime _tbTo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
         public DateTime TbTo
         {
@@ -130,7 +140,7 @@ namespace MoneyManager.Main.ViewModels
 
             Histories = new List<History>();
 
-
+            FilteredHistories = new List<History>();
             Histories = historyRepository.List(x => x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id && !x.IsRepeat).ToList();
             HistoriesCollectionView = CollectionViewSource.GetDefaultView(Histories);
 
@@ -141,7 +151,7 @@ namespace MoneyManager.Main.ViewModels
             ActivityTypeEncome = new ActivityTypeRepository().List().ToList()[1];
 
             ChangeRadioButtonCommand = new ChangeRadioButtonCommand(this);
-
+            
             UpdateProperties();
 
         }
@@ -151,25 +161,37 @@ namespace MoneyManager.Main.ViewModels
             HistoriesCollectionView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(History.Date), new DateTimeConverter()));
 
             HistoriesCollectionView.Refresh();
-            UpdateProperties();
 
         }
         private bool FilterHistories(object obj)
         {
+
             if (obj is History history)
             {
-                if(TbFrom != null && TbTo != null)
-                    return history.Activity.Title.ToUpper().Contains(HistoriesFilter.ToUpper()) && history.Date >= TbFrom && history.Date <= TbTo;
+                if (history.Activity.Title.ToUpper().Contains(HistoriesFilter.ToUpper()) && history.Date >= TbFrom && history.Date <= TbTo)
+                {
+                    FilteredHistories.Add(history);
+                    return true;
+                }
                 else
-                    return history.Activity.Title.ToUpper().Contains(HistoriesFilter.ToUpper()) ;
+                    return false;
+            
             }
-            UpdateProperties();
 
             return false;
         }
 
         private void UpdateProperties()
         {
+            FilteredHistories.Clear();
+
+            if (HistoriesCollectionView != null)
+            {
+                foreach (var o in HistoriesCollectionView)
+                {
+                    FilteredHistories.Add((History)o);
+                }
+            }
             Encome = GetHistoriesByType("Доходы");
             Expense = GetHistoriesByType("Расходы");
             Difference = GetDifference();
@@ -180,9 +202,7 @@ namespace MoneyManager.Main.ViewModels
             double sum = 0;
 
             List<History> histories = new List<History>();
-            
-
-            histories = ((List<History>)HistoriesCollectionView.SourceCollection).Where(x => x.Activity.ActivityType.Title == Type).ToList();
+            histories = FilteredHistories.Where(x => x.Activity.ActivityType.Title == Type).ToList();
 
             foreach (History history in histories)
             {

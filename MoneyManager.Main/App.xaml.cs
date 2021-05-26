@@ -30,10 +30,16 @@ namespace MoneyManager.Main
         }
         protected void InsertingData()
         {
+            
             ActivityTypeRepository activityTypeRepository = new ActivityTypeRepository();
             ActivityRepository activityRepository = new ActivityRepository();
             List<Activity> listActivities = (List<Activity>)activityRepository.List();
             List<ActivityType> listActivitiesTypes = (List<ActivityType>)activityTypeRepository.List();
+/*            ActivityType expense = new ActivityType();
+            Activity Activity = new Activity();
+            expense = activityTypeRepository.GetByTitle("Доходы");
+            Activity = new Activity() { Id = Guid.NewGuid(), Title = "Перевод", ActivityTypeId = expense.Id, Image = "/Assets/credit-card-plus.png" };
+            activityRepository.Create(Activity);*/
             if (listActivities.Count == 0 && listActivitiesTypes.Count == 0)
             {
                 ActivityType expence = new ActivityType() { Id = Guid.NewGuid(), Title = "Расходы" };
@@ -70,6 +76,8 @@ namespace MoneyManager.Main
                 activity = new Activity() { Id = Guid.NewGuid(), Title = "Инвестиции", ActivityTypeId = expence.Id, Image = "/Assets/chart-line_expence.png" };
                 activityRepository.Create(activity);
                 activity = new Activity() { Id = Guid.NewGuid(), Title = "Покупка", ActivityTypeId = expence.Id, Image = "/Assets/cart-variant.png" };
+                activityRepository.Create(activity);              
+                activity = new Activity() { Id = Guid.NewGuid(), Title = "Платежи", ActivityTypeId = expence.Id, Image = "/Assets/mail.png" };
                 activityRepository.Create(activity);
                 activity = new Activity() { Id = new Guid("ACAEB171-50B8-457E-ABAC-00006FBE7EA9"), Title = "Другое", ActivityTypeId = expence.Id, Image = "/Assets/view-grid-plus_expence.png" };
                 activityRepository.Create(activity); 

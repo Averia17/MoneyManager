@@ -52,8 +52,8 @@ namespace MoneyManager.Main
         public void GetBelarusBankHistories()
         {
             List<Activity> activities = unitOfWork.ActivityRepository.List().ToList();
-            List<ActivityType> activityTypes = unitOfWork.ActivityTypeRepository.List().ToList();
             List<IWebElement> rows = GetHistoriesTable();
+
             for (int i = 0; i < rows.Count; i += 2)
             {
                 var rowTd = rows[i].FindElements(By.TagName("td")).ToList();
@@ -63,7 +63,6 @@ namespace MoneyManager.Main
                 else
                     activityType = unitOfWork.ActivityTypeRepository.GetByTitle("Доходы");
 
-                Activity activity = unitOfWork.ActivityRepository.List(x => x.ActivityType.Id == activityType.Id).Where(x => x.Title == "Другое").First();
 
                 history = new History();
                 history.Id = Guid.NewGuid();
@@ -74,6 +73,25 @@ namespace MoneyManager.Main
                 history.Amount = double.Parse(match.Value.Replace('.', ','));
                 //history.Date = new DateTime();
                 string description = new Regex(@"обслуживания: (.*)").Match(rows[i + 1].Text).Value;
+                Activity activity = new Activity();
+                switch(description)
+                {
+                    case var k when Regex.IsMatch(description, @".*shop.*", RegexOptions.IgnoreCase):
+                        activity = activities.Where(x => x.ActivityTypeId == activityType.Id && x.Title == "Покупка").First();
+                        break;
+                    case var k when Regex.IsMatch(description, @".*PEREVOD.*", RegexOptions.IgnoreCase):
+                        activity = activities.Where(x => x.ActivityTypeId == activityType.Id && x.Title == "Перевод").First();
+                        break;
+                    case var k when Regex.IsMatch(description, @".*STOLOVAYA.*", RegexOptions.IgnoreCase):
+                        activity = activities.Where(x => x.ActivityTypeId == activityType.Id && x.Title == "Еда").First();
+                        break;
+                    case var k when Regex.IsMatch(description, @".*MTS.*", RegexOptions.IgnoreCase):
+                        activity = activities.Where(x => x.ActivityTypeId == activityType.Id && x.Title == "Платежи").First();
+                        break;
+                    default:
+                        activity = activities.Where(x => x.ActivityTypeId == activityType.Id && x.Title == "Другое").First();
+                        break;
+                }
                 history.Description = description.Split(new char[] { ' ' }, 2)[1].Trim();
                 history.ActivityId = activity.Id;
                 history.Activity = activity;
