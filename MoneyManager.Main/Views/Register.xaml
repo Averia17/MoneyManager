@@ -9,7 +9,7 @@
              mc:Ignorable="d" d:DesignWidth="800" 
              >
 
-    <Border Margin="25" Padding="50,20"
+    <Border Margin="25" Padding="35,20"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         BorderThickness="3"
@@ -30,7 +30,7 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0"
+            <TextBlock Grid.Row="0" Margin="0 10"
                 HorizontalAlignment="Center"
                 FontSize="38"
                 Text="Money Manager" />
@@ -41,7 +41,7 @@
                 FontWeight="Thin"
                 Text="Всякая экономия в конечном счете сводится к экономии времени" />
 
-            <Grid Grid.Row="2" Margin="30,10">
+            <Grid Grid.Row="2" Margin="20,10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
@@ -114,10 +114,10 @@
                     Visibility="{Binding HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
 
-                <Button Grid.Row="5" Margin="0,4"
+                <Button Grid.Row="5" Margin="0,10,0 5"
                     HorizontalAlignment="Center"
                     Command="{Binding RegisterCommand}"
-                    Content="Register"
+                    Content="Регистрация"
                     IsDefault="True" />
 
                 <Button Grid.Row="6" Margin="0,5,0,0"
@@ -125,9 +125,9 @@
                     Background="Transparent"
                     Command="{Binding UpdateViewCommand}"
                     CommandParameter="Login"
-                    Content="Already have an account?"
+                    Content="У Вас уже есть аккаунт?"
                     FontSize="14"
-                    Foreground="Blue" />
+                    Foreground="#6200EE" />
 
                 </Grid>
         </Grid>

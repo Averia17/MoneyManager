@@ -58,8 +58,8 @@ namespace MoneyManager.Main.ViewModels
             }
         }
 
-        private double _balance;
-        public double Balance
+        private string _balance;
+        public string Balance
         {
             get
             {
@@ -77,6 +77,7 @@ namespace MoneyManager.Main.ViewModels
         public bool CanRegister => 
             !string.IsNullOrEmpty(Username) &&
             !string.IsNullOrEmpty(Password) &&
+            !string.IsNullOrEmpty(Balance) &&
             !string.IsNullOrEmpty(ConfirmPassword);
 
         public ICommand RegisterCommand { get; }

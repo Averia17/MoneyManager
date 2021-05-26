@@ -1,10 +1,12 @@
-﻿using MoneyManager.Main.States.Authenticators;
+﻿using MoneyManager.Core.Exceptions;
+using MoneyManager.Main.States.Authenticators;
 using MoneyManager.Main.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using static MoneyManager.Core.RepositoryIntarfaces.AuthenticationRepository.AuthenticationRepository;
@@ -39,11 +41,20 @@ namespace MoneyManager.Main.Commands
 
             try
             {
+                double Balance = double.Parse(_registerViewModel.Balance.Replace('.', ','));
+                if (!Regex.IsMatch(_registerViewModel.Username, @"[A-Za-z]\w{3,15}"))
+                {
+                    throw new RegexException();
+                }
+                if (!Regex.IsMatch(_registerViewModel.Password, @"\w+"))
+                {
+                    throw new RegexException();
+                }
                 RegistrationResult registrationResult =  _authenticator.Register(
                        _registerViewModel.Username,
                        _registerViewModel.Password,
                        _registerViewModel.ConfirmPassword,
-                       _registerViewModel.Balance
+                       Balance
                        );
 
                 switch (registrationResult)
@@ -62,6 +73,10 @@ namespace MoneyManager.Main.Commands
                         _registerViewModel.ErrorMessage = "Не получилось зарегистрироваться";
                         break;
                 }
+            }
+            catch(RegexException)
+            {
+                _registerViewModel.ErrorMessage = "Неверный ввод";
             }
             catch (Exception)
             {

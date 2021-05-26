@@ -47,6 +47,7 @@
     <Compile Include="Exceptions\AccountNotFoundException.cs" />
     <Compile Include="Exceptions\AmountLessThanZeroException.cs" />
     <Compile Include="Exceptions\InvalidPasswordException.cs" />
+    <Compile Include="Exceptions\RegexException.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\ActivityType.cs" />
