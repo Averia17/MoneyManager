@@ -142,42 +142,6 @@
 
 
 
-        <!--<TextBlock Grid.Column="1" Text="{Binding FileName}" Style="{StaticResource LBText}"/>
-                                <TextBlock Grid.Column="2" Text="{Binding FileProgram}" Style="{StaticResource LBText}"/>
-                                <TextBlock Grid.Column="3" Text="{Binding ModifiedOn}" Style="{StaticResource LBText}"/>
-                                <TextBlock Grid.Column="4" Text="{Binding FileType}" Style="{StaticResource LBText}"/>-->
-
-
-                    <!--<Path Grid.Column="5" Data="{DynamicResource more}" Style="{StaticResource LBPath}" Width="15"/>
-                                <Path Grid.Column="6" Data="{DynamicResource plus}" Style="{StaticResource LBPath}" Width="15"/>
-                                <Path Grid.Column="7" Data="{DynamicResource Shared}" Style="{StaticResource LBPath}" Width="15"/>-->
-
-
-                <!--<ListView.View>
-                <GridView >
-                    <GridViewColumn Width="150"
-                      DisplayMemberBinding="{Binding Path=Activity.Title}"/>
-                    <GridViewColumn Width="150"
-                      DisplayMemberBinding="{Binding Path=Amount}"/>
-                    <GridViewColumn>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Command="{Binding DataContext.DeleteCommand, ElementName=BalanceControl,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}">Удалить</Button>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Background="#D4AC0D" Command="{Binding DataContext.LinkToEditCommand, ElementName=BalanceControl,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}">Редактировать</Button>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>-->
-
-
-
         <Grid Margin="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" >
             <Button  
                         Command="{Binding UpdateViewCommand}" CommandParameter="CreateHistory" Background="#fb6a50" BorderBrush="#273d48"
@@ -188,60 +152,6 @@
                         Content="{materialDesign:PackIcon Add}" 
                         />
         </Grid>
-        <!--<DataGrid ItemsSource="{Binding histories}"  AutoGenerateColumns="False">
-            <DataGrid.Columns>
-               --><!--<DataGridCheckBoxColumn Binding="{Binding Path=IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DataGridCheckBoxColumn>--><!--
-                <DataGridTextColumn Header="" Binding="{Binding Path=Activity.Title}"></DataGridTextColumn>
-                <DataGridTextColumn Header="" Binding="{Binding Path=Date}"></DataGridTextColumn>
-                <DataGridTextColumn Header="" Binding="{Binding Path=Amount}"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>-->
+
     </Grid>
 </UserControl>
-
-
-<!--<ListView AlternationCount="2" 
-          ItemsSource="{Binding HistoryCollectionView, Mode=TwoWay}" Padding="0,0,0,10">
-    <ListView.GroupStyle>
-        <GroupStyle>
-            <GroupStyle.ContainerStyle>
-                <Style TargetType="{x:Type GroupItem}">
-                    <Setter Property="Margin" Value="0,0,0,5"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type GroupItem}">
-                                <Expander IsExpanded="True" BorderBrush="#FFA4B97F" 
-                                            BorderThickness="0,0,0,1">
-                                    <Expander.Header>
-                                        <DockPanel>
-                                            <TextBlock FontWeight="Bold" Text="Date: "/>
-                                            <TextBlock FontWeight="Bold" Text="{Binding Path=Name}"/>
-                                        </DockPanel>
-                                    </Expander.Header>
-                                    <Expander.Content>
-                                        <ItemsPresenter />
-                                    </Expander.Content>
-                                </Expander>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </GroupStyle.ContainerStyle>
-        </GroupStyle>
-    </ListView.GroupStyle>
-    <ListView.View>
-        <GridView>
-            <GridViewColumn Width="150"
-                      DisplayMemberBinding="{Binding Path=Activity.Title}"/>
-            <GridViewColumn Width="150"
-                      DisplayMemberBinding="{Binding Path=Amount}"/>
-            <GridViewColumn>
-                <GridViewColumn.CellTemplate>
-                    <DataTemplate>
-                        <Button Command="{Binding DataContext.DeleteCommand, ElementName=BalanceControl,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}">Удалить</Button>
-                    </DataTemplate>
-                </GridViewColumn.CellTemplate>
-            </GridViewColumn>
-        </GridView>
-    </ListView.View>
-</ListView>-->

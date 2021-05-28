@@ -63,7 +63,6 @@ namespace MoneyManager.Main
                 else
                     activityType = unitOfWork.ActivityTypeRepository.GetByTitle("Доходы");
 
-
                 history = new History();
                 history.Id = Guid.NewGuid();
                 history.AccountId = CurrentAccount.Id;
@@ -71,7 +70,6 @@ namespace MoneyManager.Main
                 history.Date = DateTime.Parse(rowTd[0].Text);
                 Match match = new Regex(@"(\d+.\d+)").Match(rowTd[3].Text);
                 history.Amount = double.Parse(match.Value.Replace('.', ','));
-                //history.Date = new DateTime();
                 string description = new Regex(@"обслуживания: (.*)").Match(rows[i + 1].Text).Value;
                 Activity activity = new Activity();
                 switch(description)
@@ -104,15 +102,15 @@ namespace MoneyManager.Main
         {
             driver.Url = URL;
             WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 3, 0));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("top_link_1")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='top_link_1']/a")));
 
             IWebElement webElement = driver.FindElement(By.XPath("//*[@id='top_link_1']/a"));
             webElement.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.ClassName("stmtLink")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.ClassName("stmtLink")));
             driver.FindElement(By.ClassName("stmtLink")).Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("/html/body/div[4]/div/div[3]/div/div[2]/table/tbody/tr/td/div/form/table/tbody/tr[2]/td/div[2]/a")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("/html/body/div[4]/div/div[3]/div/div[2]/table/tbody/tr/td/div/form/table/tbody/tr[2]/td/div[2]/a")));
             driver.FindElement(By.XPath("/html/body/div[4]/div/div[3]/div/div[2]/table/tbody/tr/td/div/form/table/tbody/tr[2]/td/div[2]/a")).Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("/html/body/div[4]/div/div[3]/div/div[2]/table/tbody/tr/td/div/form/table/tbody/tr[1]/td/div/table[3]/tbody/tr")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("/html/body/div[4]/div/div[3]/div/div[2]/table/tbody/tr/td/div/form/table/tbody/tr[1]/td/div/table[3]/tbody/tr")));
             List<IWebElement> rows = driver.FindElements(By.XPath("/html/body/div[4]/div/div[3]/div/div[2]/table/tbody/tr/td/div/form/table/tbody/tr[1]/td/div/table[3]/tbody/tr")).ToList();
             return rows;
         }

@@ -18,7 +18,7 @@ namespace MoneyManager.Core.RepositoryIntarfaces.AuthenticationRepository
         public enum RegistrationResult
         {
             Success,
-            EmailAlreadyExist,
+            UsernameAlreadyExist,
             PasswordDoNotMatch
         }
 
@@ -58,7 +58,7 @@ namespace MoneyManager.Core.RepositoryIntarfaces.AuthenticationRepository
 
             if (potentiallyExistedUser != null)
             {
-                result = RegistrationResult.EmailAlreadyExist;
+                result = RegistrationResult.UsernameAlreadyExist;
             }
 
             if (result == RegistrationResult.Success)

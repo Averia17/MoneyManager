@@ -24,8 +24,8 @@ namespace MoneyManager.Main
         {
 
             InsertingData();
-/*            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
-            currentAccount.Account = new AccountRepository().GetByUsername("artyom");*/
+            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+            currentAccount.Account = new AccountRepository().GetByUsername("artyom");
             base.OnStartup(e);
         }
         protected void InsertingData()
@@ -91,43 +91,6 @@ namespace MoneyManager.Main
         {
 
         }
-        /*       private IServiceProvider CreateServiceProvider()
-      {
-          IServiceCollection services = new ServiceCollection();
 
-          services.AddSingleton<MoneyManagerContext>();
-          services.AddSingleton<IHistoryRepository, HistoryRepository>();
-          services.AddSingleton<IAuthenticationRepository, AuthenticationRepository>();
-          services.AddSingleton<IAccountRepository, AccountRepository>();
-
-          services.AddSingleton<IPasswordHasher, PasswordHasher>();
-
-
-          services.AddSingleton<BalanceViewModel>();
-          services.AddSingleton<CreateHistoryViewModel>();
-          services.AddSingleton<EditHistoryViewModel>();
-          services.AddSingleton<SettingsViewModel>();
-          services.AddSingleton<FilterBalanceViewModel>();
-          services.AddSingleton<LoginViewModel>();
-          services.AddSingleton<RegisterViewModel>();
-          services.AddSingleton<BaseViewModel>();
-
-
-          services.AddSingleton<ViewModelDelegateRenavigator<LoginViewModel>>();
-          services.AddSingleton<CreateViewModel<RegisterViewModel>>(services =>
-          {
-              return () => new RegisterViewModel(
-                  services.GetRequiredService<IAuthenticator>()
-                  );
-          });
-
-
-
-                  services.AddSingleton<IAuthenticator, Authenticator>();
-          services.AddSingleton<IAccountStore, AccountStore>();
-
-          return services.BuildServiceProvider();
-
-      }*/
     }
 }

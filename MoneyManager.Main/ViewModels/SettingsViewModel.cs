@@ -34,6 +34,7 @@ namespace MoneyManager.Main.ViewModels
         public ICommand LinkToEditCommand { get; set; }
         public ICommand ShowBelarusBankHistoriesCommand { get; set; }
         public ICommand AddHistoryToDatabaseCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
         private List<History> _historiesFromBelarusBank { get; set; }
         public List<History> HistoriesFromBelarusBank
         {
@@ -73,6 +74,7 @@ namespace MoneyManager.Main.ViewModels
             DeleteCommand = new DeleteCommand(this);
             LinkToEditCommand = new LinkToEditCommand();
             HistoriesFromBelarusBank = new List<History>();
+            LogoutCommand = new LogoutCommand();
             AddHistoryToDatabaseCommand = new AddHistoryToDatabaseCommand(this);
             ShowBelarusBankHistoriesCommand = new ShowBelarusBankHistoriesCommand(this);
             CurrentAccount = new Account();

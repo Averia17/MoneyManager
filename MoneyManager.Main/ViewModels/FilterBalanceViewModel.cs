@@ -170,8 +170,8 @@ namespace MoneyManager.Main.ViewModels
         {
             HistoriesCollectionView = CollectionViewSource.GetDefaultView(Histories);
             HistoriesCollectionView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(History.Date), new DateTimeConverter()));
-
             HistoriesCollectionView.Refresh();
+
 
         }
         private bool FilterHistories(object obj)
@@ -192,7 +192,7 @@ namespace MoneyManager.Main.ViewModels
             return false;
         }
 
-        private void UpdateProperties()
+        public void UpdateProperties()
         {
             FilteredHistories.Clear();
 

@@ -7,6 +7,6 @@ namespace MoneyManager.Core.RepositoryIntarfaces
     {
         void Edit(History history);
         void Delete(Guid id);
-        void Create(History activity);
+        void Create(History history);
     }
 }

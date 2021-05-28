@@ -48,7 +48,7 @@ namespace MoneyManager.Main.Commands
 
 
                 historyRepository.Edit(History);
-
+                new UpdateViewCommand(MainWindow.MainView).Execute("Balance");
 
             }
             catch (FormatException)

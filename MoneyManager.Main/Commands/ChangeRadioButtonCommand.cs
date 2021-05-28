@@ -40,6 +40,7 @@ namespace MoneyManager.Main.Commands
             FilterBalanceViewModel.Histories = (List<History>)FilterBalanceViewModel.Histories.Where(x => x.Activity.ActivityTypeId == activityType.Id).ToList();
             FilterBalanceViewModel.RefreshHistoryCollectionView();
             FilterBalanceViewModel.Histories = histories;
+            FilterBalanceViewModel.UpdateProperties();
 
         }
         protected void OnPropertyChanged(string propertyName)

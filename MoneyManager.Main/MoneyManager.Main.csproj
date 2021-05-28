@@ -209,6 +209,7 @@
     <Compile Include="Commands\LinkToEditCommand.cs" />
     <Compile Include="Commands\ItemChangedCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
+    <Compile Include="Commands\LogoutCommand.cs" />
     <Compile Include="Commands\RegisterCommand.cs" />
     <Compile Include="Commands\ShowBelarusBankHistoriesCommand.cs" />
     <Compile Include="Components\BindablePasswordBox.xaml.cs">
@@ -332,6 +333,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

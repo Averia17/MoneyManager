@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MoneyManager.Main.Commands.AddHistoryToDatabaseCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAIEABAAAAgACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\AddHistoryToDatabaseCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoneyManager.Main.Commands.ChangeRadioButtonCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAACAAQAIEAAAAAAwAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\ChangeRadioButtonCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoneyManager.Main.Commands.CreateCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAAAABEAAAAAAQAAAACAAAAAAA=</HashCode>
+      <FileName>Commands\CreateCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoneyManager.Main.Commands.DeleteCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAACAAQAAEAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\DeleteCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoneyManager.Main.Commands.EditCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAAAAAEAAAAAAAAAAACAAAQAAA=</HashCode>
+      <FileName>Commands\EditCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoneyManager.Main.Commands.ItemChangedCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAIEAAAAAAwAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Commands\ItemChangedCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoneyManager.Main.Commands.LinkToEditCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Commands\LinkToEditCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoneyManager.Main.Commands.LoginCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAACAAQgAEQAAAgAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\LoginCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoneyManager.Main.Commands.LogoutCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\LogoutCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoneyManager.Main.Commands.RegisterCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAACAAQAAEQAAAgAAACAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Commands\RegisterCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoneyManager.Main.Commands.ShowBelarusBankHistoriesCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\ShowBelarusBankHistoriesCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoneyManager.Main.Commands.UpdateViewCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAIEAQAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\UpdateViewCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoneyManager.Main.States.Accounts.AccountStore" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAACA=</HashCode>
+      <FileName>States\Accounts\AccountStore.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoneyManager.Main.States.Accounts.SingleCurrentAccount" Collapsed="true">
+    <Position X="29" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>States\Accounts\AccountStore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyManager.Main.States.Authenticators.Authenticator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAIAAAABAQAAAAASAAAAQCA=</HashCode>
+      <FileName>States\Authenticators\Authenticator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoneyManager.Main.ViewModels.BalanceViewModel" Collapsed="true">
+    <Position X="23.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GAAACABAAABAAAEAAAkAAAAEAgAAAQIABAEABAAAAAA=</HashCode>
+      <FileName>ViewModels\BalanceViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyManager.Main.ViewModels.DateTimeConverter" Collapsed="true">
+    <Position X="29" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\BalanceViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MoneyManager.Main.ViewModels.ObjectConverter" Collapsed="true">
+    <Position X="30.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\BalanceViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MoneyManager.Main.ViewModels.BaseViewModel" Collapsed="true">
+    <Position X="25.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>ViewModels\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MoneyManager.Main.ViewModels.CreateHistoryViewModel" Collapsed="true">
+    <Position X="24.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAASAAAAAAAAAEAAAAAAAAAAAAABAAAAAAgAA=</HashCode>
+      <FileName>ViewModels\CreateHistoryViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyManager.Main.ViewModels.EditHistoryViewModel" Collapsed="true">
+    <Position X="26.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQQAAQAAAAAAAAAQAgAAAAABgAAAEABAA=</HashCode>
+      <FileName>ViewModels\EditHistoryViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyManager.Main.ViewModels.FilterBalanceViewModel" Collapsed="true">
+    <Position X="27" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ghAACIBgAAACGECAAAABQAWAQgJAABAAERAAQQAAAQA=</HashCode>
+      <FileName>ViewModels\FilterBalanceViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyManager.Main.ViewModels.LoginViewModel" Collapsed="true">
+    <Position X="27" Y="4.25" Width="1.5" />
+    <InheritanceLine Type="MoneyManager.Main.ViewModels.BaseViewModel" FixedToPoint="true">
+      <Path>
+        <Point X="26" Y="3.562" />
+        <Point X="26" Y="4.096" />
+        <Point X="27.688" Y="4.096" />
+        <Point X="27.688" Y="4.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>CQQAAAQAAAAAAAAAAQAAAAAAABAAAAACAAIAAACAAAA=</HashCode>
+      <FileName>ViewModels\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyManager.Main.ViewModels.MainViewModel" Collapsed="true">
+    <Position X="23.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAABAAAAAAAAAAwAAAAAAAAAAAAAQAAAAAECAAAAAA=</HashCode>
+      <FileName>ViewModels\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyManager.Main.ViewModels.MessageViewModel" Collapsed="true">
+    <Position X="23.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAIAAAAAA=</HashCode>
+      <FileName>ViewModels\MessageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyManager.Main.ViewModels.RegisterViewModel" Collapsed="true">
+    <Position X="27" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GQQAAAQAAAAAEAAAAQiAAAAAAAAAAACCAAIAAQAAIAA=</HashCode>
+      <FileName>ViewModels\RegisterViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyManager.Main.ViewModels.SaveHistoryViewModel" Collapsed="true">
+    <Position X="25.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQAAAARgAAACAAAAAAAAAACAQQAgAAAgABBCAIAABAA=</HashCode>
+      <FileName>ViewModels\SaveHistoryViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyManager.Main.ViewModels.ScheduleViewModel" Collapsed="true">
+    <Position X="23.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEAAAAAAAAAAAAAAIAAAAAAEggAAAAAEAQAAQAAAAAA=</HashCode>
+      <FileName>ViewModels\ScheduleViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyManager.Main.ViewModels.SettingsViewModel" Collapsed="true">
+    <Position X="25.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GQAACARBAABAAAEAAAgAAAAEAACAAQAABAECBgAIAoA=</HashCode>
+      <FileName>ViewModels\SettingsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyManager.Main.ViewModels.StatisticsViewModel" Collapsed="true">
+    <Position X="27" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>giAAAIAgAAACDEAAAAABAAAEQAIAIAAAEQAAQAAAAAA=</HashCode>
+      <FileName>ViewModels\StatisticsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyManager.Main.ScheduleCustomEvent" Collapsed="true">
+    <Position X="29.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAACAAAAAABAAAAAAgAAEAAA=</HashCode>
+      <FileName>ScheduleCustomEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MoneyManager.Main.BelarusBankInformation" Collapsed="true">
+    <Position X="29" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAIAEAAACAgCAAAQAAAAAAAAAABgA=</HashCode>
+      <FileName>BelarusBankInformation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="MoneyManager.Main.States.Accounts.IAccountStore" Collapsed="true">
+    <Position X="29" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAACA=</HashCode>
+      <FileName>States\Accounts\IAccountStore.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MoneyManager.Main.States.Authenticators.IAuthenticator" Collapsed="true">
+    <Position X="30.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAABAQAAAAASAAAAACA=</HashCode>
+      <FileName>States\Authenticators\IAuthenticator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

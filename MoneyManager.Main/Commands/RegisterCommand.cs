@@ -65,7 +65,7 @@ namespace MoneyManager.Main.Commands
                     case RegistrationResult.PasswordDoNotMatch:
                         _registerViewModel.ErrorMessage = "Пароли не совпадают";
                         break;
-                    case RegistrationResult.EmailAlreadyExist:
+                    case RegistrationResult.UsernameAlreadyExist:
                         _registerViewModel.ErrorMessage = "Аккаунт с таким именем уже существует";
                         break;
                     
@@ -77,6 +77,10 @@ namespace MoneyManager.Main.Commands
             catch(RegexException)
             {
                 _registerViewModel.ErrorMessage = "Неверный ввод";
+            }
+            catch(FormatException)
+            {
+                _registerViewModel.ErrorMessage = "Не получилось конвертировать";
             }
             catch (Exception)
             {

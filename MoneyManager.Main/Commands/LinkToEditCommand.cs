@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace MoneyManager.Main.Commands
 {
-    public class LinkToEditCommand : BaseViewModel, ICommand
+    public class LinkToEditCommand : ICommand
     {
         public static History History { get; set; }
 
