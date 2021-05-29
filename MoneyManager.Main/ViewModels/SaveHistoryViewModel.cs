@@ -1,4 +1,5 @@
 ﻿using MoneyManager.Core.Models;
+using MoneyManager.Core.RepositoryIntarfaces;
 using MoneyManager.Infrastructure.Repositories;
 using MoneyManager.Main.Commands;
 using System;
@@ -30,9 +31,7 @@ namespace MoneyManager.Main.ViewModels
             }
         }
 
-        public ActivityTypeRepository activityTypeRepository { get; set; }
-
-        public ActivityRepository activityRepository { get; set; }
+        public IUnitOfWork unitOfWork { get; set; }
 
         public ICommand ItemChangedCommand { get; set; }
 
@@ -72,8 +71,7 @@ namespace MoneyManager.Main.ViewModels
             History = new History();
             activityTypes = new List<ActivityType>();
 
-            activityTypeRepository = new ActivityTypeRepository();
-            activityRepository = new ActivityRepository();
+            unitOfWork = new UnitOfWork();
 
             ItemChangedCommand = new ItemChangedCommand(this);
 
@@ -85,11 +83,11 @@ namespace MoneyManager.Main.ViewModels
         }
         public void GetActivityTypes()
         {
-            activityTypes = (List<ActivityType>)activityTypeRepository.List();
+            activityTypes = (List<ActivityType>)unitOfWork.ActivityTypeRepository.List();
         }
         public void GetActivities()
         {
-            activities = (List<Activity>)activityRepository.List();
+            activities = (List<Activity>)unitOfWork.ActivityRepository.List();
         }
 
     }

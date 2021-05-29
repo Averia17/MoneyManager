@@ -23,8 +23,6 @@ namespace MoneyManager.Main.Commands
             this.FilterBalanceViewModel = FilterBalanceViewModel;
         }
 
-        ActivityRepository activityRepository = new ActivityRepository();
-
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
@@ -36,10 +34,11 @@ namespace MoneyManager.Main.Commands
         {
             ActivityType activityType = (ActivityType)parameter;
             List<History> histories = new List<History>();
-            histories = FilterBalanceViewModel.Histories;
-            FilterBalanceViewModel.Histories = (List<History>)FilterBalanceViewModel.Histories.Where(x => x.Activity.ActivityTypeId == activityType.Id).ToList();
-            FilterBalanceViewModel.RefreshHistoryCollectionView();
+            histories = (List<History>)FilterBalanceViewModel.unitOfWork.HistoryRepository.List().ToList();
+            histories = histories.Where(x => x.Activity.ActivityTypeId == activityType.Id && x.Date >= FilterBalanceViewModel.TbFrom && x.Date <= FilterBalanceViewModel.TbTo).ToList();
             FilterBalanceViewModel.Histories = histories;
+            FilterBalanceViewModel.RefreshHistoryCollectionView();
+
             FilterBalanceViewModel.UpdateProperties();
 
         }

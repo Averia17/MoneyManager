@@ -11,5 +11,7 @@ namespace MoneyManager.Core.RepositoryIntarfaces
     {
         void Delete(Guid id);
         ActivityType GetByTitle(string title);
+        void Create(ActivityType activity);
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MoneyManager.Core.Models;
+using MoneyManager.Core.RepositoryIntarfaces;
 using MoneyManager.Infrastructure.Repositories;
 using MoneyManager.Main.Commands;
 using MoneyManager.Main.States.Accounts;
@@ -10,7 +11,7 @@ using System.Windows.Input;
 
 namespace MoneyManager.Main.ViewModels
 {
-    public class SettingsViewModel: BaseViewModel
+    public class SettingsViewModel : BaseViewModel
     {
         public List<History> Histories { get; set; }
         private List<History> _repeatedHistories { get; set; }
@@ -24,7 +25,7 @@ namespace MoneyManager.Main.ViewModels
                 OnPropertyChanged(nameof(RepeatedHistories));
             }
         }
-        public HistoryRepository historyRepository { get; set; }
+        public IUnitOfWork UnitOfWork {get;set;}
         public Account CurrentAccount { get; set; }
         public double Balance { get; set; }
 
@@ -66,7 +67,7 @@ namespace MoneyManager.Main.ViewModels
 
         public SettingsViewModel()
         {
-            historyRepository = new HistoryRepository();
+            UnitOfWork = new UnitOfWork();
             Histories = new List<History>();
             RepeatedHistories = new List<History>();
             History = new History();
@@ -89,9 +90,9 @@ namespace MoneyManager.Main.ViewModels
         }
         public override void GetHistories()
         {
-            Histories = historyRepository.List(x => x.Account.Id == CurrentAccount.Id && !x.IsRepeat).ToList();
+            Histories = UnitOfWork.HistoryRepository.List(x => x.Account.Id == CurrentAccount.Id && !x.IsRepeat).ToList();
 
-            RepeatedHistories = historyRepository.List(x => x.Account.Id == CurrentAccount.Id && x.IsRepeat).ToList();
+            RepeatedHistories = UnitOfWork.HistoryRepository.List(x => x.Account.Id == CurrentAccount.Id && x.IsRepeat).ToList();
 
         }
         public void RefreshHistoryCollectionView()

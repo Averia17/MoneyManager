@@ -1,4 +1,5 @@
 ﻿using MoneyManager.Core.Models;
+using MoneyManager.Core.RepositoryIntarfaces;
 using MoneyManager.Infrastructure.Repositories;
 using MoneyManager.Main.ViewModels;
 using System;
@@ -23,7 +24,7 @@ namespace MoneyManager.Main.Commands
             this.saveHistoryViewModel = saveHistoryViewModel;
         }
 
-        ActivityRepository activityRepository = new ActivityRepository();
+        IUnitOfWork unitOfWork = new UnitOfWork();
 
         public event EventHandler CanExecuteChanged;
 
@@ -35,7 +36,7 @@ namespace MoneyManager.Main.Commands
         public void Execute(object parameter)
         {
             ActivityType activityType = (ActivityType)parameter;
-            saveHistoryViewModel.activities = (List<Activity>)activityRepository.List(x => x.ActivityType.Id == activityType.Id);
+            saveHistoryViewModel.activities = (List<Activity>)unitOfWork.ActivityRepository.List(x => x.ActivityType.Id == activityType.Id);
             saveHistoryViewModel.History.Activity = saveHistoryViewModel.activities[0];
 
         }

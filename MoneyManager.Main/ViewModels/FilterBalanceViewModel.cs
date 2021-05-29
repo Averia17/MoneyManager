@@ -108,20 +108,11 @@ namespace MoneyManager.Main.ViewModels
             {
                 _tbFrom = value;
                 OnPropertyChanged(nameof(HistoriesFilter));
+                UpdateProperties();
                 HistoriesCollectionView.Refresh();
             }
         }
-        private List<History> _filteredHistories { get; set; }
-        public List<History> FilteredHistories
-        {
-            get { return _filteredHistories; }
-            set
-            {
-                _filteredHistories = value;
-                OnPropertyChanged(nameof(FilteredHistories));
-                UpdateProperties();
-            }
-        }
+
         private DateTime _tbTo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
         public DateTime TbTo
         {
@@ -129,6 +120,8 @@ namespace MoneyManager.Main.ViewModels
             set {
                 _tbTo = value;
                 OnPropertyChanged(nameof(HistoriesFilter));
+                UpdateProperties();
+
                 HistoriesCollectionView.Refresh();
             }
         }
@@ -151,7 +144,6 @@ namespace MoneyManager.Main.ViewModels
 
             Histories = new List<History>();
             activities = new List<Activity>();
-            FilteredHistories = new List<History>();
             Histories = unitOfWork.HistoryRepository.List(x => x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id && !x.IsRepeat).ToList();
             HistoriesCollectionView = CollectionViewSource.GetDefaultView(Histories);
 
@@ -170,6 +162,8 @@ namespace MoneyManager.Main.ViewModels
         {
             HistoriesCollectionView = CollectionViewSource.GetDefaultView(Histories);
             HistoriesCollectionView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(History.Date), new DateTimeConverter()));
+            HistoriesCollectionView.Filter = FilterHistories;
+
             HistoriesCollectionView.Refresh();
 
 
@@ -179,13 +173,7 @@ namespace MoneyManager.Main.ViewModels
 
             if (obj is History history)
             {
-                if (history.Activity.Title.ToUpper().Contains(HistoriesFilter.ToUpper()) && history.Date >= TbFrom && history.Date <= TbTo)
-                {
-                    FilteredHistories.Add(history);
-                    return true;
-                }
-                else
-                    return false;
+                return history.Activity.Title.ToUpper().Contains(HistoriesFilter.ToUpper()) && history.Date >= TbFrom && history.Date <= TbTo;
             
             }
 
@@ -194,37 +182,15 @@ namespace MoneyManager.Main.ViewModels
 
         public void UpdateProperties()
         {
-            FilteredHistories.Clear();
-
-            if (HistoriesCollectionView != null)
-            {
-                foreach (var o in HistoriesCollectionView)
-                {
-                    FilteredHistories.Add((History)o);
-                }
-            }
-            Encome = GetHistoriesByType("Доходы");
-            Expense = GetHistoriesByType("Расходы");
-            Difference = GetDifference();
-        }
-
-        private double GetHistoriesByType(string Type)
-        {
-            double sum = 0;
-
             List<History> histories = new List<History>();
-            histories = FilteredHistories.Where(x => x.Activity.ActivityType.Title == Type).ToList();
-
-            foreach (History history in histories)
+            foreach (History history in HistoriesCollectionView)
             {
-                sum += history.Amount;
+                histories.Add(history);
             }
-            return sum;
+            Encome = histories.Where(x => x.Activity.ActivityType.Title == "Доходы" && x.Date >= TbFrom &&x.Date <=TbTo).Sum(x => x.Amount);
+            Expense = histories.Where(x => x.Activity.ActivityType.Title == "Расходы" && x.Date >= TbFrom && x.Date <= TbTo).Sum(x => x.Amount);
+            Difference = Encome - Expense;
         }
 
-        private double GetDifference()
-        {
-            return GetHistoriesByType("Доходы") - GetHistoriesByType("Расходы");
-        }
     }
 }

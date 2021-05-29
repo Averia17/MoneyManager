@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using MoneyManager.Core.Models;
 using MoneyManager.Infrastructure.Repositories;
 using MoneyManager.Main.States.Accounts;
+using MoneyManager.Core.RepositoryIntarfaces;
 
 namespace MoneyManager.Main.ViewModels
 {
@@ -23,7 +24,8 @@ namespace MoneyManager.Main.ViewModels
 
         public List<History> Expenses { get; set; }
 
-        public HistoryRepository historyRepository { get; set; }
+        public IUnitOfWork unitOfWork { get; set; }
+
 
         public List<ICalendarEvent> _events;
 
@@ -46,7 +48,7 @@ namespace MoneyManager.Main.ViewModels
         }
         public ScheduleViewModel()
         {
-            historyRepository = new HistoryRepository();
+            unitOfWork = new UnitOfWork();
 
             Encomes = new List<History>();
             Expenses = new List<History>();
@@ -59,7 +61,7 @@ namespace MoneyManager.Main.ViewModels
         }
         public List<History> GetHistoriesByType(string Type)
         {
-            return historyRepository.List(x => x.Activity.ActivityType.Title == Type && !x.IsRepeat
+            return unitOfWork.HistoryRepository.List(x => x.Activity.ActivityType.Title == Type && !x.IsRepeat
                                             && x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id)
                                             .ToList();
         }

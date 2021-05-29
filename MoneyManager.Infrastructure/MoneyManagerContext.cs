@@ -15,7 +15,8 @@ namespace MoneyManager.Infrastructure
         {
             //string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EFBDConnection"].ConnectionString;
             optionsBuilder.UseSqlServer(@"Server=(local);Database=MoneyManager.Db;Integrated Security=True");
-           //optionsBuilder.UseSqlServer(@"Server=tcp:courseworkoop.database.windows.net,1433;Initial Catalog=MoneyManager;Persist Security Info=False;User ID=Averia;Password=A21veria;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            
+            //optionsBuilder.UseSqlServer(@"Server=tcp:courseworkoop.database.windows.net,1433;Initial Catalog=MoneyManager;Persist Security Info=False;User ID=Averia;Password=A21veria;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             base.OnConfiguring(optionsBuilder);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

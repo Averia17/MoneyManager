@@ -29,13 +29,13 @@ namespace MoneyManager.Main.ViewModels
             set
             {
                 _currentAccount = value;
-               
+
                 OnPropertyChanged(nameof(CurrentAccount));
-             
+
             }
         }
         public static ICommand LinkToEditCommand { get; set; }
-        
+
         public ICommand UpdateViewCommand { get; set; }
 
         private ICollectionView _historyCollectionView { get; set; }
@@ -56,7 +56,7 @@ namespace MoneyManager.Main.ViewModels
             {
                 _histories = value;
                 OnPropertyChanged(nameof(Histories));
-                if(HistoryCollectionView != null)
+                if (HistoryCollectionView != null)
                     RefreshHistoryCollectionView();
             }
         }
@@ -72,13 +72,12 @@ namespace MoneyManager.Main.ViewModels
             }
         }
 
-        private HistoryRepository historyRepository;
-
+        public IUnitOfWork UnitOfWork {get;set;}
         public BalanceViewModel()
         {
             SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
             CurrentAccount = currentAccount.Account;
-            historyRepository = new HistoryRepository();
+            UnitOfWork = new UnitOfWork();
             Histories = new List<History>();
             GetHistories();
 
@@ -93,7 +92,7 @@ namespace MoneyManager.Main.ViewModels
         }
         public override void GetHistories()
         {
-            Histories = historyRepository.List(x => x.Account.Id == CurrentAccount.Id && !x.IsRepeat).ToList();
+            Histories = UnitOfWork.HistoryRepository.List(x => x.Account.Id == CurrentAccount.Id && !x.IsRepeat).ToList();
             Balance = GetBalance(Histories);
 
         }

@@ -1,6 +1,7 @@
 ﻿using Itenso.TimePeriod;
 using MoneyManager.Core.Exceptions;
 using MoneyManager.Core.Models;
+using MoneyManager.Core.RepositoryIntarfaces;
 using MoneyManager.Infrastructure.Repositories;
 using MoneyManager.Main.States.Accounts;
 using MoneyManager.Main.ViewModels;
@@ -20,7 +21,8 @@ namespace MoneyManager.Main.Commands
             History = history;
             _createHistoryViewModel = createHistoryViewModel;
         }
-        HistoryRepository historyRepository = new HistoryRepository();
+        public IUnitOfWork UnitOfWork = new UnitOfWork();
+
 
         public event EventHandler CanExecuteChanged;
 
@@ -47,13 +49,13 @@ namespace MoneyManager.Main.Commands
                 History.ActivityId = History.Activity.Id;
                 History.Activity = null;
                 History.Amount = Amount;
-                historyRepository.Create(History);
+                UnitOfWork.HistoryRepository.Create(History);
 
                 if (History.IsRepeat)
                 {
                     History.IsRepeat = false;
                     History.Id = Guid.NewGuid();
-                    historyRepository.Create(History);
+                    UnitOfWork.HistoryRepository.Create(History);
                     CheckRepeatHistories();
                 }
             }
@@ -76,8 +78,8 @@ namespace MoneyManager.Main.Commands
         public static void CheckRepeatHistories()
         {
             List<History> RepeatHistoriesList = new List<History>();
-            HistoryRepository historyRepository = new HistoryRepository();
-            RepeatHistoriesList = historyRepository.List(x => x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id && x.IsRepeat).ToList();
+            IUnitOfWork UnitOfWork = new UnitOfWork();
+            RepeatHistoriesList = UnitOfWork.HistoryRepository.List(x => x.Account.Id == SingleCurrentAccount.GetInstance().Account.Id && x.IsRepeat).ToList();
             DateTime datenow = new DateTime();
             datenow = DateTime.Now;
             //идея в том чтобы добавить в отдельный список все хистори с isrepeat и их не показывать в обычных хистори
@@ -103,11 +105,11 @@ namespace MoneyManager.Main.Commands
                     copiedHistory.Id = Guid.NewGuid();
                     copiedHistory.Date = copiedHistory.Date.AddMonths(1);
 
-                    historyRepository.Create(copiedHistory);
+                    UnitOfWork.HistoryRepository.Create(copiedHistory);
 
                 }
                 history.Date = history.Date.AddMonths(dateDiff.Months);
-                historyRepository.Edit(history);
+                UnitOfWork.HistoryRepository.Edit(history);
             }
         }
     }

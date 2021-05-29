@@ -1,4 +1,5 @@
 ﻿using MoneyManager.Core.Models;
+using MoneyManager.Core.RepositoryIntarfaces;
 using MoneyManager.Infrastructure.Repositories;
 using MoneyManager.Main.ViewModels;
 using System;
@@ -14,8 +15,7 @@ namespace MoneyManager.Main.Commands
     {
         BaseViewModel balanceViewModel { get; set; }
 
-        HistoryRepository historyRepository = new HistoryRepository();
-
+        IUnitOfWork unitOfWork = new UnitOfWork();
         public DeleteCommand(BaseViewModel balanceViewModel)
         {
             this.balanceViewModel = balanceViewModel;
@@ -31,7 +31,7 @@ namespace MoneyManager.Main.Commands
         public void Execute(object parameter)
         {
             History history = (History)parameter;
-            historyRepository.Delete(history.Id);
+            unitOfWork.HistoryRepository.Delete(history.Id);
             balanceViewModel.GetHistories();
 
             

@@ -34,6 +34,7 @@ namespace MoneyManager.Main.States.Accounts
     {
         public Account Account { get; set; }
         private static SingleCurrentAccount _instance;
+        private static readonly object _locker = new object();
         private SingleCurrentAccount()
         {
             Account = new Account();
@@ -41,7 +42,8 @@ namespace MoneyManager.Main.States.Accounts
 
         public static SingleCurrentAccount GetInstance()
         {
-            return _instance ?? (_instance = new SingleCurrentAccount());
+            lock (_locker)
+                return _instance ?? (_instance = new SingleCurrentAccount());
         }
     }
 }

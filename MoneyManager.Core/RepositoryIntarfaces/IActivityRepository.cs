@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace MoneyManager.Core.RepositoryIntarfaces
 {
-    public interface IActivityRepository : IRepository<Activity, Guid>
+    public interface IActivityRepository: IRepository<Activity, Guid>
     {
         void Delete(Guid id);
         void Create(Activity activity);
         Activity GetByTitle(string title);
+
 
     }
 }

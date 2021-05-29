@@ -1,4 +1,5 @@
 ﻿using MoneyManager.Core.Models;
+using MoneyManager.Core.RepositoryIntarfaces;
 using MoneyManager.Infrastructure.Repositories;
 using MoneyManager.Main.Commands;
 using System;
@@ -48,7 +49,6 @@ namespace MoneyManager.Main.ViewModels
 
             History = new History();
             ItemChangedCommand = new ItemChangedCommand(this);
-            ActivityTypeRepository activityTypeRepository = new ActivityTypeRepository();
             CreateCommand = new CreateCommand(History, this);
             ItemChangedCommand.Execute(Expense);
 

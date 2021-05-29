@@ -1,5 +1,6 @@
 ﻿using MoneyManager.Core.Exceptions;
 using MoneyManager.Core.Models;
+using MoneyManager.Core.RepositoryIntarfaces;
 using MoneyManager.Infrastructure.Repositories;
 using MoneyManager.Main.ViewModels;
 using System;
@@ -22,7 +23,8 @@ namespace MoneyManager.Main.Commands
             _editHistoryViewModel = editHistoryViewModel;
 
         }
-        HistoryRepository historyRepository = new HistoryRepository();
+        IUnitOfWork unitOfWork = new UnitOfWork();
+
 
         public event EventHandler CanExecuteChanged;
 
@@ -47,7 +49,7 @@ namespace MoneyManager.Main.Commands
                 History.Amount = Amount;
 
 
-                historyRepository.Edit(History);
+                unitOfWork.HistoryRepository.Edit(History);
                 new UpdateViewCommand(MainWindow.MainView).Execute("Balance");
 
             }

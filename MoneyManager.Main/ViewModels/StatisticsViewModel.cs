@@ -1,4 +1,5 @@
 ﻿using MoneyManager.Core.Models;
+using MoneyManager.Core.RepositoryIntarfaces;
 using MoneyManager.Infrastructure.Repositories;
 using MoneyManager.Main.States.Accounts;
 using PieChart;
@@ -15,7 +16,8 @@ namespace MoneyManager.Main.ViewModels
     {
         public ObservableCollection<PieCharItem> PieCharListExpenses { get; set; }
         public ObservableCollection<PieCharItem> PieCharListEncomes { get; set; }
-        public HistoryRepository historyRepository { get; set; }
+        public IUnitOfWork unitOfWork { get; set; }
+
 
         Account account { get; set; }
 
@@ -80,7 +82,7 @@ namespace MoneyManager.Main.ViewModels
         {
             PieCharListExpenses = new ObservableCollection<PieCharItem>();
             PieCharListEncomes = new ObservableCollection<PieCharItem>();
-            historyRepository = new HistoryRepository();
+            unitOfWork = new UnitOfWork();
             SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
             account = currentAccount.Account;
             StartUp();
@@ -98,7 +100,7 @@ namespace MoneyManager.Main.ViewModels
             double sum = 0;
 
             List<History> histories = new List<History>();
-            histories = historyRepository.List(x => x.Activity.ActivityType.Title == Type && !x.IsRepeat
+            histories = unitOfWork.HistoryRepository.List(x => x.Activity.ActivityType.Title == Type && !x.IsRepeat
                                                 && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id)
                                                 .ToList();
 
@@ -117,7 +119,7 @@ namespace MoneyManager.Main.ViewModels
         {
             PieCharListExpenses.Clear();
 
-            var histories = historyRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id && !x.IsRepeat)
+            var histories = unitOfWork.HistoryRepository.List(x => x.Activity.ActivityType.Title == "Расходы" && x.Date >= TbFrom && x.Date <= TbTo && x.Account.Id == account.Id && !x.IsRepeat)
                                                 .GroupBy(x => x.Activity.Title).
                                                 Select(g => new
                                                 {
